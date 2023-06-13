@@ -1,4 +1,4 @@
 package com.example.It_info_pass_master.Service;
 
-public interface ServiceInterface {
+public interface RandomService {
 }
