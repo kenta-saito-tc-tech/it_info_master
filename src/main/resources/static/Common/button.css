@@ -1,0 +1,27 @@
+/* .button {
+    color: #333;
+    background-color: rgb(131, 197, 236);
+    width: 200px;
+    border-radius: 10px;
+}
+  
+  
+  .button:hover {
+    border-bottom: 2px solid #333;
+    opacity: 0.5; 
+  } */
+  
+  .button {
+    display: inline-block; /* インラインブロック要素として表示 */
+    padding: 5px 20px; /* パディングを指定 */
+    background-color: rgb(131, 197, 236); /* 背景色を指定 */
+    color: #000000; /* テキスト色を指定 */
+    text-decoration: none; /* テキストの下線をなしにする */
+    border: 1px solid #000000; /* 枠線を指定 */
+    border-radius: 4px; /* 角を丸くする */
+  }
+  
+  .button:hover {
+    background-color: #cccccc; /* ホバー時の背景色を指定 */
+    opacity: 0.5; /* 半透明にする値 */
+  }
