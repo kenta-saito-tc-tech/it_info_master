@@ -23,7 +23,8 @@
     <!--デフォルトの表示用CSS(ブラウザの表示の統一化)-->
     <link rel="stylesheet" href="./Common/sanitize.css" />
     <!--自作のCSS-->
-    <!-- <link rel="stylesheet" href="#" /> -->
+    <link rel="stylesheet" href="./CSS/style_user_add.css" />
+    <link rel="stylesheet" href="./Common/button.css" />
 
     <!--favicon-->
     <link rel="icon" type="image/x-icon" href="./image/exam.png" />
@@ -31,12 +32,43 @@
   </head>
   <body>
     <!--ヘッダーの指定-->
-    <!-- <th:block th:insert="#"></th:block> -->
+    <th:block th:insert="./Header/next_header"></th:block>
   
     <!--ここにコードを記入-->
-    <h1>ユーザー登録画面</h1>
+    <div class="mainDiv">
+      <h1>アカウント作成</h1>
+      <fieldset>
+        <div class="inputEach">
+          <label for="js-inputName"
+            ><span class="redText">※</span>名前</label
+          >
+          <input type="text" class="inputText" id="js-inputName" />
+          <span class="redText" id="js-errarName">エラー</span>
+        </div>
+
+        <div class="inputEach">
+          <label for="js-inputId"><span class="redText">※</span>ユーザーID</label>
+          <input type="text" class="inputText" id="js-inputId" />
+          <span class="redText" id="js-errarId">エラー</span>
+        </div>
+
+        <div class="inputEach">
+          <label for="js-inputPass"
+            ><span class="redText">※</span>パスワード</label
+          >
+          <input type="password" class="inputText" id="js-inputPass" />
+          <span class="redText" id="js-errarPass">エラー</span>
+        </div>
+
+        <div class="inputEach">
+          
+      </fieldset>
+      <div class="buttons">
+        <button class="button" id="js-addAccount">登録</button>
+      </div>
+    </div>
 
     <!--JSの指定-->
-    <!-- <script src="#"></script> -->
+    <script src="./JS/app_user_add.js"></script>
   </body>
 </html>

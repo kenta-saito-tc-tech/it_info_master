@@ -1,0 +1,31 @@
+header {
+    top: 0;
+    right: 0;
+    padding: 10px;
+    background-color: rgb(131, 197, 236);
+  }
+  
+  header nav ul {
+    list-style: none;
+  } 
+  
+  header nav ul li {
+    text-align: right; /* テキストを右寄せする */
+  }
+  
+  header nav ul li a {
+    color: rgb(27, 27, 27);
+    font-weight: 500;
+  }
+  
+  .headerImg {
+    width: 50px; /* 幅を指定 */
+    height: auto; /* 高さは自動調整 */
+  }
+  
+  .headerMessage{
+    font-weight: bold; /* フォントの太さを太くする */
+    font-size: 24px; /* フォントサイズを指定 */
+    text-transform: uppercase; /* テキストを大文字に変換 */
+    letter-spacing: 2px; /* 文字間のスペースをあける*/
+  }
