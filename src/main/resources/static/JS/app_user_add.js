@@ -52,7 +52,7 @@ document.addEventListener("DOMContentLoaded", () => {
           loginId: idText,
           password: passText,
           name: nameText,
-          responsibleId: 1,
+          role: "user",
         };
   
         console.log("click");

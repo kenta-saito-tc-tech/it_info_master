@@ -56,10 +56,10 @@ public class PgAccountDao implements AccountDao{
         param.addValue("loginId", userRecord.loginId());
         param.addValue("password", userRecord.password());
         param.addValue("name", userRecord.name());
-        param.addValue("responsibleId", userRecord.responsibleId());
+        param.addValue("role", userRecord.role());
         int count = jdbcTemplate.update("INSERT INTO Users" +
-                "(login_id, password, name, responsible_id)" +
-                " VALUES (:loginId, :password, :name, :responsibleId)", param);
+                "(login_id, password, name, role)" +
+                " VALUES (:loginId, :password, :name, :role)", param);
         return count == 1 ? count : null;
     }
     //todo responsibleIdをroleに変更
