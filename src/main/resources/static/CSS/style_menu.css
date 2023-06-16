@@ -1,0 +1,69 @@
+ /* ランキングのスタイル */
+ .ranking {
+    margin-bottom: 20px;
+  }
+  
+  .ranking-list {
+    list-style-type: decimal;
+    padding-left: 20px;
+    list-style-type: none;
+  }
+  
+  .ranking-list-item {
+    margin-bottom: 10px;
+  }
+  
+  /* 自分のランキングのスタイル */
+  .my-ranking {
+    font-weight: bold;
+  }
+
+  .mainBody{
+    text-align: center;
+  }
+
+  .rankingimg{
+    padding-top: 20px;
+    width: 60px; /* 幅を50ピクセルに指定 */
+    height: auto; /* 高さを自動調整 */
+  }
+  .ranking1{
+    width: 60px; /* 幅を50ピクセルに指定 */
+    height: auto; /* 高さを自動調整 */
+  }
+  .ranking2{
+    width: 50px; /* 幅を50ピクセルに指定 */
+    height: auto; /* 高さを自動調整 */
+  }
+  .ranking3{
+    width: 40px; /* 幅を50ピクセルに指定 */
+    height: auto; /* 高さを自動調整 */
+  }
+
+  .ranking-title {
+    font-weight: bold;
+    font-size: 30px;
+  }
+  .ranking1Name{
+    font-weight: bold;
+    font-size: 40px;
+  }
+  .ranking2Name{
+    font-size: 30px;
+  }
+  .ranking3Name{
+    font-size: 20px;
+  }
+
+  .button{
+    margin: 20px;
+    width: 400px;
+  }
+
+  /*背景画像*/
+  .mainBackImg {
+    background-image: url(/image/frame.jpg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
