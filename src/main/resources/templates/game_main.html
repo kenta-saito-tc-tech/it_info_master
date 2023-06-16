@@ -24,10 +24,12 @@
     <link rel="stylesheet" href="./Common/sanitize.css" />
     <!--自作のCSS-->
     <!-- <link rel="stylesheet" href="#" /> -->
+    <link rel="stylesheet" type="text/css" href="style_game-main.css" />
 
     <!--favicon-->
     <link rel="icon" type="image/x-icon" href="./image/exam.png" />
     <title>ITインフォパスマスター</title>
+
   </head>
   <body>
 
@@ -35,15 +37,20 @@
     <!-- <th:block th:insert="#"></th:block> -->
   
     <!--ここにコードを記入-->
-<!--    <h1>ゲームモード画面</h1>-->
-    <h1>IT道場</h1>
-    <p><button>start</button></p>
-    <p><button>年代設定</button></p>
-    <p>遊び方説明</p>
-    <p>ルール1.用意された50問をできるだけ素早く解答しよう！</p>
-    <p>ルール2.問題を間違えると〇秒追加されるよ！</p>
-    <p>素早く正確に問題を解いてランキング上位を目指そう！</p>
+    <div style="text-align:center">
+    <form action="/game_main" method="post">
+      <h1>IT道場</h1>
+      <p><button type="submit">start</button></p>
+      <p>年代設定</p>
+        <input type="radio" id="2023" name="age" value="1" checked><label for="2023">2023</label>
+        <input type="radio" id="2024" name="age" value="2" ><label for="2024">2024</label>
+      <p>遊び方説明</p>
+      <p>ルール1.用意された50問をできるだけ素早く解答しよう！</p>
+      <p>ルール2.問題を間違えると〇秒追加されるよ！</p>
+      <p>素早く正確に問題を解いてランキング上位を目指そう！</p>
     <!--JSの指定-->
     <!-- <script src="#"></script> -->
+    </form>
+    </div>
   </body>
 </html>
