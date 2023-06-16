@@ -1,42 +1,51 @@
 <!DOCTYPE html>
 <html lang="ja">
-  <head>
-    <meta charset="UTF-8" />
+<head>
+    <meta charset="UTF-8"/>
     <meta
-      name="viewport"
-      content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+            name="viewport"
+            content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
     />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
     <!-- サイトの説明欄 -->
     <meta
-      name="ITインフォパスマスター"
-      content="試験内容別にテストがあり、ユーザーの受けたいテストをピンポイントに受講できる"
+            name="ITインフォパスマスター"
+            content="試験内容別にテストがあり、ユーザーの受けたいテストをピンポイントに受講できる"
     />
     <!--CSSリンク-->
     <!--Webフォントのリンク３つ-->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://fonts.googleapis.com"/>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
     <link
-      href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap"
-      rel="stylesheet"
+            href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap"
+            rel="stylesheet"
     />
     <!--デフォルトの表示用CSS(ブラウザの表示の統一化)-->
-    <link rel="stylesheet" href="./Common/sanitize.css" />
+
     <!--自作のCSS-->
     <!-- <link rel="stylesheet" href="#" /> -->
 
     <!--favicon-->
-    <link rel="icon" type="image/x-icon" href="./image/exam.png" />
+    <link rel="icon" type="image/x-icon" href="./image/exam.png"/>
     <title>ITインフォパスマスター</title>
-  </head>
-  <body>
-    <!--ヘッダーの指定-->
-    <!-- <th:block th:insert="#"></th:block> -->
-  
-    <!--ここにコードを記入-->
-    <h1>一問一答選択画面</h1>
+</head>
+<body>
+<span id="error_massage"></span>
+<!--ヘッダーの指定-->
+<!-- <th:block th:insert="#"></th:block> -->
 
-    <!--JSの指定-->
-    <!-- <script src="#"></script> -->
-  </body>
+<!--ここにコードを記入-->
+<h1>一問一答選択画面</h1>
+<div id="js_select_age">
+    <!--年代のプルダウンボックスを入れる-->
+</div>
+<div id="js_select_categories">
+    <!--カテゴリのプルダウンボックスを入れる-->
+</div>
+<div id="js_select_question">
+    <!--問題のプルダウンボックスを入れる-->
+</div>
+<!--JSの指定-->
+<script src="./JS/app_select_question.js"></script>
+</body>
 </html>
