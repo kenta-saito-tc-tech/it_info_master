@@ -18,14 +18,15 @@ public class GameController {
     @Autowired
     private HttpSession session;
 
-    @GetMapping("/game_main")
-    public String game(Model model) {
-
-        return "game_main";
-    }
+//    // ゲットはメニュー画面で出来るからこのクラスでは行わない
+//    @GetMapping("/game_main_view")
+//    public String gameMain(Model model) {
+//
+//        return "game_main";
+//    }
 
     @PostMapping("/game_main")
-    public String gameMain(@RequestParam(name="age") int id, Model model) {
+    public String gameMainPost(@RequestParam(name="age") int id, Model model) {
 //        var user = (UserRecord)session.getAttribute("user");
 //        int userid = user.id();
         var list = gameService.userGameAdd(1, id);
