@@ -24,6 +24,7 @@
     <link rel="stylesheet" href="/Common/sanitize.css" />
     <!--自作のCSS-->
     <link rel="stylesheet" href="/Common/button.css" />
+    <link rel="stylesheet" href="/CSS/style_menu.css" />
 
     <!--favicon-->
     <link rel="icon" type="image/x-icon" href="/image/exam.png" />
@@ -32,19 +33,73 @@
   <body>
     <!--ヘッダーの指定-->
     <th:block th:insert="/Header/main_header.html"></th:block>
-  
-    <!--ここにコードを記入-->
-    <h1>menu</h1>
-    <div class="buttons">
-      <a class="button" href="/game_main" id="js-btnToQuestion">ゲームモード</a>
-      <div class="btnQuestons">
-        <a class="button" href="/question_select" id="js-btnToQuestion">一問一答問題</a>
-        <a class="button" href="/random_select" id="js-btnToQuestion">ランダム問題</a>
+    <!--権限の格納用-->
+    <input
+      id="js-userId"
+      type="hidden"
+      th:value="${session.user.id}"
+    />
+
+    <div class="mainBackImg">
+      <!--ランキング表示-->
+      <div class="mainBody">
+        <div class="ranking">
+          <img class="rankingimg" src="/image/ranking1.png" alt="ランキング" />
+          <h2 class="ranking-title">ゲームランキング</h2>
+
+          <select id="js-listSelect"></select>
+
+          <ol class="ranking-list">
+            <li class="ranking-list-item">
+              <img class="ranking1" src="/image/first.png" alt="１位" /><span>
+              </span
+              ><span class="ranking1Name" id="js-ranking1Name">-</span>さん
+              タイム：<span class="ranking1Name" id="js-ranking1Score"></span>秒
+            </li>
+            <li class="ranking-list-item">
+              <img class="ranking2" src="/image/medal2.png" alt="２位" /><span>
+              </span
+              ><span class="ranking2Name" id="js-ranking2Name">-</span>さん
+              タイム：<span class="ranking2Name" id="js-ranking2Score"></span>秒
+            </li>
+            <li class="ranking-list-item">
+              <img class="ranking3" src="/image/medal3.png" alt="３位" /><span>
+              </span
+              ><span class="ranking3Name" id="js-ranking3Name">-</span>さん
+              タイム：<span class="ranking2Name" id="js-ranking3Score"></span>秒
+            </li>
+          </ol>
+        </div>
+
+        <!--userのみ出力-->
+        <th:block th:if="${session.user.role == 'user'}">
+          <div class="my-ranking">
+            <h2>自分のランキング</h2>
+            <p>
+              <span id="js-myRanking"></span>位: [[ ${session.user.name} ]] さん
+              タイム：<span id="js-myScore"></span>秒
+            </p>
+          </div>
+        </th:block>
+
+        <!--各ボタン-->
+        <div class="buttons">
+          <a class="button" href="/game_main" id="js-btnToQuestion"
+            >ゲームモード</a
+          >
+          <div class="btnQuestons">
+            <a class="button" href="/question_select" id="js-btnToQuestion"
+              >一問一答問題</a
+            >
+            <a class="button" href="/random_select" id="js-btnToQuestion"
+              >ランダム問題</a
+            >
+          </div>
+        </div>
       </div>
     </div>
-    
 
     <!--JSの指定-->
-    <!-- <script src="#"></script> -->
+    <script src="/JS/app_menu.js"></script>
   </body>
 </html>
