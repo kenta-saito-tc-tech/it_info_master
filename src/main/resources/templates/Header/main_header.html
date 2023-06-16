@@ -1,7 +1,35 @@
 <header>
+  <div class="headerMain">
+    <nav>
+      <div class="headerH1">
+        <img class="headerImg" src="./image/exam.png" alt="exam" />
+        <span class="headerMessage">ITインフォパスマスター</span>
+      </div>
+    </nav>
+    <span>login as [[ ${session.user.name} ]] </span>
+    <div class="menu-icon" id="js-menu-icon">
+      <div class="menu-line"></div>
+      <div class="menu-line"></div>
+      <div class="menu-line"></div>
+    </div>
+  </div>
 
-    <!--ここに記述-->
+  <!--権限の格納用-->
+  <input
+    id="js-userRole"
+    type="hidden"
+    th:value="${session.user.role}"
+  />
 
-  </header>
-  <link rel="stylesheet" href="./Common/sanitize.css" />
-  <!-- <link rel="stylesheet" href="#"> -->
+  <ul class="dropdown-menu" id="js-dropdown-menu">
+    <li><a href="/account_change">アカウント編集</a></li>
+    <li><a href="/admin_account" id="js-adminAccount">アカウント管理</a></li>
+    <li><a href="/admin_question_make" id="js-adminQuestion">問題管理</a></li>
+    <li><a href="" id="js-inquiry">問い合わせ</a></li>
+    <li><a href="/index">ログアウト</a></li>
+  </ul>
+</header>
+<link rel="stylesheet" href="./Common/sanitize.css" />
+<link rel="stylesheet" href="./Common/header.css" />
+<link rel="stylesheet" href="./Common/button.css" />
+<script src="/Common/header.js"></script>

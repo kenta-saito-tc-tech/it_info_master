@@ -21,20 +21,28 @@
       rel="stylesheet"
     />
     <!--デフォルトの表示用CSS(ブラウザの表示の統一化)-->
-    <link rel="stylesheet" href="./Common/sanitize.css" />
+    <link rel="stylesheet" href="/Common/sanitize.css" />
     <!--自作のCSS-->
-    <!-- <link rel="stylesheet" href="#" /> -->
+    <link rel="stylesheet" href="/Common/button.css" />
 
     <!--favicon-->
-    <link rel="icon" type="image/x-icon" href="./image/exam.png" />
+    <link rel="icon" type="image/x-icon" href="/image/exam.png" />
     <title>ITインフォパスマスター</title>
   </head>
   <body>
     <!--ヘッダーの指定-->
-    <!-- <th:block th:insert="#"></th:block> -->
+    <th:block th:insert="/Header/main_header.html"></th:block>
   
     <!--ここにコードを記入-->
     <h1>menu</h1>
+    <div class="buttons">
+      <a class="button" href="/game_main" id="js-btnToQuestion">ゲームモード</a>
+      <div class="btnQuestons">
+        <a class="button" href="/question_select" id="js-btnToQuestion">一問一答問題</a>
+        <a class="button" href="/random_select" id="js-btnToQuestion">ランダム問題</a>
+      </div>
+    </div>
+    
 
     <!--JSの指定-->
     <!-- <script src="#"></script> -->

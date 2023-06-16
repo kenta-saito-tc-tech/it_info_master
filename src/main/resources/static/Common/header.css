@@ -1,4 +1,4 @@
-header {
+.headerMain {
     top: 0;
     right: 0;
     padding: 10px;
@@ -9,7 +9,7 @@ header {
     list-style: none;
   } 
   
-  header nav ul li {
+  header nav ul li{
     text-align: right; /* テキストを右寄せする */
   }
   
@@ -28,4 +28,29 @@ header {
     font-size: 24px; /* フォントサイズを指定 */
     text-transform: uppercase; /* テキストを大文字に変換 */
     letter-spacing: 2px; /* 文字間のスペースをあける*/
+  }
+
+  .dropdown-menu {
+    display: none;
+    order: 1;
+    position: absolute; /* ポップアップ要素に対して絶対的な位置を指定 */
+    right: 0; /* ポップアップ要素を右寄せに配置 */
+  }
+  
+  .menu-icon {
+    cursor: pointer;
+    display:grid;
+    justify-content: flex-end;
+  }
+  
+  .menu-line {
+    width: 25px;
+    height: 2px;
+    background-color: black;
+    margin: 2px 0;
+  }
+
+  .dropdown-menu li {
+    list-style: none;
+    text-align: right; /* テキストを右寄せする */
   }
