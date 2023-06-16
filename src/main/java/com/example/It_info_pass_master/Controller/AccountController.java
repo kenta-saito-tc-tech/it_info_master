@@ -47,4 +47,100 @@ public class AccountController {
     public String newAccountView() {
         return "/user_add";
     }
+
+    /**
+     * アカウント編集画面
+     */
+    @GetMapping("/account_change")
+    public String accountChangeView() {
+        if (session.getAttribute("user") == null) { //sessionがない場合
+            return "redirect:/index";
+        }
+
+        return "/account_change";
+    }
+
+    /**
+     * アカウント管理画面
+     */
+    @GetMapping("/admin_account")
+    public String adminAccountView() {
+        if (session.getAttribute("user") == null) { //sessionがない場合
+            return "redirect:/index";
+        }
+
+        return "/admin_account";
+    }
+
+    /**
+     * 問題作成画面
+     */
+    @GetMapping("/admin_question_make")
+    public String adminQuestionMakeView() {
+        if (session.getAttribute("user") == null) { //sessionがない場合
+            return "redirect:/index";
+        }
+
+        return "/admin_question_make";
+    }
+
+    /**
+     * ユーザー問い合わせ画面
+     */
+    @GetMapping("/user_inquiry")
+    public String userInquiryView() {
+        if (session.getAttribute("user") == null) { //sessionがない場合
+            return "redirect:/index";
+        }
+
+        return "/user_inquiry";
+    }
+
+    /**
+     * 管理者問い合わせ画面
+     */
+    @GetMapping("/admin_inquiry")
+    public String adminInquiryView() {
+        if (session.getAttribute("user") == null) { //sessionがない場合
+            return "redirect:/index";
+        }
+
+        return "/admin_inquiry";
+    }
+
+    /**
+     * ゲームモード初期画面
+     */
+    @GetMapping("/game_main")
+    public String gameMainView() {
+        if (session.getAttribute("user") == null) { //sessionがない場合
+            return "redirect:/index";
+        }
+
+        return "/game_main";
+    }
+
+    /**
+     * 一問一答初期画面
+     */
+    @GetMapping("/question_select")
+    public String questionSelectView() {
+        if (session.getAttribute("user") == null) { //sessionがない場合
+            return "redirect:/index";
+        }
+
+        return "/question_select";
+    }
+
+    /**
+     * ランダム問題画面
+     */
+    @GetMapping("/random_select")
+    public String randomSelectView() {
+        if (session.getAttribute("user") == null) { //sessionがない場合
+            return "redirect:/index";
+        }
+
+        return "/random_select";
+    }
 }
