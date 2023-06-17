@@ -4,3 +4,24 @@ body {
     background-position: center;
     background-repeat: no-repeat;
 }
+
+.gameTitle {
+    font-size: 65px;
+    margin: 0px 0px;
+}
+
+.start {
+    font-size: 50px;
+    width: 400px;
+    padding: 15px;
+}
+
+.ageSelect {
+    font-size: 30px;
+    margin: 15px 0px;
+}
+
+label {
+    font-size: 15px;
+}
+
