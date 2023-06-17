@@ -19,7 +19,7 @@ public class PgGameDao implements GameDao{
         MapSqlParameterSource param = new MapSqlParameterSource();
         param.addValue("userid",userid);
         param.addValue("ageid",ageid);
-        var id = jdbcTemplate.query("INSERT INTO user_game (game_date, user_id, age_id) VALUES ('2003-06-16', :userid, :ageid) RETURNING id", param,new DataClassRowMapper<>(ageidRecord.class));
-        return id;
+        var id = jdbcTemplate.query("INSERT INTO user_game (game_date, user_id, age_id) VALUES (CURRENT_TIMESTAMP, :userid, :ageid) RETURNING id", param,new DataClassRowMapper<>(ageidRecord.class));
+        return id.isEmpty() ? null : id.get(0);
     }
 }
