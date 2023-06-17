@@ -15,7 +15,7 @@ public class PgGameDao implements GameDao{
     @Autowired
     private NamedParameterJdbcTemplate jdbcTemplate;
 
-    public List<ageidRecord> userGameAdd(int userid, int ageid) {
+    public ageidRecord userGameAdd(int userid, int ageid) {
         MapSqlParameterSource param = new MapSqlParameterSource();
         param.addValue("userid",userid);
         param.addValue("ageid",ageid);

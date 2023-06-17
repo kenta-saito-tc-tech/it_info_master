@@ -27,11 +27,12 @@ public class GameController {
 
     @PostMapping("/game_main")
     public String gameMainPost(@RequestParam(name="age") int id, Model model) {
-//        var user = (UserRecord)session.getAttribute("user");
-//        int userid = user.id();
-        var list = gameService.userGameAdd(1, id);
-        model.addAttribute("id", list);
-        System.out.println(list);
+        // UserRecordからuseridを取得している
+        var user = (UserRecord)session.getAttribute("user");
+        int userid = user.id();
+        var list = gameService.userGameAdd(userid, id);
+        model.addAttribute("id", list.id());
+        System.out.println(list.id());
         return "game_start";
     }
 }

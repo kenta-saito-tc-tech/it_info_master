@@ -12,7 +12,7 @@ public class PgGameService implements GameService{
     @Autowired
     private GameDao gameDao;
 
-    public List<ageidRecord> userGameAdd(int userid, int ageid) {
+    public ageidRecord userGameAdd(int userid, int ageid) {
         return gameDao.userGameAdd(userid, ageid);
     }
 }
