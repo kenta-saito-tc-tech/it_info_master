@@ -10,9 +10,9 @@ public class QuestionController {
     @Autowired
     private QuestionService questionService;
 
-    @GetMapping("/question_select")
-        public String questionSelect(){
-        return "/question_select";
-    }
+//    @GetMapping("/question_select")
+//        public String questionSelect(){
+//        return "/question_select";
+//    }
 }
 //テストプッシュ

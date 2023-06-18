@@ -1,4 +1,5 @@
 package com.example.It_info_pass_master.Entity;
 
-public record ageRecord(Integer id, String age) {
+public record AgeRecord(Integer id, String age) {
+
 }
