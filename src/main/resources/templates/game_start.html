@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
   <head>
     <meta charset="UTF-8" />
     <meta
@@ -23,20 +23,21 @@
     <!--デフォルトの表示用CSS(ブラウザの表示の統一化)-->
     <link rel="stylesheet" href="./Common/sanitize.css" />
     <!--自作のCSS-->
-    <!-- <link rel="stylesheet" href="#" /> -->
+    <link rel="stylesheet" href="/CSS/style_game_start.css" />
 
     <!--favicon-->
     <link rel="icon" type="image/x-icon" href="./image/exam.png" />
     <title>ITインフォパスマスター</title>
   </head>
   <body>
+
     <!--ヘッダーの指定-->
-    <!-- <th:block th:insert="#"></th:block> -->
+    <th:block th:insert="./Header/main_header"></th:block>
   
     <!--ここにコードを記入-->
     <h1>ゲーム問題画面</h1>
 
     <!--JSの指定-->
-    <!-- <script src="#"></script> -->
+    <script type="text/javascript" src="/JS/app_game_start.js"></script>
   </body>
 </html>
