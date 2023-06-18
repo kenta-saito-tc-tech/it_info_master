@@ -35,8 +35,34 @@
     <th:block th:insert="./Header/main_header"></th:block>
   
     <!--ここにコードを記入-->
-    <h1>ゲーム問題画面</h1>
+    <div class="display">
+      <div class="category">
+        <p>カテゴリ名：<span id="categoryName"></span></p>
+        <p>タイトル：<span id="questionName"></span></p>
+      </div>
 
+      <div class="question">
+        <p id="questionText"></p>
+      </div>
+
+      <div class="time">
+        <p id="time">タイム</p>
+        <p id="lord">進歩率（何問目）</p>
+      </div>
+
+      <div class="select">
+        <p><input type="radio" name="select" value="1" checked></p>
+        <p><input type="radio" name="select" value="2"></p>
+        <p><input type="radio" name="select" value="3"></p>
+        <p><input type="radio" name="select" value="4"></p>
+      </div>
+    </div>
+    <button id="back">戻る</button>
+    <button id="next">次へ</button>
+    <button id="ok">終了</button>
+    <div id="userGameId" name="userGameId">[[ ${id} ]]</div>
+    <div id="i" name="i">0</div>
+    <div id="questionId" name="questionId"></div>
     <!--JSの指定-->
     <script type="text/javascript" src="/JS/app_game_start.js"></script>
   </body>
