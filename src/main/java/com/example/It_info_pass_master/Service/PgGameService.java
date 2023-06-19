@@ -20,7 +20,7 @@ public class PgGameService implements GameService{
         return gameDao.gameAgeSelect(ageId, i);
     }
 
-    public String gameChoiceSelect(int ageId, int i) {
+    public List<GameSelectRecord> gameChoiceSelect(int ageId, int i) {
         return gameDao.gameChoiceSelect(ageId, i);
     }
 

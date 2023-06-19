@@ -40,7 +40,7 @@ public class PgGameDao implements GameDao{
         return id.isEmpty() ? null : id.get(0);
     }
 
-    public String gameChoiceSelect(int ageId, int i) {
+    public List<GameSelectRecord> gameChoiceSelect(int ageId, int i) {
         MapSqlParameterSource param = new MapSqlParameterSource();
         param.addValue("ageId",ageId);
         param.addValue("i",i);
