@@ -204,6 +204,59 @@ public class AccountRestController {
         }
     }
 
+    /**
+     * inquiryテーブルの追加
+     * @param
+     * @return
+     */
+    @PostMapping("/insertInquiry")
+    public ResponseEntity<String> insertInquiry(@Valid @RequestBody InquiryRecord inquiryRecord) {
+
+        try {
+            int count = accountService.insertInquiry(inquiryRecord);
+            if (count == 1) {
+                return new ResponseEntity<>("POST request processed", HttpStatus.OK);
+            } else {
+                return new ResponseEntity<>("POST request failed", HttpStatus.BAD_REQUEST);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST); //ステータスコード400番
+        }
+    }
+
+    /**
+     * Inquiryテーブル情報全取得
+     *
+     * @param
+     * @return
+     */
+    @GetMapping("/inquiries")
+    public List<InquiryRecord> findAllInquiry(@RequestParam(name = "searchId") int id) {
+        try {
+            var list = accountService.findAllInquiry(id);
+            return list; //ステータスコード200番
+        } catch (Exception e) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST); //ステータスコード400番
+        }
+    }
+
+    /**
+     * ,問い合わせの表示用データ取得
+     *
+     * @return
+     */
+    @GetMapping("/inquiry")
+    public InquiryRecord inquiryFindById(@RequestParam(name = "searchId") int id) {
+        try {
+            var data = accountService.inquiryFindById(id);
+            return data; //ステータスコード200番
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST); //ステータスコード400番
+        }
+    }
+
 
 
 

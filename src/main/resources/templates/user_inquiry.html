@@ -23,7 +23,8 @@
     <!--デフォルトの表示用CSS(ブラウザの表示の統一化)-->
     <link rel="stylesheet" href="./Common/sanitize.css" />
     <!--自作のCSS-->
-    <!-- <link rel="stylesheet" href="#" /> -->
+    <link rel="stylesheet" href="./CSS/style_admin_account.css" />
+    <link rel="stylesheet" href="./Common/button.css" />
 
     <!--favicon-->
     <link rel="icon" type="image/x-icon" href="./image/exam.png" />
@@ -31,12 +32,56 @@
   </head>
   <body>
     <!--ヘッダーの指定-->
-    <!-- <th:block th:insert="#"></th:block> -->
-  
+    <th:block th:insert="/Header/main_header.html"></th:block>
+
+    <!--IDの格納用-->
+    <input id="js-userId" type="hidden" th:value="${session.user.id}" />
+
     <!--ここにコードを記入-->
-    <h1>問い合わせユーザー</h1>
+    <div class="mainDiv">
+      <h1>問い合わせユーザー</h1>
+      <fieldset>
+        <div class="inputEach">
+          <label for="js-inputTitle"
+            ><span class="redText">※</span>タイトル</label
+          >
+          <input type="text" class="inputText" id="js-inputTitle" />
+          <span class="redText" id="js-errarTitle">入力してください</span>
+        </div>
+        <div class="inputEach">
+          <label for="js-inputInquiry"
+            ><span class="redText">※</span>内容</label
+          >
+          <textarea
+            name="inquiry"
+            id="js-inputInquiry"
+            cols="50"
+            rows="30"
+          ></textarea>
+          <span class="redText" id="js-errarInquiry">入力してください</span>
+        </div>
+      </fieldset>
+      <div class="buttons">
+        <button class="button" id="js-addInquiry">送信</button>
+      </div>
+
+      <div class="listView">
+        <p class="searchcounts">
+          問い合わせ数: <span id="js-listCounts"></span>件</p>
+  
+        <div class="tableView" id="tableContainer"></div>
+  
+        <p class="searchcounts">ページ: <span id="js-pageCounts"></span><span id="js-pageText">枚目</span></p>
+        <button id="backButton">BACK</button>
+        <button id="nextButton">NEXT</button>
+      </div>
+      <a href="/menu" class="button">戻る</a>
+    </div>
+    
+
+
 
     <!--JSの指定-->
-    <!-- <script src="#"></script> -->
+    <script src="./JS/app_user_inquiry.js"></script>
   </body>
 </html>

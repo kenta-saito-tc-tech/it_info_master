@@ -6,7 +6,9 @@ import jakarta.servlet.http.HttpSession;
 import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 @Controller
 public class AccountController {
@@ -155,5 +157,19 @@ public class AccountController {
         }
 
         return "/random_select";
+    }
+
+    /**
+     * 問い合わせ情報画面
+     *
+     * @return
+     */
+    @GetMapping("/detail_inquiry/{id}")
+    public String detailView(@PathVariable("id") int id, Model model) {
+        if (session.getAttribute("user") == null) { //sessionがない場合
+            return "redirect:/index";
+        }
+        model.addAttribute("id", id);
+        return "/detail_inquiry";
     }
 }
