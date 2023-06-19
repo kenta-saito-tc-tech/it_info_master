@@ -98,7 +98,7 @@ public class AccountRestController {
      * @return
      */
     @GetMapping("/age_select")
-    public List<AgeRecord> findAgeAll() {
+    public List<UserAgeRecord> findAgeAll() {
         try {
             var list = accountService.findAgeAll();
             return list; //ステータスコード200番
@@ -119,6 +119,69 @@ public class AccountRestController {
         try {
             var myRank = accountService.findUserRank(age, id);
             return myRank; //ステータスコード200番
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST); //ステータスコード400番
+        }
+    }
+
+    /**
+     * userの名前変更
+     *
+     * @param
+     * @return
+     */
+    @PutMapping("/updateUserName")
+    public ResponseEntity<String> userNameUpdate(@Valid @RequestBody UserRecord userRecord) {
+        try {
+            int count = accountService.userNameUpdate(userRecord);
+            if (count == 1) {
+                return new ResponseEntity<>("PUT request processed", HttpStatus.OK);
+            } else {
+                return new ResponseEntity<>("PUT request failed", HttpStatus.BAD_REQUEST);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST); //ステータスコード400番
+        }
+    }
+
+    /**
+     * userのPASS変更
+     *
+     * @param
+     * @return
+     */
+    @PutMapping("/updateUserPass")
+    public ResponseEntity<String> userPassUpdate(@Valid @RequestBody UserRecord userRecord) {
+        try {
+            int count = accountService.userPassUpdate(userRecord);
+            if (count == 1) {
+                return new ResponseEntity<>("PUT request processed", HttpStatus.OK);
+            } else {
+                return new ResponseEntity<>("PUT request failed", HttpStatus.BAD_REQUEST);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST); //ステータスコード400番
+        }
+    }
+
+    /**
+     * userテーブルの削除
+     *
+     * @param
+     * @return
+     */
+    @DeleteMapping("/deleteUser")
+    public ResponseEntity<String> userDelete(@Valid @RequestBody UserRecord userRecord) {
+        try {
+            int count = accountService.userDelete(userRecord);
+            if (count == 1) {
+                return new ResponseEntity<>("DELETE request processed", HttpStatus.OK);
+            } else {
+                return new ResponseEntity<>("DELETE request failed", HttpStatus.BAD_REQUEST);
+            }
         } catch (Exception e) {
             e.printStackTrace();
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST); //ステータスコード400番

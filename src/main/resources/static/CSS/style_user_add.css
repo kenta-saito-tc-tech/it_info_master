@@ -54,4 +54,8 @@
   fieldset {
     border: none;
   }
+
+  .center{
+    text-align: center;
+  }
   

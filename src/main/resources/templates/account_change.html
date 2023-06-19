@@ -23,7 +23,8 @@
     <!--デフォルトの表示用CSS(ブラウザの表示の統一化)-->
     <link rel="stylesheet" href="./Common/sanitize.css" />
     <!--自作のCSS-->
-    <!-- <link rel="stylesheet" href="#" /> -->
+    <link rel="stylesheet" href="./CSS/style_user_add.css" />
+    <link rel="stylesheet" href="./Common/button.css" />
 
     <!--favicon-->
     <link rel="icon" type="image/x-icon" href="./image/exam.png" />
@@ -31,12 +32,52 @@
   </head>
   <body>
     <!--ヘッダーの指定-->
-    <!-- <th:block th:insert="#"></th:block> -->
-  
+    <th:block th:insert="/Header/main_header.html"></th:block>
+
+    <!--IDの格納用-->
+    <input id="js-userId" type="hidden" th:value="${session.user.id}" />
+    <!--パスの格納用-->
+    <input id="js-userPass" type="hidden" th:value="${session.user.password}" />
+    <!--権限の格納用-->
+    <input id="js-userRole" type="hidden" th:value="${session.user.role}" />
+
+
     <!--ここにコードを記入-->
-    <h1>アカウント変更ページ</h1>
+    <div class="mainDiv">
+      <h1>アカウント編集</h1>
+      <fieldset>
+        <h2>アカウント名</h2>
+        <div class="inputEach">
+          <label for="js-inputName">名前</label>
+          <input type="text" class="inputText" id="js-inputName" />
+          <span class="redText" id="js-errarName">エラー</span>
+        </div>
+        <button class="button center" id="js-changeName">編集</button>
+
+        <h2>パスワード編集</h2>
+        <div class="inputEach">
+          <label for="js-inputOldPass">現在のパスワード</label>
+          <input type="text" class="inputText" id="js-inputOldPass" />
+          <span class="redText" id="js-errarOldPass">パスワードが違います</span>
+        </div>
+
+        <div class="inputEach">
+          <label for="js-inputNewPass">新しいパスワード</label>
+          <input type="password" class="inputText" id="js-inputNewPass" />
+          <span class="redText" id="js-errarNewPass">エラー</span>
+        </div>
+        <button class="button center" id="js-changePass">編集</button>
+
+        <div class="inputEach center">
+          <label for="js-deleteAccount">アカウント削除</label>
+          <button class="button" id="js-deleteAccount">削除</button>
+        </div>
+      </fieldset>
+
+      <a href="/menu" class="button center">戻る</a>
+    </div>
 
     <!--JSの指定-->
-    <!-- <script src="#"></script> -->
+    <script src="./JS/app_account_change.js"></script>
   </body>
 </html>

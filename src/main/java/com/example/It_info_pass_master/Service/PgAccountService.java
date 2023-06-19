@@ -29,13 +29,28 @@ public class PgAccountService implements AccountService{
     }
 
     @Override
-    public List<AgeRecord> findAgeAll() {
+    public List<UserAgeRecord> findAgeAll() {
         return accountDao.findAgeAll();
     }
 
     @Override
     public MyRankRecord findUserRank(String age, int id) {
         return accountDao.findUserRank(age, id);
+    }
+
+    @Override
+    public int userNameUpdate(UserRecord userRecord) {
+        return accountDao.userNameUpdate(userRecord);
+    }
+
+    @Override
+    public int userPassUpdate(UserRecord userRecord) {
+        return accountDao.userPassUpdate(userRecord);
+    }
+
+    @Override
+    public int userDelete(UserRecord userRecord) {
+        return accountDao.userDelete(userRecord);
     }
 
 

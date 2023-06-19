@@ -1,42 +1,65 @@
 <!DOCTYPE html>
 <html lang="ja">
-  <head>
-    <meta charset="UTF-8" />
+<head>
+    <meta charset="UTF-8"/>
     <meta
-      name="viewport"
-      content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+            name="viewport"
+            content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
     />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
     <!-- サイトの説明欄 -->
     <meta
-      name="ITインフォパスマスター"
-      content="試験内容別にテストがあり、ユーザーの受けたいテストをピンポイントに受講できる"
+            name="ITインフォパスマスター"
+            content="試験内容別にテストがあり、ユーザーの受けたいテストをピンポイントに受講できる"
     />
     <!--CSSリンク-->
+    <link rel="stylesheet" href="./Common/button.css"/>
+    <link rel="stylesheet" href="./Common/sanitize.css"/>
     <!--Webフォントのリンク３つ-->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://fonts.googleapis.com"/>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
     <link
-      href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap"
-      rel="stylesheet"
+            href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap"
+            rel="stylesheet"
     />
     <!--デフォルトの表示用CSS(ブラウザの表示の統一化)-->
-    <link rel="stylesheet" href="./Common/sanitize.css" />
+
     <!--自作のCSS-->
-    <!-- <link rel="stylesheet" href="#" /> -->
+    <!--     <link rel="stylesheet" href="#" /> -->
+    <link rel="stylesheet" href="/CSS/style_question_test.css"/>
 
     <!--favicon-->
-    <link rel="icon" type="image/x-icon" href="./image/exam.png" />
+    <link rel="icon" type="image/x-icon" href="./image/exam.png"/>
     <title>ITインフォパスマスター</title>
-  </head>
-  <body>
-    <!--ヘッダーの指定-->
-    <!-- <th:block th:insert="#"></th:block> -->
-  
-    <!--ここにコードを記入-->
-    <h1>一問一答問題画面</h1>
+</head>
+<body>
+<!--ヘッダーの指定-->
+<!-- <th:block th:insert="#"></th:block> -->
 
-    <!--JSの指定-->
-    <!-- <script src="#"></script> -->
-  </body>
+<!--ここにコードを記入-->
+<h1>一問一答問題画面</h1>
+<div id="js_age_and_category">
+    年度<!--年代、カテゴリ-->
+</div>
+
+    <div class="questionDiv">
+
+        <div id="question">
+            問題文<!--問題文-->
+        </div>
+        <div id="choices">
+            選択肢<!--選択肢-->
+        </div>
+        <div class="buttonDiv">
+            <form>
+
+                <div class="button back_button">戻る</div>
+                <div class="button next_button">次へ</div>
+
+            </form>
+        </div>
+    </div>
+        <!--JSの指定-->
+        <!-- <script src="#"></script> -->
+</body>
 </html>
