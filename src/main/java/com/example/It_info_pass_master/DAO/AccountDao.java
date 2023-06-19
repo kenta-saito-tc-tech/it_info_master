@@ -9,6 +9,6 @@ public interface AccountDao {
     public UserRecord checkIdExist(String id);
     public int insertUser(UserRecord userRecord);
     public List<RankingRecord> findTopThree(String age);
-    public List<AgeRecord> findAgeAll();
+    public List<UserAgeRecord> findAgeAll();
     public MyRankRecord findUserRank(String age, int id);
 }

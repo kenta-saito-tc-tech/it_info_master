@@ -84,9 +84,9 @@ public class PgAccountDao implements AccountDao{
      * @return
      */
     @Override
-    public List<AgeRecord> findAgeAll() {
+    public List<UserAgeRecord> findAgeAll() {
         return jdbcTemplate.query("SELECT id, age FROM age ORDER BY age ASC",
-                new DataClassRowMapper<>(AgeRecord.class));
+                new DataClassRowMapper<>(UserAgeRecord.class));
     }
 
     /**

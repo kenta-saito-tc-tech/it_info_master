@@ -98,7 +98,7 @@ public class AccountRestController {
      * @return
      */
     @GetMapping("/age_select")
-    public List<AgeRecord> findAgeAll() {
+    public List<UserAgeRecord> findAgeAll() {
         try {
             var list = accountService.findAgeAll();
             return list; //ステータスコード200番

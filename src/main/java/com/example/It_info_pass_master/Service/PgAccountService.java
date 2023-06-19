@@ -29,7 +29,7 @@ public class PgAccountService implements AccountService{
     }
 
     @Override
-    public List<AgeRecord> findAgeAll() {
+    public List<UserAgeRecord> findAgeAll() {
         return accountDao.findAgeAll();
     }
 
