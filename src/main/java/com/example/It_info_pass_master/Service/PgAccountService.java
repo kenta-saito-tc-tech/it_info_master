@@ -53,5 +53,10 @@ public class PgAccountService implements AccountService{
         return accountDao.userDelete(userRecord);
     }
 
+    @Override
+    public List<UserRecord> findAllUser() {
+        return accountDao.findAllUser();
+    }
+
 
 }

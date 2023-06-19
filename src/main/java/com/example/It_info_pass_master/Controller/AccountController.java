@@ -1,7 +1,9 @@
 package com.example.It_info_pass_master.Controller;
 
+import com.example.It_info_pass_master.Entity.UserRecord;
 import com.example.It_info_pass_master.Service.AccountService;
 import jakarta.servlet.http.HttpSession;
+import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -68,6 +70,10 @@ public class AccountController {
         if (session.getAttribute("user") == null) { //sessionがない場合
             return "redirect:/index";
         }
+        UserRecord user = (UserRecord) session.getAttribute("user");
+        if (user.role().equals("1")) { // sessionのroleが1の場合
+            return "redirect:/index";
+        }
 
         return "/admin_account";
     }
@@ -78,6 +84,10 @@ public class AccountController {
     @GetMapping("/admin_question_make")
     public String adminQuestionMakeView() {
         if (session.getAttribute("user") == null) { //sessionがない場合
+            return "redirect:/index";
+        }
+        UserRecord user = (UserRecord) session.getAttribute("user");
+        if (user.role().equals("1")) { // sessionのroleが1の場合
             return "redirect:/index";
         }
 
@@ -92,7 +102,10 @@ public class AccountController {
         if (session.getAttribute("user") == null) { //sessionがない場合
             return "redirect:/index";
         }
-
+        UserRecord user = (UserRecord) session.getAttribute("user");
+        if (user.role().equals("1")) { // sessionのroleが1の場合
+            return "redirect:/index";
+        }
         return "/user_inquiry";
     }
 

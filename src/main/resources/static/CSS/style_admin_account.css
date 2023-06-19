@@ -1,0 +1,85 @@
+.redText {
+    color: red;
+  }
+  
+  .mainDiv {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+    font-family: "Noto Sans JP", sans-serif;
+  }
+  
+  .inputEach {
+    vertical-align: middle;
+    margin-bottom: 20px;
+  }
+  
+  .insert-body {
+    width: 70%;
+    margin: auto;
+  }
+  
+  .inputText {
+    border: 1px solid rgba(0, 0, 0, 0.16);
+    font-family: inherit;
+    font-size: 13px;
+    padding: 0.4em 0.8em;
+    width: 50%;
+    margin: 4px;
+  }
+  
+  .inputText:focus {
+    border: 1px solid rgba(0, 0, 0, 0.32);
+    box-shadow: none;
+    outline: none;
+  }
+  
+  .inputEach label {
+    display: inline-block;
+    width: 200px;
+    text-align: right;
+    margin-right: 10px;
+    margin-bottom: 5px;
+  }
+  
+  .inputEach input,
+  .inputEach select {
+    display: inline-block;
+    width: 300px;
+  }
+  
+  fieldset {
+    border: none;
+  }
+
+  .center{
+    text-align: center;
+  }
+
+  */
+.form{
+    text-align: center;
+}
+.listView{
+    text-align: center;
+    margin-bottom: 100px;
+}
+.searchcounts{
+    font-size: 12px;
+}
+
+.tableView > tbody, td, tr, th {
+    border: 1px solid black; /* セルのボーダーを設定 */
+    padding: 2px; /* セルの余白を指定 */
+  }
+
+  .tableView > td, th{
+    width: 150px; /* 横幅を200pxに設定 */
+  }
+  th{
+    background-color: gainsboro;
+  }
+  

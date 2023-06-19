@@ -23,7 +23,8 @@
     <!--デフォルトの表示用CSS(ブラウザの表示の統一化)-->
     <link rel="stylesheet" href="./Common/sanitize.css" />
     <!--自作のCSS-->
-    <!-- <link rel="stylesheet" href="#" /> -->
+    <link rel="stylesheet" href="./CSS/style_admin_account.css" />
+    <link rel="stylesheet" href="./Common/button.css" />
 
     <!--favicon-->
     <link rel="icon" type="image/x-icon" href="./image/exam.png" />
@@ -31,12 +32,62 @@
   </head>
   <body>
     <!--ヘッダーの指定-->
-    <!-- <th:block th:insert="#"></th:block>
-   -->
+    <th:block th:insert="/Header/main_header.html"></th:block>
     <!--ここにコードを記入-->
-    <h1>アカウント管理者ページ</h1>
+    <div class="mainDiv">
+      <h1>アカウント管理者ページ</h1>
+      <fieldset>
+        <div class="inputEach">
+          <label for="js-inputName"><span class="redText">※</span>名前</label>
+          <input type="text" class="inputText" id="js-inputName" />
+          <span class="redText" id="js-errarName">エラー</span>
+        </div>
+
+        <div class="inputEach">
+          <label for="js-inputId"
+            ><span class="redText">※</span>ユーザーID</label
+          >
+          <input type="text" class="inputText" id="js-inputId" />
+          <span class="redText" id="js-errarId">エラー</span>
+        </div>
+
+        <div class="inputEach">
+          <label for="js-inputPass"
+            ><span class="redText">※</span>パスワード</label
+          >
+          <input type="password" class="inputText" id="js-inputPass" />
+          <span class="redText" id="js-errarPass">エラー</span>
+        </div>
+
+        <div class="inputEach">
+          <label for="js-listSelect"><span class="redText">※</span>権限</label>
+          <select id="js-listSelect">
+            <option value="">-権限-</option>
+          </select>
+          <span class="redText" id="js-errarRole">エラー</span>
+        </div>
+
+        <div class="buttons">
+          <button class="button" id="js-addAccount">登録</button>
+        </div>
+      </fieldset>
+
+      <div class="listView">
+        <p class="searchcounts">
+          ユーザー数: <span id="js-listCounts"></span>件</p>
+
+        <div class="tableView" id="tableContainer"></div>
+
+        <p class="searchcounts">ページ: <span id="js-pageCounts"></span><span id="js-pageText">枚目</span></p>
+        <button id="backButton">BACK</button>
+        <button id="nextButton">NEXT</button>
+        <button class="button" id="js-deleteAccount">削除</button>
+      </div>
+
+      <a href="/menu" class="button center">戻る</a>
+    </div>
 
     <!--JSの指定-->
-    <!-- <script src="#"></script> -->
+    <script src="./JS/app_admin_account.js"></script>
   </body>
 </html>
