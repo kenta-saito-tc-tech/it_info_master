@@ -3,6 +3,7 @@ package com.example.It_info_pass_master.DAO;
 import com.example.It_info_pass_master.Entity.GameQuestionRecord;
 import com.example.It_info_pass_master.Entity.GameSelectRecord;
 import com.example.It_info_pass_master.Entity.ageidRecord;
+import com.example.It_info_pass_master.Entity.falseSumRecord;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.DataClassRowMapper;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
@@ -26,38 +27,42 @@ public class PgGameDao implements GameDao{
     }
 
     public GameQuestionRecord gameAgeSelect(int ageId, int i) {
+        System.out.println("5");
         MapSqlParameterSource param = new MapSqlParameterSource();
         param.addValue("ageId",ageId);
         param.addValue("i",i);
-        var id = jdbcTemplate.query("select E.age, G.question_id, Ca.category_name, Q.question_name, Q.question_text,A.choice_text, B.choice_text, C.choice_text, D.choice_text from game_age as G \n" +
-                        "join age as E on G.age_id = E.id \n" +
-                        "join questions as Q on G.question_id = Q.id \n" +
-                        "join category as Ca on Q.category_id = Ca.id \n" +
-                        "JOIN choice AS A ON G.question_id = A.question_id \n" +
-                        "JOIN choice AS B ON A.id = B.id - 1\n" +
-                        "JOIN choice AS C ON A.id = C.id - 2\n" +
-                        "JOIN choice AS D ON A.id = D.id - 3\n" +
-                        "where G.age_id = (select age_id from user_game where id = :ageId) \n" +
-                        "and G.question_id = (select question_id from game_age offset :i limit 1)\n" +
-                        "limit 1;"
+        System.out.println("6");
+        var id = jdbcTemplate.query("  select A.age, G.question_id, C.category_name, Q.question_name, Q.question_text from game_age as G \n" +
+                "  join age as A on G.age_id = A.id \n" +
+                "  join questions as Q on G.question_id = Q.id \n" +
+                "  join category as C on Q.category_id = C.id \n" +
+                "  where G.age_id = (select age_id from user_game where id = :ageId) \n" +
+                "  and G.question_id = (select question_id from game_age offset :i limit 1)"
                 , param, new DataClassRowMapper<>(GameQuestionRecord.class));
+        System.out.println(id);
         return id.isEmpty() ? null : id.get(0);
     }
 
-    public GameSelectRecord gameChoiceSelect(int ageId, int i) {
+    public String gameChoiceSelect(int ageId, int i) {
         MapSqlParameterSource param = new MapSqlParameterSource();
         param.addValue("ageId",ageId);
         param.addValue("i",i);
-        var id = jdbcTemplate.query("SELECT A.choice_text, B.choice_text, C.choice_text, D.choice_text\n" +
-                        "FROM choice AS A\n" +
-                        "JOIN choice AS B ON A.id = B.id - 1\n" +
-                        "JOIN choice AS C ON A.id = C.id - 2\n" +
-                        "JOIN choice AS D ON A.id = D.id - 3\n" +
-                        "join game_age on A.question_id = game_age.question_id \n" +
-                        "where game_age.age_id = (select age_id from user_game where id = :ageId) \n" +
-                        "and game_age.question_id = (select question_id from game_age offset :i limit 1)\n" +
-                        "limit 1;"
-                , param,new DataClassRowMapper<>(GameSelectRecord.class));
+        var id = jdbcTemplate.query("select choice_text from choice \n" +
+                        "  join game_age on choice.question_id = game_age.question_id \n" +
+                        "  where game_age.age_id = (select age_id from user_game where id = :ageId) \n" +
+                        "  and game_age.question_id = (select question_id from game_age offset :i limit 1)"
+                , param,new DataClassRowMapper<>(String.class));
+        System.out.println(id);
+        return id.isEmpty() ? null : id.get(0);
+    }
+
+    @Override
+    public falseSumRecord userGameDetial(int dateId) {
+        MapSqlParameterSource param = new MapSqlParameterSource();
+        param.addValue("dateId", dateId);
+        var id = jdbcTemplate.query("select sum(user_answer) from user_game_detail where date_id = 1 and user_answer = 0"
+                , param,new DataClassRowMapper<>(falseSumRecord.class));
+        System.out.println(id);
         return id.isEmpty() ? null : id.get(0);
     }
 }

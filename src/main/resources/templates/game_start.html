@@ -42,12 +42,12 @@
       </div>
 
       <div class="question">
+        <div>問題：</div>
         <p id="questionText"></p>
       </div>
 
       <div class="time">
-        <p id="time">タイム</p>
-        <p id="lord">進歩率（何問目）</p>
+        <p id="time">タイム：<span id="stopwatch"></span></p>
       </div>
 
       <div class="select">
@@ -59,10 +59,16 @@
     </div>
     <button id="back">戻る</button>
     <button id="next">次へ</button>
-    <button id="ok">終了</button>
-    <div id="userGameId" name="userGameId">[[ ${id} ]]</div>
+
     <div id="i" name="i">0</div>
     <div id="questionId" name="questionId"></div>
+    <form id="form" action="/game_start" method="post">
+      <div id="userGameId" name="userGameId">[[ ${id} ]]</div>
+      <div id="m" name="minutes"></div>
+      <div id="s" name="seconds"></div>
+      <input id="m2" type="text" name="minutes">
+      <button id="ok" type="submit">終了</button>
+    </form>
     <!--JSの指定-->
     <script type="text/javascript" src="/JS/app_game_start.js"></script>
   </body>

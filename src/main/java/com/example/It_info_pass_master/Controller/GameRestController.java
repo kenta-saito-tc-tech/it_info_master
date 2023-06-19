@@ -18,15 +18,24 @@ public class GameRestController {
     @GetMapping("/game_start")
     public GameQuestionRecord question(@RequestParam(name = "userGameId")int userGameId, @RequestParam(name = "i")int i) {
         System.out.println("test2");
-        try {
-            var gameQuestion = gameService.gameAgeSelect(userGameId,i);
-            return gameQuestion;
-        } catch(Exception e) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
-        }
+        System.out.println("4");
+        var gameQuestion = gameService.gameAgeSelect(userGameId,i);
+        System.out.println("test3");
+        return gameQuestion;
+//        try {
+//            System.out.println("4");
+//            var gameQuestion = gameService.gameAgeSelect(userGameId,i);
+//            System.out.println("test3");
+//            return gameQuestion;
+//        } catch(Exception e) {
+//            throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
+//        }
     }
-//    @GetMapping("/game_start_select")
-//    public GameSelectRecord select(@RequestParam(name = "userGameId")int userGameId, @RequestParam(name = "i")int i) {
+    @GetMapping("/game_start/select")
+    public String select(@RequestParam(name = "userGameId")int userGameId, @RequestParam(name = "i")int i) {
+        var gameSelect = gameService.gameChoiceSelect(userGameId, i);
+        System.out.println(gameSelect);
+        return gameSelect;
 //        try {
 //            var gameSelect = gameService.gameChoiceSelect(userGameId, i);
 //            System.out.println(gameSelect);
@@ -34,5 +43,5 @@ public class GameRestController {
 //        } catch(Exception e) {
 //            throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
 //        }
-//    }
+    }
 }

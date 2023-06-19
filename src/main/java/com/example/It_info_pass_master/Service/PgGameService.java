@@ -4,6 +4,7 @@ import com.example.It_info_pass_master.DAO.GameDao;
 import com.example.It_info_pass_master.Entity.GameQuestionRecord;
 import com.example.It_info_pass_master.Entity.ageidRecord;
 import com.example.It_info_pass_master.Entity.GameSelectRecord;
+import com.example.It_info_pass_master.Entity.falseSumRecord;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,7 +23,12 @@ public class PgGameService implements GameService{
         return gameDao.gameAgeSelect(ageId, i);
     }
 
-    public GameSelectRecord gameChoiceSelect(int ageId, int i) {
+    public String gameChoiceSelect(int ageId, int i) {
         return gameDao.gameChoiceSelect(ageId, i);
+    }
+
+    @Override
+    public falseSumRecord userGameDetial(int dateId) {
+        return gameDao.userGameDetial(dateId);
     }
 }

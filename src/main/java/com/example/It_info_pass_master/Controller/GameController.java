@@ -34,4 +34,17 @@ public class GameController {
         System.out.println(list.id());
         return "game_start";
     }
+
+    @PostMapping("/game_start")
+    public String gameStartPost(@RequestParam(name = "minutes")int m, @RequestParam(name = "seconds")int s, @RequestParam(name = "userGameId")int id, Model model) {
+        var falseSum = gameService.userGameDetial(id);
+        var addTime = falseSum.sum() * 10;
+        m += (addTime + s) / 60;
+        s = (addTime + s) % 60;
+        model.addAttribute("falseSum", falseSum.sum());
+        model.addAttribute("addTime", addTime);
+        model.addAttribute("minutes", m);
+        model.addAttribute("seconds", s);
+        return "game_finish";
+    }
 }
