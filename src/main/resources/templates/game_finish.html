@@ -31,11 +31,49 @@
   </head>
   <body class="style">
     <!--ヘッダーの指定-->
-    <!-- <th:block th:insert="#"></th:block> -->
+    <th:block th:insert="./Header/main_header"></th:block>
   
     <!--ここにコードを記入-->
-    <h1>ゲーム終了画面</h1>
+    <div style="text-align:center">
+      <div>
+        <h1>終了！！</h1>
+      </div>
 
+      <div>
+        <!-- 問題画面から受け取ったタイムデータ＋間違えた問題週プラスされたタイムを表示 -->
+        <p>タイム：[[ ${minutes} ]]分[[ ${seconds} ]]秒</p>
+        <!-- ＤＢから取得して表示 -->
+      </div>
+
+      <div>
+        <!-- メニュー画面参考  -->
+        <!-- ランキング表示はさいやくなくてもメニュー画面にあるから書かなくてもいい -->
+        <p>/500人</p>
+      </div>
+
+      <div class="i" style="text-align:center">
+        <button class="size">もう一度</button> <button class="size">メニューへ戻る</button>
+      </div>
+
+    </div>
+  </body>
+
+  <body>
+    <div>
+      <!-- 問題を入れる箱 -->
+      <div class="margin">
+        <!-- DBからタイトルと生誤判定を取得して表示 -->
+        <p>タイトル（問題名）</p>
+        <p>生誤判定〇か✖ <button class="size">詳細</button></p>
+        <!-- 詳細ページは問題idを取得して問題詳細ページに移動 -->
+      </div>
+
+      <div class="margin">
+        <p>タイトル（問題名）</p>
+        <p>生誤判定〇か✖ <button class="size">詳細</button></p>
+      </div>
+
+    </div>
     <!--JSの指定-->
     <!-- <script src="#"></script> -->
   </body>

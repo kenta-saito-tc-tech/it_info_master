@@ -1,10 +1,7 @@
 package com.example.It_info_pass_master.Service;
 
 import com.example.It_info_pass_master.DAO.GameDao;
-import com.example.It_info_pass_master.Entity.GameQuestionRecord;
-import com.example.It_info_pass_master.Entity.ageidRecord;
-import com.example.It_info_pass_master.Entity.GameSelectRecord;
-import com.example.It_info_pass_master.Entity.falseSumRecord;
+import com.example.It_info_pass_master.Entity.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -30,5 +27,9 @@ public class PgGameService implements GameService{
     @Override
     public falseSumRecord userGameDetial(int dateId) {
         return gameDao.userGameDetial(dateId);
+    }
+
+    public GameScoreRecord gameScoreSelect(int userGameId) {
+        return gameDao.gameScoreSelect(userGameId);
     }
 }
