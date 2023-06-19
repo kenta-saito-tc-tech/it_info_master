@@ -115,4 +115,30 @@ public class PgAccountDao implements AccountDao{
         return list.isEmpty() ? null : list.get(0);
     }
 
+    @Override
+    public int userNameUpdate(UserRecord userRecord) {
+        MapSqlParameterSource param = new MapSqlParameterSource();
+        param.addValue("name", userRecord.name());
+        param.addValue("id", userRecord.id());
+        int count = jdbcTemplate.update("UPDATE users SET name = :name WHERE id = :id", param);
+        return count == 1 ? count : null;
+    }
+
+    @Override
+    public int userPassUpdate(UserRecord userRecord) {
+        MapSqlParameterSource param = new MapSqlParameterSource();
+        param.addValue("pass", userRecord.password());
+        param.addValue("id", userRecord.id());
+        int count = jdbcTemplate.update("UPDATE users SET password = :pass WHERE id = :id", param);
+        return count == 1 ? count : null;
+    }
+
+    @Override
+    public int userDelete(UserRecord userRecord) {
+        MapSqlParameterSource param = new MapSqlParameterSource();
+        param.addValue("id", userRecord.id());
+        int count = jdbcTemplate.update("DELETE FROM users WHERE id = :id", param);
+        return count == 1 ? count : null;
+    }
+
 }

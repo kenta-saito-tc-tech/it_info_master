@@ -38,5 +38,20 @@ public class PgAccountService implements AccountService{
         return accountDao.findUserRank(age, id);
     }
 
+    @Override
+    public int userNameUpdate(UserRecord userRecord) {
+        return accountDao.userNameUpdate(userRecord);
+    }
+
+    @Override
+    public int userPassUpdate(UserRecord userRecord) {
+        return accountDao.userPassUpdate(userRecord);
+    }
+
+    @Override
+    public int userDelete(UserRecord userRecord) {
+        return accountDao.userDelete(userRecord);
+    }
+
 
 }
