@@ -1,6 +1,6 @@
 package com.example.It_info_pass_master.Controller;
 
-import com.example.It_info_pass_master.Entity.AgeRecord;
+import com.example.It_info_pass_master.Entity.UserAgeRecord;
 import com.example.It_info_pass_master.Entity.QuestionRecord;
 import com.example.It_info_pass_master.Service.QuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +17,7 @@ public class QuestionRestController {
     private QuestionService questionService;
 
     @GetMapping("/ages")
-    public List<AgeRecord> ages(){
+    public List<UserAgeRecord> ages(){
 
         var ageList = questionService.ageFindAll();
         for(var age : ageList){
