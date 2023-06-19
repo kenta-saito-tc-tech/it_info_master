@@ -6,6 +6,7 @@ import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -36,15 +37,29 @@ public class GameController {
     }
 
     @PostMapping("/game_start")
-    public String gameStartPost(@RequestParam(name = "minutes")int m, @RequestParam(name = "seconds")int s, @RequestParam(name = "userGameId")int id, Model model) {
-        var falseSum = gameService.userGameDetial(id);
+    public String gameStartPost(@RequestParam(name = "minutes")String m, @RequestParam(name = "seconds")String s, @RequestParam(name = "userGameId")String id, Model model) {
+        var mI = Integer.parseInt(m);
+        var sI = Integer.parseInt(s);
+        var idI = Integer.parseInt(id);
+        var falseSum = gameService.userGameDetial(idI);
         var addTime = falseSum.sum() * 10;
-        m += (addTime + s) / 60;
-        s = (addTime + s) % 60;
+        mI += (addTime + sI) / 60;
+        sI = (addTime + sI) % 60;
         model.addAttribute("falseSum", falseSum.sum());
         model.addAttribute("addTime", addTime);
+        model.addAttribute("minutes", mI);
+        model.addAttribute("seconds", sI);
+        return "game_finish";
+    }
+
+    @GetMapping("/game_finish")
+    public String gameFinishGet(Model model) {
+        var time = gameService.gameScoreSelect(1).gameScore();
+        var m = time / 60;
+        var s = time % 60;
         model.addAttribute("minutes", m);
         model.addAttribute("seconds", s);
+        System.out.println("test");
         return "game_finish";
     }
 }

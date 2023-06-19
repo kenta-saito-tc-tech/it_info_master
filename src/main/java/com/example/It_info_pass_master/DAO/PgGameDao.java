@@ -1,9 +1,6 @@
 package com.example.It_info_pass_master.DAO;
 
-import com.example.It_info_pass_master.Entity.GameQuestionRecord;
-import com.example.It_info_pass_master.Entity.GameSelectRecord;
-import com.example.It_info_pass_master.Entity.ageidRecord;
-import com.example.It_info_pass_master.Entity.falseSumRecord;
+import com.example.It_info_pass_master.Entity.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.DataClassRowMapper;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
@@ -62,6 +59,16 @@ public class PgGameDao implements GameDao{
         param.addValue("dateId", dateId);
         var id = jdbcTemplate.query("select sum(user_answer) from user_game_detail where date_id = 1 and user_answer = 0"
                 , param,new DataClassRowMapper<>(falseSumRecord.class));
+        System.out.println(id);
+        return id.isEmpty() ? null : id.get(0);
+    }
+
+    @Override
+    public GameScoreRecord gameScoreSelect(int userGameId) {
+        MapSqlParameterSource param = new MapSqlParameterSource();
+        param.addValue("userGameId", userGameId);
+        var id = jdbcTemplate.query("select game_score from user_game where id = :userGameId"
+                , param,new DataClassRowMapper<>(GameScoreRecord.class));
         System.out.println(id);
         return id.isEmpty() ? null : id.get(0);
     }
