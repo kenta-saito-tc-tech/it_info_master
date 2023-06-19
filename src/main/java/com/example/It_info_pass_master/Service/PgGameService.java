@@ -25,7 +25,7 @@ public class PgGameService implements GameService{
     }
 
     @Override
-    public falseSumRecord userGameDetial(int dateId) {
+    public FalseSumRecord userGameDetial(int dateId) {
         return gameDao.userGameDetial(dateId);
     }
 

@@ -54,11 +54,11 @@ public class PgGameDao implements GameDao{
     }
 
     @Override
-    public falseSumRecord userGameDetial(int dateId) {
+    public FalseSumRecord userGameDetial(int dateId) {
         MapSqlParameterSource param = new MapSqlParameterSource();
         param.addValue("dateId", dateId);
         var id = jdbcTemplate.query("select sum(user_answer) from user_game_detail where date_id = 1 and user_answer = 0"
-                , param,new DataClassRowMapper<>(falseSumRecord.class));
+                , param,new DataClassRowMapper<>(FalseSumRecord.class));
         System.out.println(id);
         return id.isEmpty() ? null : id.get(0);
     }
