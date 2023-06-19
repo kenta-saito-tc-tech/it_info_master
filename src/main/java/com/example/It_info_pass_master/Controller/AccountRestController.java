@@ -188,6 +188,23 @@ public class AccountRestController {
         }
     }
 
+    /**
+     * userテーブル情報全取得
+     *
+     * @param
+     * @return
+     */
+    @GetMapping("/findAllUser")
+    public List<UserRecord> selectUsers() {
+        try {
+            var list = accountService.findAllUser();
+            return list; //ステータスコード200番
+        } catch (Exception e) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST); //ステータスコード400番
+        }
+    }
+
+
 
 
 }

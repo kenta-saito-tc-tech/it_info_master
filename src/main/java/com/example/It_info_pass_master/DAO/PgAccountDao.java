@@ -115,6 +115,11 @@ public class PgAccountDao implements AccountDao{
         return list.isEmpty() ? null : list.get(0);
     }
 
+    /**
+     * userのnameのアップデート
+     * @param userRecord
+     * @return
+     */
     @Override
     public int userNameUpdate(UserRecord userRecord) {
         MapSqlParameterSource param = new MapSqlParameterSource();
@@ -124,6 +129,11 @@ public class PgAccountDao implements AccountDao{
         return count == 1 ? count : null;
     }
 
+    /**
+     * userのパスワードのアップデート
+     * @param userRecord
+     * @return
+     */
     @Override
     public int userPassUpdate(UserRecord userRecord) {
         MapSqlParameterSource param = new MapSqlParameterSource();
@@ -133,6 +143,11 @@ public class PgAccountDao implements AccountDao{
         return count == 1 ? count : null;
     }
 
+    /**
+     * userの削除
+     * @param userRecord
+     * @return
+     */
     @Override
     public int userDelete(UserRecord userRecord) {
         MapSqlParameterSource param = new MapSqlParameterSource();
@@ -140,5 +155,20 @@ public class PgAccountDao implements AccountDao{
         int count = jdbcTemplate.update("DELETE FROM users WHERE id = :id", param);
         return count == 1 ? count : null;
     }
+
+    /**
+     * userテーブルの全取得
+     *
+     * @return
+     */
+    @Override
+    public List<UserRecord> findAllUser() {
+        return jdbcTemplate.query("SELECT * FROM users ORDER BY id",
+                new DataClassRowMapper<>(UserRecord.class));
+    }
+
+
+
+
 
 }
