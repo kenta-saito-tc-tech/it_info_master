@@ -51,21 +51,21 @@
       </div>
 
       <div id="select" class="select">
-        <p><input type="radio" name="select" checked><span class="meme"></span></p>
-        <p><input type="radio" name="select"><span class="meme"></span></p>
-        <p><input type="radio" name="select"><span class="meme"></span></p>
-        <p><input type="radio" name="select"><span class="meme"></span></p>
+        <input type="radio" name="select" checked><span class="meme"></span><br>
+        <input type="radio" name="select"><span class="meme"></span><br>
+        <input type="radio" name="select"><span class="meme"></span><br>
+        <input type="radio" name="select"><span class="meme"></span><br>
       </div>
     </div>
     <button id="back">戻る</button>
     <button id="next">次へ</button>
 
-    <div id="i" name="i">0</div>
-    <div id="questionId" name="questionId"></div>
+    <div class="hidden" id="i" name="i">0</div>
+    <div class="hidden" id="questionId" name="questionId"></div>
     <form id="form" action="/game_start" method="post">
-      <div id="userGameId" name="userGameId">[[ ${id} ]]</div>
-      <div id="m" name="minutes"></div>
-      <div id="s" name="seconds"></div>
+      <div class="hidden" id="userGameId" name="userGameId">[[ ${id} ]]</div>
+      <div class="hidden" id="m" name="minutes"></div>
+      <div class="hidden" id="s" name="seconds"></div>
       <button id="ok" type="submit">終了</button>
     </form>
     <!--JSの指定-->

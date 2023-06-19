@@ -8,7 +8,7 @@ body {
 .display {
     position: absolute;
     top: 120px;
-    border: 1px solid black;
+
     height: 350px;
     display: flex;
     flex-wrap: wrap;
@@ -45,7 +45,7 @@ body {
     font-size: 15px;
     width: 600px;
     height: 150px;
-    border: 1px solid black;
+
 }
 
 button {
@@ -67,4 +67,8 @@ button {
 
 #ok {
     display: none;
+}
+
+.hidden {
+    display:none;
 }
