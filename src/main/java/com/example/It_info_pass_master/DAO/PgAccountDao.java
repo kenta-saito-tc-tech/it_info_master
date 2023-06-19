@@ -10,7 +10,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public class PgAccountDao implements AccountDao{
+public class PgAccountDao implements AccountDao {
 
     @Autowired
     private NamedParameterJdbcTemplate jdbcTemplate;
@@ -33,6 +33,7 @@ public class PgAccountDao implements AccountDao{
 
     /**
      * IDが重複しないかチェックするメソッド
+     *
      * @param id
      * @return
      */
@@ -117,6 +118,7 @@ public class PgAccountDao implements AccountDao{
 
     /**
      * userのnameのアップデート
+     *
      * @param userRecord
      * @return
      */
@@ -131,6 +133,7 @@ public class PgAccountDao implements AccountDao{
 
     /**
      * userのパスワードのアップデート
+     *
      * @param userRecord
      * @return
      */
@@ -145,6 +148,7 @@ public class PgAccountDao implements AccountDao{
 
     /**
      * userの削除
+     *
      * @param userRecord
      * @return
      */
@@ -167,8 +171,59 @@ public class PgAccountDao implements AccountDao{
                 new DataClassRowMapper<>(UserRecord.class));
     }
 
+    /**
+     * Inquiryテーブルの追加
+     *
+     * @param inquiryRecord
+     * @return
+     */
+    @Override
+    public int insertInquiry(InquiryRecord inquiryRecord) {
+        MapSqlParameterSource param = new MapSqlParameterSource();
+        param.addValue("inquiryTitle", inquiryRecord.inquiryTitle());
+        param.addValue("inquiryText", inquiryRecord.inquiryText());
+        param.addValue("userId", inquiryRecord.userId());
+        param.addValue("checkInquiry", inquiryRecord.checkInquiry());
+        param.addValue("readInquiry", inquiryRecord.readInquiry());
 
+        int count = jdbcTemplate.update("INSERT INTO inquiry" +
+                "(inquiry_title, inquiry_text, user_id, check_inquiry, read_inquiry)" +
+                " VALUES (:inquiryTitle, :inquiryText, :userId, :checkInquiry, :readInquiry)", param);
 
+        return count == 1 ? count : null;
+    }
 
+    /**
+     * Inquiryテーブル全取得
+     * @return
+     */
+    @Override
+    public List<InquiryRecord> findAllInquiry(int id) {
+        MapSqlParameterSource param = new MapSqlParameterSource();
+        param.addValue("userId", id);
+        return jdbcTemplate.query("SELECT * FROM inquiry WHERE user_id = :userId ORDER BY check_inquiry ASC",param,
+                new DataClassRowMapper<>(InquiryRecord.class));
+    }
 
+    /**
+     * 問い合わせ詳細取得
+     *
+     * @param id
+     * @return
+     */
+    @Override
+    public InquiryRecord inquiryFindById(int id) {
+        MapSqlParameterSource param = new MapSqlParameterSource();
+        param.addValue("id", id);
+        int count = 0;
+        var list = jdbcTemplate.query("SELECT * FROM inquiry WHERE id = :id",
+                param, new DataClassRowMapper<>(InquiryRecord.class));
+
+        if (!(list.isEmpty())) {
+            count = jdbcTemplate.update("UPDATE inquiry SET read_inquiry = 1 WHERE id = :id", param);
+            return list.get(0);
+        } else {
+            return null;
+        }
+    }
 }

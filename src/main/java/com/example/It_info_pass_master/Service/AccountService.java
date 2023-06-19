@@ -15,5 +15,8 @@ public interface AccountService {
     public int userPassUpdate(UserRecord userRecord);
     public int userDelete(UserRecord userRecord);
     public List<UserRecord> findAllUser();
+    public int insertInquiry(InquiryRecord insertInquiry);
+    public List<InquiryRecord> findAllInquiry(int id);
+    public InquiryRecord inquiryFindById(int id);
 
 }
