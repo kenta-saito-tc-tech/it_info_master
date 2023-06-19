@@ -145,7 +145,7 @@ document.addEventListener("DOMContentLoaded", () => {
       console.log(currentPage);
       if (currentPage > 1) {
         currentPage--;
-        listProductShow();
+        listUserShow();
       }
     });
     //ページ切り替え用ボタン(next)
@@ -154,7 +154,7 @@ document.addEventListener("DOMContentLoaded", () => {
       console.log(totalPages);
       if (currentPage < totalPages) {
         currentPage++;
-        listProductShow();
+        listUserShow();
       }
     });
 
