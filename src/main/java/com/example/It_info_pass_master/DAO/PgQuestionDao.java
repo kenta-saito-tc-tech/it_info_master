@@ -1,7 +1,7 @@
 package com.example.It_info_pass_master.DAO;
 
+import com.example.It_info_pass_master.Entity.AgeRecord;
 import com.example.It_info_pass_master.Entity.QuestionRecord;
-import com.example.It_info_pass_master.Entity.ageRecord;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.DataClassRowMapper;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
@@ -17,9 +17,9 @@ public class PgQuestionDao implements QuestionDao{
     private NamedParameterJdbcTemplate jdbcTemplate;
 
     @Override
-    public List<ageRecord> ageFindAll(){
+    public List<AgeRecord> ageFindAll(){
 
-        var ageList = jdbcTemplate.query("SELECT * FROM age",new DataClassRowMapper<>(ageRecord.class));
+        var ageList = jdbcTemplate.query("SELECT * FROM age",new DataClassRowMapper<>(AgeRecord.class));
 
         for(var age : ageList){
             System.out.print(age);

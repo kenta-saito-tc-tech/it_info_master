@@ -11,5 +11,8 @@ public interface AccountService {
     public List<RankingRecord> findTopThree(String age);
     public List<AgeRecord> findAgeAll();
     public MyRankRecord findUserRank(String age, int id);
+    public int userNameUpdate(UserRecord userRecord);
+    public int userPassUpdate(UserRecord userRecord);
+    public int userDelete(UserRecord userRecord);
 
 }
