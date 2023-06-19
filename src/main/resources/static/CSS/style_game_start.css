@@ -1,0 +1,74 @@
+body {
+    background-image: url(/image/道場.jpeg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.display {
+    position: absolute;
+    top: 120px;
+
+    height: 350px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-content: space-around;
+}
+
+.category {
+    background-color: white;
+    font-size: 20px;
+    width: 600px;
+    height: 150px;
+    border: 1px solid black;
+}
+
+.time {
+    background-color: white;
+    font-size: 30px;
+    width: 600px;
+    height: 150px;
+    border: 1px solid black;
+}
+
+.question {
+    background-color: white;
+    font-size: 15px;
+    width: 600px;
+    height: 150px;
+    border: 1px solid black;
+}
+
+.select {
+    background-color: white;
+    font-size: 15px;
+    width: 600px;
+    height: 150px;
+
+}
+
+button {
+    width: 100px;
+    padding: 10px;
+}
+
+#back {
+    position: absolute;
+    bottom: 90px;
+    right: 380px;
+}
+
+#next, #ok {
+    position: absolute;
+    bottom: 90px;
+    right: 30px;
+}
+
+#ok {
+    display: none;
+}
+
+.hidden {
+    display:none;
+}
