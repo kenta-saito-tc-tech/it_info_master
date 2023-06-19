@@ -44,13 +44,13 @@ public class PgGameDao implements GameDao{
         MapSqlParameterSource param = new MapSqlParameterSource();
         param.addValue("ageId",ageId);
         param.addValue("i",i);
-        var id = jdbcTemplate.query("select choice_text from choice \n" +
+        var id = jdbcTemplate.query("select choice_text, answer from choice \n" +
                         "  join game_age on choice.question_id = game_age.question_id \n" +
                         "  where game_age.age_id = (select age_id from user_game where id = :ageId) \n" +
                         "  and game_age.question_id = (select question_id from game_age offset :i limit 1)"
-                , param,new DataClassRowMapper<>(String.class));
+                , param,new DataClassRowMapper<>(GameSelectRecord.class));
         System.out.println(id);
-        return id.isEmpty() ? null : id.get(0);
+        return id;
     }
 
     @Override

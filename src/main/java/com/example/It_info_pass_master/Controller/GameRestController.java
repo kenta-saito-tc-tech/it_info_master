@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.util.List;
+
 @RestController
 public class GameRestController {
     @Autowired
@@ -32,7 +34,7 @@ public class GameRestController {
 //        }
     }
     @GetMapping("/game_start/select")
-    public String select(@RequestParam(name = "userGameId")int userGameId, @RequestParam(name = "i")int i) {
+    public List<GameSelectRecord> select(@RequestParam(name = "userGameId")int userGameId, @RequestParam(name = "i")int i) {
         var gameSelect = gameService.gameChoiceSelect(userGameId, i);
         System.out.println(gameSelect);
         return gameSelect;

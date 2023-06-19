@@ -1,6 +1,6 @@
 window.onload = function() {
     questionDisplay();
-//    selectDisplay();
+    selectDisplay();
     startStopwatch();
 }
 
@@ -10,12 +10,14 @@ document.getElementById('next').addEventListener('click', () => {
     count++;
     document.getElementById('i').innerText = count;
     questionDisplay();
+    selectDisplay();
 })
 
 document.getElementById('back').addEventListener('click', () => {
     count--;
     document.getElementById('i').innerText = count;
     questionDisplay();
+    selectDisplay();
 })
 
 function questionDisplay() {
@@ -32,14 +34,6 @@ function questionDisplay() {
             document.getElementById('questionName').textContent = data.questionName;
             document.getElementById('questionText').textContent = data.questionText;
             document.getElementById('questionId').textContent = data.questionId;
-
-//            var radioButtons = document.getElementsByName("select");
-//
-//            // 既存のラジオボタンを新しい選択肢で更新する
-//            radioButtons[0].textContent = data.choiceText;
-//            radioButtons[1].textContent = data.choiceText2;
-//            radioButtons[2].textContent = data.choiceText3;
-//            radioButtons[3].textContent = data.choiceText4;
           })
         }
     });
@@ -47,6 +41,11 @@ function questionDisplay() {
         document.getElementById("ok").style.display = "flex";
     } else {
         document.getElementById('ok').style.display = "none";
+    }
+    if(i == 0) {
+        document.getElementById("back").style.display = "none";
+    } else {
+        document.getElementById("back").style.display = 'flex';
     }
 }
 
@@ -62,15 +61,34 @@ function selectDisplay() {
         .then(data => {
 
         var radioButtons = document.getElementsByName("select");
+        var countI = 0;
+        var memes = document.getElementsByClassName("meme");
+        data.forEach((selectTest) => {
+              radioButtons[countI].value = selectTest.answer;
+              radioButtons[countI].textContent = selectTest.choiceText;
+              memes[countI].textContent = selectTest.choiceText;
+              countI++;
+        })
 
-        // 既存のラジオボタンを新しい選択肢で更新する
-        radioButtons[0].textContent = data.choiceText;
-        radioButtons[1].textContent = data.choiceText2;
-        radioButtons[2].textContent = data.choiceText3;
-        radioButtons[3].textContent = data.choiceText4;
         })
       }
     });
+}
+
+
+
+function getSelectedValue() {
+  // ラジオボタン要素の取得
+  var radios = document.getElementsByName('select');
+
+  // 選択されているラジオボタンのvalue値を取得
+  for (var i = 0; i < radios.length; i++) {
+    if (radios[i].checked) {
+      var selectedValue = radios[i].value;
+      console.log(selectedValue); // 取得したvalue値をコンソールに表示
+      break;
+    }
+  }
 }
 
 
