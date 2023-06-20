@@ -1,0 +1,83 @@
+/* .button {
+    color: #333;
+    background-color: rgb(131, 197, 236);
+    width: 200px;
+    border-radius: 10px;
+}
+
+
+  .button:hover {
+    border-bottom: 2px solid #333;
+    opacity: 0.5;
+  } */
+
+  #question_title{
+  text-align: center;
+  }
+
+  .kanpeki {
+    display: inline-block; /* インラインブロック要素として表示 */
+    padding: 5px 20px; /* パディングを指定 */
+    background-color: rgb(131, 197, 236); /* 背景色を指定 */
+    color: #000000; /* テキスト色を指定 */
+    text-decoration: none; /* テキストの下線をなしにする */
+    border: 1px solid #000000; /* 枠線を指定 */
+    border-radius: 4px; /* 角を丸くする */
+    text-align: right;
+  }
+
+input[type="checkbox"] {
+  /* チェックボックスのスタイルを設定 */
+    background-color: #eee;
+    border: 1px solid #ccc;
+}
+
+input[type="checkbox"]:checked {
+  /* チェックされた状態のスタイルを設定 */
+    background-color: #007bff;
+    border: 1px solid #0056b3;
+}
+
+    .finish {
+      display: inline-block; /* インラインブロック要素として表示 */
+      padding: 5px 20px; /* パディングを指定 */
+      background-color: rgb(131, 197, 236); /* 背景色を指定 */
+      color: #000000; /* テキスト色を指定 */
+      text-decoration: none; /* テキストの下線をなしにする */
+      border: 1px solid #000000; /* 枠線を指定 */
+      border-radius: 4px; /* 角を丸くする */
+      text-align: right;
+      margin-right: 25px;
+
+    }
+
+.buttons2{
+    text-align:right;
+}
+
+  .button:hover {
+    background-color: #cccccc; /* ホバー時の背景色を指定 */
+    opacity: 0.5; /* 半透明にする値 */
+  }
+
+#question_text {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50vh;
+  background-color: lightgreen;
+  width: 80%; /* 幅を80%に制限 */
+  margin: 0 auto; /* 左右のマージンを自動で中央揃え */
+  /*padding: 0px 100px;*/
+}
+
+.question_text {
+    font-size:
+}
+
+#choices {
+  /*display: flex;*/
+  margin-left: 85px;
+  justify-content: center;
+  align-items: center;
+}

@@ -4,10 +4,7 @@ import com.example.It_info_pass_master.Entity.UserAgeRecord;
 import com.example.It_info_pass_master.Entity.QuestionRecord;
 import com.example.It_info_pass_master.Service.QuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -36,6 +33,34 @@ public class QuestionRestController {
         var questionList = questionService.selectQuestion(ageId, categoryId);
         System.out.print(questionList);
         return questionList;
-
     }
+
+    @PutMapping("/api/user_check_complete")
+    public int CheckComplete(@RequestBody String[] idUserId) {
+        var id = Integer.parseInt(idUserId[0]);
+        var userId = Integer.parseInt(idUserId[1]);
+        System.out.println();
+        System.out.println("問題id："+id+"userID："+userId);
+
+        return questionService.checkComplete(id, userId);
+    }
+
+    @PutMapping("/api/user_check_not_complete")
+    public int CheckNotComplete(@RequestBody String[] idUserId) {
+        var id = Integer.parseInt(idUserId[0]);
+        var userId = Integer.parseInt(idUserId[1]);
+        System.out.println("問題id："+id+"userID："+userId);
+
+        return questionService.checkNotComplete(id, userId);
+    }
+
+    @GetMapping("/api/check_complete_check")
+    public int complete_check_check(@RequestParam(name = "idUserId")String[] idUserId){
+        var id = Integer.parseInt(idUserId[0]);
+        var userId = Integer.parseInt(idUserId[1]);
+        var check = questionService.checkCompleteCheck(id, userId);
+        return check;
+    }
+
+
 }
