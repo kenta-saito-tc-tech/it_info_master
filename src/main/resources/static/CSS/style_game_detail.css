@@ -1,0 +1,9 @@
+.but-size {
+    font-size: 25px;
+    float: left;
+}
+
+.frame {
+    border: 1px solid black;
+    padding: 10px;
+}
