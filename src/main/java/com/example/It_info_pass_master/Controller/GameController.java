@@ -29,13 +29,7 @@ public class GameController {
     }
 
     @GetMapping("/game_finish")
-    public String gameFinishGet(Model model) {
-        var time = gameService.gameScoreSelect(1).gameScore();
-        var m = time / 60;
-        var s = time % 60;
-        model.addAttribute("minutes", m);
-        model.addAttribute("seconds", s);
-        System.out.println("test");
+    public String gameFinishGet() {
         return "game_finish";
     }
 }

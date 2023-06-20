@@ -1,9 +1,6 @@
 package com.example.It_info_pass_master.Controller;
 
-import com.example.It_info_pass_master.Entity.GameAnswerRecord;
-import com.example.It_info_pass_master.Entity.GameQuestionRecord;
-import com.example.It_info_pass_master.Entity.GameSelectRecord;
-import com.example.It_info_pass_master.Entity.GameTimeRecord;
+import com.example.It_info_pass_master.Entity.*;
 import com.example.It_info_pass_master.Service.GameService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -35,7 +32,7 @@ public class GameRestController {
         return "ok";
     }
 
-    @PostMapping("/game_start/timeInsert")
+    @PostMapping("/game_start/timeUpdate")
     public String timeInsert(@RequestBody GameTimeRecord gameTimeRecord) {
         var sumTime = gameTimeRecord.minutes() * 60 + gameTimeRecord.seconds();
 
@@ -44,6 +41,11 @@ public class GameRestController {
         var resultTime = sumTime + addTime;
         gameService.gameTimeAdd(gameTimeRecord.id(), resultTime);
         return "ok";
+    }
+
+    @GetMapping("/game_finish/result")
+    public GameScoreRecord gameScoreSelect(@RequestParam(name = "userGameId")int userGameId) {
+        return gameService.gameScoreSelect(userGameId);
     }
 
 }
