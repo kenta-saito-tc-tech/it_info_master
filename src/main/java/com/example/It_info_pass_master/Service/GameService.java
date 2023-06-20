@@ -9,6 +9,8 @@ public interface GameService {
     public GameQuestionRecord gameAgeSelect(int ageId, int i);
     public List<GameSelectRecord> gameChoiceSelect(int ageId, int i);
     public FalseSumRecord userGameDetial(int dateId);
-
-    public GameScoreRecord gameScoreSelect(int userGameid);
+    public int gameAnswerAdd(GameAnswerRecord gameAnswerRecord);
+    public int gameTimeAdd(int id, int resultTime);
+    public GameScoreRecord gameScoreSelect(int userGameId);
+    public List<GameResultListRecord> resultList(int userGameId);
 }

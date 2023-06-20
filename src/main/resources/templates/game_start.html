@@ -59,15 +59,13 @@
     </div>
     <button id="back">戻る</button>
     <button id="next">次へ</button>
+    <a href="/game_finish"><button id="ok">終了</button></a>
 
     <div class="hidden" id="i" name="i">0</div>
     <div class="hidden" id="questionId" name="questionId"></div>
-    <form id="form" action="/game_start" method="post">
-      <div class="hidden" id="userGameId" name="userGameId">[[ ${id} ]]</div>
-      <div class="hidden" id="m" name="minutes"></div>
-      <div class="hidden" id="s" name="seconds"></div>
-      <button id="ok" type="submit">終了</button>
-    </form>
+    <div class="hidden" id="userGameId" name="userGameId">[[ ${session.userGameId} ]]</div>
+    <div class="hidden" id="m" name="minutes"></div>
+    <div class="hidden" id="s" name="seconds"></div>
     <!--JSの指定-->
     <script type="text/javascript" src="/JS/app_game_start.js"></script>
   </body>

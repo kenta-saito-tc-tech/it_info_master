@@ -7,7 +7,21 @@ window.onload = function() {
 var count = 0;
 
 document.getElementById('next').addEventListener('click', () => {
+    getSelectedValue();
     count++;
+    if(count == 5) {
+        document.getElementById("ok").style.display = "flex";
+        document.getElementById("back").style.display = "none";
+        stopStopwatch();
+        return;
+    } else {
+        document.getElementById('ok').style.display = "none";
+    }
+    if(count == 0) {
+        document.getElementById("back").style.display = "none";
+    } else {
+        document.getElementById("back").style.display = 'flex';
+    }
     document.getElementById('i').innerText = count;
     questionDisplay();
     selectDisplay();
@@ -37,16 +51,6 @@ function questionDisplay() {
           })
         }
     });
-    if(i == 4) {
-        document.getElementById("ok").style.display = "flex";
-    } else {
-        document.getElementById('ok').style.display = "none";
-    }
-    if(i == 0) {
-        document.getElementById("back").style.display = "none";
-    } else {
-        document.getElementById("back").style.display = 'flex';
-    }
 }
 
 function selectDisplay() {
@@ -78,17 +82,46 @@ function selectDisplay() {
 
 
 function getSelectedValue() {
-  // ラジオボタン要素の取得
-  var radios = document.getElementsByName('select');
+    // ラジオボタン要素の取得
+    var radios = document.getElementsByName('select');
+    var questionId = document.getElementById('questionId').innerText;
+    var dateId = document.getElementById('userGameId').innerText;
+    var selectedValue;
+    var answerNum;
 
-  // 選択されているラジオボタンのvalue値を取得
-  for (var i = 0; i < radios.length; i++) {
-    if (radios[i].checked) {
-      var selectedValue = radios[i].value;
-      console.log(selectedValue); // 取得したvalue値をコンソールに表示
-      break;
+    // 選択されているラジオボタンのvalue値を取得
+    for (var i = 0; i < radios.length; i++) {
+        if (radios[i].checked) {
+          selectedValue = radios[i].value;
+          console.log(selectedValue); // 取得したvalue値をコンソールに表示
+          break;
+        }
     }
-  }
+
+    if (selectedValue == 'true') {
+        answerNum = 1;
+        console.log(answerNum);
+    } else {
+        answerNum = 0;
+        console.log(answerNum);
+    }
+
+    // 送信するデータを定義
+    const data = {
+        questionId: questionId,
+        userAnswer: answerNum,
+        dateId: dateId,
+    };
+
+    // リクエストを送信
+    fetch('/game_start/answerInsert', {
+        method: 'POST', // リクエストメソッドを指定
+        headers: {
+            'Content-Type': 'application/json', // リクエストのヘッダーにJSON形式でデータを送信することを指定
+        },
+        body: JSON.stringify(data), // リクエストのボディにデータをJSON形式で変換して送信
+    })
+
 }
 
 
@@ -116,20 +149,25 @@ function startStopwatch() {
 function stopStopwatch() {
   clearInterval(stopwatchInterval);
   var stopwatchElement = document.getElementById("stopwatch");
-  var clearTimeSet = document.getElementById("clearTime");
-  clearTimeSet.innerText = stopwatchElement.innerText;
-  document.getElementById("clearOverlayId").style.display = "flex";
-  document.getElementById("clearPopupId").style.display = "flex";
+  const id = document.getElementById('userGameId').innerText;
 
   var m = mm.innerText;
   var s = ss.innerText;
-  var stopWatch = stopwatchElement.innerText;
 
-  if (level.innerText === 'normal') {
-  fetch(`/playTest-score?m=${m}&s=${s}&stopWatch=${stopWatch}`)
-  } else {
-  fetch(`/playTest-scoreH?m=${m}&s=${s}&stopWatch=${stopWatch}`)
-  }
+  const data = {
+          id: id,
+          minutes: m,
+          seconds: s,
+      };
+
+      // リクエストを送信
+      fetch('/game_start/timeUpdate', {
+          method: 'POST',
+          headers: {
+              'Content-Type': 'application/json', // リクエストのヘッダーにJSON形式でデータを送信することを指定
+          },
+          body: JSON.stringify(data), // リクエストのボディにデータをJSON形式で変換して送信
+      })
 }
 
 // 秒を2桁表示にフォーマットする
