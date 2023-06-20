@@ -29,6 +29,16 @@ public class PgGameService implements GameService{
         return gameDao.userGameDetial(dateId);
     }
 
+    @Override
+    public int gameTimeAdd(int id, int resultTime) {
+        return gameDao.gameTimeAdd(id, resultTime);
+    }
+
+    @Override
+    public int gameAnswerAdd(GameAnswerRecord gameAnswerRecord) {
+        return gameDao.gameAnswerAdd(gameAnswerRecord);
+    }
+
     public GameScoreRecord gameScoreSelect(int userGameId) {
         return gameDao.gameScoreSelect(userGameId);
     }

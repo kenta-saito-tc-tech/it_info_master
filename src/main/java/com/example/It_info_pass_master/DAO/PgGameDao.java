@@ -24,11 +24,9 @@ public class PgGameDao implements GameDao{
     }
 
     public GameQuestionRecord gameAgeSelect(int ageId, int i) {
-        System.out.println("5");
         MapSqlParameterSource param = new MapSqlParameterSource();
         param.addValue("ageId",ageId);
         param.addValue("i",i);
-        System.out.println("6");
         var id = jdbcTemplate.query("  select A.age, G.question_id, C.category_name, Q.question_name, Q.question_text from game_age as G \n" +
                 "  join age as A on G.age_id = A.id \n" +
                 "  join questions as Q on G.question_id = Q.id \n" +
@@ -36,7 +34,6 @@ public class PgGameDao implements GameDao{
                 "  where G.age_id = (select age_id from user_game where id = :ageId) \n" +
                 "  and G.question_id = (select question_id from game_age offset :i limit 1)"
                 , param, new DataClassRowMapper<>(GameQuestionRecord.class));
-        System.out.println(id);
         return id.isEmpty() ? null : id.get(0);
     }
 
@@ -49,7 +46,6 @@ public class PgGameDao implements GameDao{
                         "  where game_age.age_id = (select age_id from user_game where id = :ageId) \n" +
                         "  and game_age.question_id = (select question_id from game_age offset :i limit 1)"
                 , param,new DataClassRowMapper<>(GameSelectRecord.class));
-        System.out.println(id);
         return id;
     }
 
@@ -57,10 +53,29 @@ public class PgGameDao implements GameDao{
     public FalseSumRecord userGameDetial(int dateId) {
         MapSqlParameterSource param = new MapSqlParameterSource();
         param.addValue("dateId", dateId);
-        var id = jdbcTemplate.query("select sum(user_answer) from user_game_detail where date_id = 1 and user_answer = 0"
+        var id = jdbcTemplate.query("select count(*) from user_game_detail where date_id = :dateId and user_answer = 0"
                 , param,new DataClassRowMapper<>(FalseSumRecord.class));
-        System.out.println(id);
         return id.isEmpty() ? null : id.get(0);
+    }
+
+    @Override
+    public int gameAnswerAdd(GameAnswerRecord gameAnswerRecord) {
+        MapSqlParameterSource param = new MapSqlParameterSource();
+        param.addValue("questionId", gameAnswerRecord.questionId());
+        param.addValue("userAnswer", gameAnswerRecord.userAnswer());
+        param.addValue("dateId", gameAnswerRecord.dateId());
+        var i = jdbcTemplate.update("insert into user_game_detail (question_id, user_answer, date_id) \n" +
+                        "values (:questionId, :userAnswer, :dateId)", param);
+        return i;
+    }
+
+    @Override
+    public int gameTimeAdd(int id, int resultTime) {
+        MapSqlParameterSource param = new MapSqlParameterSource();
+        param.addValue("id", id);
+        param.addValue("resultTime", resultTime);
+        var i = jdbcTemplate.update("update user_game set game_score = :resultTime where id = :id", param);
+        return i;
     }
 
     @Override
@@ -69,7 +84,6 @@ public class PgGameDao implements GameDao{
         param.addValue("userGameId", userGameId);
         var id = jdbcTemplate.query("select game_score from user_game where id = :userGameId"
                 , param,new DataClassRowMapper<>(GameScoreRecord.class));
-        System.out.println(id);
         return id.isEmpty() ? null : id.get(0);
     }
 }
