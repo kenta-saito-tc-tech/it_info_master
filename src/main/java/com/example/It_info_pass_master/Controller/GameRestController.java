@@ -48,4 +48,10 @@ public class GameRestController {
         return gameService.gameScoreSelect(userGameId);
     }
 
+    @GetMapping("/game_finish/list")
+    public List<GameResultListRecord> resultList(@RequestParam(name = "userGameId")int userGameId) {
+        System.out.println(gameService.resultList(userGameId));
+        return gameService.resultList(userGameId);
+    }
+
 }

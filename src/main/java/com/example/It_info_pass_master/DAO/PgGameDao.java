@@ -86,4 +86,15 @@ public class PgGameDao implements GameDao{
                 , param,new DataClassRowMapper<>(GameScoreRecord.class));
         return id.isEmpty() ? null : id.get(0);
     }
+
+    @Override
+    public List<GameResultListRecord> resultList(int userGameId) {
+        MapSqlParameterSource param = new MapSqlParameterSource();
+        param.addValue("userGameId", userGameId);
+        var list = jdbcTemplate.query("select user_game_detail.question_id, question_name, user_answer from user_game_detail \n" +
+                        "join questions on user_game_detail.question_id = questions.id \n" +
+                        "where user_game_detail.date_id = :userGameId"
+                , param,new DataClassRowMapper<>(GameResultListRecord.class));
+        return list;
+    }
 }

@@ -11,5 +11,6 @@ public interface GameService {
     public FalseSumRecord userGameDetial(int dateId);
     public int gameAnswerAdd(GameAnswerRecord gameAnswerRecord);
     public int gameTimeAdd(int id, int resultTime);
-    public GameScoreRecord gameScoreSelect(int userGameid);
+    public GameScoreRecord gameScoreSelect(int userGameId);
+    public List<GameResultListRecord> resultList(int userGameId);
 }

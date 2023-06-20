@@ -12,4 +12,5 @@ public interface GameDao {
     public int gameAnswerAdd(GameAnswerRecord gameAnswerRecord);
     public int gameTimeAdd(int id, int resultTime);
     public GameScoreRecord gameScoreSelect(int userGameId);
+    public List<GameResultListRecord> resultList(int userGameId);
 }

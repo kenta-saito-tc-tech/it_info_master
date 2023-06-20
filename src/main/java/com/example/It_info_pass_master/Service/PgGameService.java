@@ -42,4 +42,9 @@ public class PgGameService implements GameService{
     public GameScoreRecord gameScoreSelect(int userGameId) {
         return gameDao.gameScoreSelect(userGameId);
     }
+
+    @Override
+    public List<GameResultListRecord> resultList(int userGameId) {
+        return gameDao.resultList(userGameId);
+    }
 }
