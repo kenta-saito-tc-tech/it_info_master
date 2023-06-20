@@ -34,7 +34,7 @@
     <th:block th:insert="./Header/main_header"></th:block>
   
     <!--ここにコードを記入-->
-    <div id="userGameId">[[ ${session.userGameId} ]]</div>
+    <div id="userGameId" name="userGameId">[[ ${session.userGameId} ]]</div>
     <div style="text-align:center">
       <div>
         <h1>終了！！</h1>
@@ -42,7 +42,7 @@
 
       <div>
         <!-- 問題画面から受け取ったタイムデータ＋間違えた問題週プラスされたタイムを表示 -->
-        <p>タイム：[[ ${minutes} ]]分[[ ${seconds} ]]秒</p>
+        <p>タイム：<span id="minutes"></span> 分 <span id="seconds"></span> 秒 </p>
         <!-- ＤＢから取得して表示 -->
       </div>
 
@@ -76,6 +76,6 @@
 
     </div>
     <!--JSの指定-->
-    <!-- <script src="#"></script> -->
+    <script type="text/javascript" src="/JS/app_game_finish.js"></script>
   </body>
 </html>

@@ -161,8 +161,8 @@ function stopStopwatch() {
       };
 
       // リクエストを送信
-      fetch('/game_start/timeInsert', {
-          method: 'POST', // リクエストメソッドを指定
+      fetch('/game_start/timeUpdate', {
+          method: 'POST',
           headers: {
               'Content-Type': 'application/json', // リクエストのヘッダーにJSON形式でデータを送信することを指定
           },
