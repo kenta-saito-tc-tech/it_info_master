@@ -1,4 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
+    var userId = document.getElementById('js-userId').value;
+    console.log('userid:',userId)
+
     fetch('/ages', {
     })
         .then(res => {
@@ -104,16 +107,4 @@ document.addEventListener("DOMContentLoaded", () => {
                     })
             }
         })
-    // var selectElement = document.getElementById('js_select_age');
-    // selectElement.addEventListener('change',()=>{
-    //     document.getElementById('database').textContent = 'データベース';
-    //     document.getElementById('system_architecture').textContent = 'システム構成要素';
-    //     document.getElementById('information_processing').textContent = '情報処理';
-    //     document.getElementById('network').textContent = 'ネットワーク';
-    //     document.getElementById('management').textContent = 'マネジメント';
-    //     document.getElementById('security').textContent = 'セキュリティ';
-    // })
-
-
-
 });

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="ja" >
 <head>
     <meta charset="UTF-8"/>
     <meta
@@ -21,7 +21,7 @@
             rel="stylesheet"
     />
     <!--デフォルトの表示用CSS(ブラウザの表示の統一化)-->
-
+    <link rel="stylesheet" href="./Common/sanitize.css" />
     <!--自作のCSS-->
     <!-- <link rel="stylesheet" href="#" /> -->
 
@@ -32,8 +32,14 @@
 <body>
 <span id="error_massage"></span>
 <!--ヘッダーの指定-->
-<!-- <th:block th:insert="#"></th:block> -->
+<th:block th:insert="/Header/main_header.html"></th:block>
 
+<!--権限の格納用-->
+<input
+        id="js-userId"
+        type="hidden"
+        th:value="${session.user.id}"
+/>
 <!--ここにコードを記入-->
 <h1>一問一答選択画面</h1>
 <div id="js_select_age">
