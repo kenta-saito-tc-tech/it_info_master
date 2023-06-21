@@ -97,4 +97,22 @@ public class PgGameDao implements GameDao{
                 , param,new DataClassRowMapper<>(GameResultListRecord.class));
         return list;
     }
+
+    @Override
+    public  QuestionRecord gameDetailQuestion(int questionId) {
+        MapSqlParameterSource param = new MapSqlParameterSource();
+        param.addValue("questionId", questionId);
+        var list = jdbcTemplate.query("select * from questions where id = :questionId"
+                , param,new DataClassRowMapper<>(QuestionRecord.class));
+        return list.isEmpty() ? null : list.get(0);
+    }
+
+    @Override
+    public List<ChoiceRecord> gameDetailChoice(int questionId) {
+        MapSqlParameterSource param = new MapSqlParameterSource();
+        param.addValue("questionId", questionId);
+        var list = jdbcTemplate.query("select * from choice where question_id = :questionId"
+                , param,new DataClassRowMapper<>(ChoiceRecord.class));
+        return list;
+    }
 }

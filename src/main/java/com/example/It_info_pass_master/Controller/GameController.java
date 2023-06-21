@@ -32,4 +32,18 @@ public class GameController {
     public String gameFinishGet() {
         return "game_finish";
     }
+
+    @PostMapping("/game_detail")
+    public String gameDetailPost(@RequestParam(name="info")int questionId, Model model) {
+        var question = gameService.gameDetailQuestion(questionId);
+        var choice = gameService.gameDetailChoice(questionId);
+        model.addAttribute("gameQ", question);
+        model.addAttribute("gameC", choice);
+        for(var choiced : choice){
+            if(choiced.answer() == true) {
+                model.addAttribute("answer", choiced.choiceText());
+            }
+        }
+        return "game_detail";
+    }
 }

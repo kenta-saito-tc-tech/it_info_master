@@ -23,20 +23,63 @@
     <!--デフォルトの表示用CSS(ブラウザの表示の統一化)-->
     <link rel="stylesheet" href="./Common/sanitize.css" />
     <!--自作のCSS-->
-    <!-- <link rel="stylesheet" href="#" /> -->
+    <link rel="stylesheet" href="/CSS/style_admin_question_make.css" />
 
     <!--favicon-->
     <link rel="icon" type="image/x-icon" href="./image/exam.png" />
     <title>ITインフォパスマスター</title>
   </head>
-  <body>
+  <body class="style">
     <!--ヘッダーの指定-->
-    <!-- <th:block th:insert="#"></th:block> -->
+    <th:block th:insert="./Header/main_header"></th:block>
   
     <!--ここにコードを記入-->
-    <h1>問題作成画面</h1>
+    <div id="honbun" style="text-align:center">
+      <div id="categoryText" class="category">
+        <select id="testDown">
+          <option class="testOption"></option>
+        </select>
+      </div>
 
+      <div class="questionName">
+        <input id="questionName" type="text" placeholder="問題名を記入">
+      </div>
+
+      <div class="questionText">
+
+        <textarea
+                id="questionText"
+                cols="50"
+                rows="10"
+                placeholder="問題文を記入"
+        ></textarea>
+      </div>
+
+      <div class="choiceText">
+        <p><input type="text" placeholder="選択肢1" class="choiceTexts" name="choice"><input type="radio" name="radio" value="1" class="radio" checked></p>
+        <p><input type="text" placeholder="選択肢2" class="choiceTexts" name="choice"><input type="radio" name="radio" value="2" class="radio"></p>
+        <p><input type="text" placeholder="選択肢3" class="choiceTexts" name="choice"><input type="radio" name="radio" value="3" class="radio"></p>
+        <p><input type="text" placeholder="選択肢4" class="choiceTexts" name="choice"><input type="radio" name="radio" value="4" class="radio"></p>
+      </div>
+
+      <div class="answerText">
+
+        <textarea
+                id="answerText"
+                cols="50"
+                rows="10"
+                placeholder="解説を記入"
+        ></textarea>
+      </div>
+
+    </div>
+    <div class="buttons">
+      <button id="back" class="buttonCommon"><a href="/menu">戻る</a></button>
+      <button id="add" class="buttonCommon">追加する</button>
+      <button id="pass1" class="buttonCommon">問題振り分け</button>
+      <button id="pass2" class="buttonCommon">ゲーム問題管理</button>
+    </div>
     <!--JSの指定-->
-    <!-- <script src="#"></script> -->
+    <script type="text/javascript" src="/JS/app_admin_question_make.js"></script>
   </body>
 </html>
