@@ -30,8 +30,14 @@
     <title>ITインフォパスマスター</title>
   </head>
   <body>
+  <table>
+    <tr th:each="record : ${questionRecords}">
+      <td th:text="${record.id}"></td>
+      <td th:text="${record.questionText}"></td>
+    </tr>
+  </table>
     <!--ヘッダーの指定-->
-    <!-- <th:block th:insert="#"></th:block> -->
+<!--    <th:block th:insert="#"></th:block>-->
   
     <!--ここにコードを記入-->
     <h1>ランダム問題画面</h1>

@@ -13,7 +13,7 @@ public class QuestionRestController {
     @Autowired
     private QuestionService questionService;
 
-    @GetMapping("/ages")
+    @GetMapping("/api/ages")
     public List<UserAgeRecord> ages(){
 
         var ageList = questionService.ageFindAll();

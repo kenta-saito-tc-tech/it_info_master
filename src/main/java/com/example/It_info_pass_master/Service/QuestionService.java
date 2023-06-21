@@ -22,4 +22,6 @@ public interface QuestionService {
     int checkNotComplete(int id, int userId);
 
     int checkCompleteCheck(int id, int userId);
+
+
 }

@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", () => {
     var userId = document.getElementById('js-userId').value;
     console.log('userid:',userId)
 
-    fetch('/ages', {
+    fetch('/api/ages', {
     })
         .then(res => {
             if (res.status === 400) {
