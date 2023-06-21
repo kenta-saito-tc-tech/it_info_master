@@ -13,4 +13,6 @@ public interface GameService {
     public int gameTimeAdd(int id, int resultTime);
     public GameScoreRecord gameScoreSelect(int userGameId);
     public List<GameResultListRecord> resultList(int userGameId);
+    public QuestionRecord gameDetailQuestion(int questionId);
+    public List<ChoiceRecord> gameDetailChoice(int questionId);
 }

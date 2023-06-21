@@ -47,4 +47,14 @@ public class PgGameService implements GameService{
     public List<GameResultListRecord> resultList(int userGameId) {
         return gameDao.resultList(userGameId);
     }
+
+    @Override
+    public QuestionRecord gameDetailQuestion(int questionId) {
+        return gameDao.gameDetailQuestion(questionId);
+    }
+
+    @Override
+    public List<ChoiceRecord> gameDetailChoice(int questionId) {
+        return gameDao.gameDetailChoice(questionId);
+    }
 }
