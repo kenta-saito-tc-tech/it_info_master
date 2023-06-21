@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
   <head>
     <meta charset="UTF-8" />
     <meta
@@ -29,40 +29,42 @@
     <link rel="icon" type="image/x-icon" href="./image/exam.png" />
     <title>ITインフォパスマスター</title>
   </head>
-  <body>
+  <body class="style">
     <!--ヘッダーの指定-->
     <th:block th:insert="./Header/main_header"></th:block>
   
     <!--ここにコードを記入-->
-    <body class="style">
     <div style="text-align:center">
       <div class="frame">
-        <p>タイトル:</p>
+        <p>タイトル：　<span th:text="${gameQ.questionName}"></span></p>
       </div>
 
       <div class="frame">
-        <p>問題分:</p>
+        <p>問題文：</p>
+        <p th:text="${gameQ.questionText}"></p>
       </div>
 
       <div class="frame">
         <p>選択肢</p>
-
+        <div id="choice" th:each="gameC : ${gameC}">
+          <p th:text="${gameC.choiceText}"></p>
+        </div>
       </div>
 
       <div class="frame">
-        <p>回答: <input type="text"></p>
+        <p>回答：　<span th:text="${answer}"></span></p>
       </div>
 
       <div class="frame">
         <p>解説</p>
+        <p th:text="${gameQ.answerText}"></p>
       </div>
 
       <div>
-        <button class="but-size">戻る</button>
+        <a href="/game_finish"><button class="but-size">戻る</button></a>
       </div>
 
     </div>
-    </body>
     <!--JSの指定-->
     <!-- <script src="#"></script> -->
   </body>
