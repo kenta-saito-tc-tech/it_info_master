@@ -1,0 +1,108 @@
+.choice{
+    text-align: center;
+}
+
+.age{
+    text-align: left;
+}
+
+.age_categories{
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    text-align: center;
+    justify-content: center;
+    padding: 80px 30px;
+    margin:auto;
+    width:800px;
+
+/*          display: inline-block; /* インラインブロック要素として表示 */ */
+            padding: 5px 20px; /* パディングを指定 */
+            background-color: rgb(131, 197, 236); /* 背景色を指定 */
+            color: #000000; /* テキスト色を指定 */
+            text-decoration: none; /* テキストの下線をなしにする */
+            border: 1px solid #000000; /* 枠線を指定 */
+            border-radius: 4px; /* 角を丸くする */
+
+
+}
+
+#js_select_age{
+    margin-top: -49px; /* 上に20ピクセル移動 */
+    margin-right: 40px
+}
+
+.categories1{
+    text-align: center;
+}
+
+#system_arch{
+    margin-left: 31px; /* 右に20ピクセル寄せる */
+}
+
+#info_process{
+    margin-right: 31px; /* 右に20ピクセル寄せる */
+}
+
+#kanpeki{
+    margin-right: 64px;
+}
+
+
+
+.buttons{
+        text-align: center;
+        margin-top: 6px;
+        display: inline-block; /* インラインブロック要素として表示 */
+        padding: 20px 30px; /* パディングを指定 */
+        background-color: rgb(131, 197, 236); /* 背景色を指定 */
+        color: #000000; /* テキスト色を指定 */
+        text-decoration: none; /* テキストの下線をなしにする */
+        border: 1px solid #000000; /* 枠線を指定 */
+        border-radius: 4px; /* 角を丸くする */
+}
+.buttons:hover {
+    background-color: #cccccc; /* ホバー時の背景色を指定 */
+    opacity: 0.5; /* 半透明にする値 */
+  }
+
+.button_title{
+    text-align: center;
+}
+/*
+.random_mode{
+        display: inline-block; /* インラインブロック要素として表示 */
+        padding: 5px 20px; /* パディングを指定 */
+        background-color: rgb(131, 197, 236); /* 背景色を指定 */
+        color: #000000; /* テキスト色を指定 */
+        text-decoration: none; /* テキストの下線をなしにする */
+        border: 1px solid #000000; /* 枠線を指定 */
+        border-radius: 4px; /* 角を丸くする */
+} */
+
+.mikaeshi_mode{
+            display: inline-block; /* インラインブロック要素として表示 */
+            padding: 5px 20px; /* パディングを指定 */
+            background-color: rgb(131, 197, 236); /* 背景色を指定 */
+            color: #000000; /* テキスト色を指定 */
+            text-decoration: none; /* テキストの下線をなしにする */
+            border: 1px solid #000000; /* 枠線を指定 */
+            border-radius: 4px; /* 角を丸くする */
+}
+
+.group {
+    display: flex;
+    flex-wrap: wrap;
+    white-space: nowrap;
+}
+
+.group > div {
+    flex-basis: 33.33%;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+.center{
+text-align: center;
+margin-top:30px;
+}
