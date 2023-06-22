@@ -2,10 +2,12 @@ package com.example.It_info_pass_master.Controller;
 
 import com.example.It_info_pass_master.Entity.ChoiceRecord;
 import com.example.It_info_pass_master.Entity.QuestionRecord;
+import com.example.It_info_pass_master.Entity.UserAgeRecord;
 import com.example.It_info_pass_master.Service.ManageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -34,6 +36,17 @@ public class ManageRestController {
         try {
             manageService.choiceInsert(choiceRecord);
             return new ResponseEntity<>("POST request processed", HttpStatus.OK);
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    @GetMapping("/api/adminAllAgeSelect")
+    public List<UserAgeRecord> adminAllAgeSelect() {
+        try {
+            var ageList = manageService.adminAllAgeSelect();
+            return ageList;
         } catch (Exception e) {
             e.printStackTrace();
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
