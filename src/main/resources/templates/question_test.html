@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8"/>
     <meta
@@ -13,8 +13,8 @@
             content="試験内容別にテストがあり、ユーザーの受けたいテストをピンポイントに受講できる"
     />
     <!--CSSリンク-->
-    <link rel="stylesheet" href="./Common/button.css"/>
-    <link rel="stylesheet" href="./Common/sanitize.css"/>
+    <link rel="stylesheet" href="/Common/button.css"/>
+    <link rel="stylesheet" href="/Common/sanitize.css"/>
     <!--Webフォントのリンク３つ-->
     <link rel="preconnect" href="https://fonts.googleapis.com"/>
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
@@ -29,7 +29,7 @@
     <link rel="stylesheet" href="/CSS/style_question_test.css"/>
 
     <!--favicon-->
-    <link rel="icon" type="image/x-icon" href="./image/exam.png"/>
+    <link rel="icon" type="image/x-icon" href="/image/exam.png"/>
     <title>ITインフォパスマスター</title>
 </head>
 <body>
@@ -38,28 +38,70 @@
 
 <!--ここにコードを記入-->
 <h1>一問一答問題画面</h1>
+
 <div id="js_age_and_category">
-    年度<!--年代、カテゴリ-->
+    [[${age}]]　[[${category}]]<!--年代、カテゴリ-->
 </div>
 
-    <div class="questionDiv">
+<div class="questionDiv">
 
-        <div id="question">
-            問題文<!--問題文-->
-        </div>
-        <div id="choices">
-            選択肢<!--選択肢-->
-        </div>
-        <div class="buttonDiv">
-            <form>
-
-                <div class="button back_button">戻る</div>
-                <div class="button next_button">次へ</div>
-
-            </form>
-        </div>
+    <div id="title">
+        [[${questionTitle}]]<!--タイトルを入れる-->
     </div>
-        <!--JSの指定-->
-        <!-- <script src="#"></script> -->
+
+    <div id="question">
+        [[${questionText}]]<!--問題文-->
+    </div>
+    <br>
+
+    <form action="/question_answer" method="POST">
+
+
+        <input
+                id="js-question_id"
+                type="hidden"
+                th:name="question_id"
+                th:value="${id}"
+        />
+        <div>
+            <label><input id="choice1" type="radio" th:name="selectedItem" th:value="${choices[0].id}"/>
+                <span th:text="${choices[0].choiceText}"></span></label></div>
+
+        <div>
+            <label><input id="choice2" type="radio" th:name="selectedItem" th:value="${choices[1].id}"/>
+                <span th:text="${choices[1].choiceText}"></span></label></div>
+
+        <div>
+            <label><input id="choice3" type="radio" th:name="selectedItem" th:value="${choices[2].id}"/>
+                <span th:text="${choices[2].choiceText}"></span></label></div>
+
+        <div>
+            <label><input id="choice4" type="radio" th:name="selectedItem" th:value="${choices[3].id}"/>
+                <span th:text="${choices[3].choiceText}"></span></label></div>
+
+
+        <div class="buttons">
+            <div class="button back_button">
+                <a href="/question_select">戻る</a>
+            </div>
+
+            <div class="button next_button">
+                <!--            <a href="/question_answer">次へ</a>-->
+                <button type="submit">次へ</button>
+
+            </div>
+        </div>
+    </form>
+
+</div>
+
+<!--JSの指定-->
+<script>
+    const defaultCheck =  document.getElementById('choice1');
+    defaultCheck.checked = true;
+
+
+</script>
+<!-- <script src="#"></script> -->
 </body>
 </html>

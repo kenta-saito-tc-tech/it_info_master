@@ -22,4 +22,9 @@ public interface QuestionDao {
     int checkNotComplete(int id, int userId);
 
     int checkCompleteCheck(int id, int userId);
+
+    //user_checkテーブルを確認＆作成するメソッド
+    int findCheckUser (int userId, int questionId, int ageId);
+
+    String findAge(int ageId);
 }

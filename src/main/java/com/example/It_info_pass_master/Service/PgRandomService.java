@@ -21,12 +21,17 @@ public class PgRandomService implements RandomService{
     }
 
     @Override
-    public List<QuestionRecord> selectRandom(SelectRandomRecord selectRandomRecord){
-        return randomDao.selectRandom(selectRandomRecord);
+    public QuestionRecord selectRandom(Integer ageId, String[] categories,Integer perfect, Integer userId){
+        return randomDao.selectRandom(ageId, categories, perfect, userId);
     }
 
     @Override
     public int categorySelectUpdate(UserCategoryRecord userCategoryRecord) {
         return randomDao.categorySelectUpdate(userCategoryRecord);
+    }
+
+    @Override
+    public int sessionRandom(SelectRandomRecord selectRandomRecord){
+        return randomDao.sessionRandom(selectRandomRecord);
     }
 }

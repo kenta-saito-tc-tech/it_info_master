@@ -4,6 +4,7 @@ import com.example.It_info_pass_master.Entity.SelectRandomRecord;
 import com.example.It_info_pass_master.Entity.CategoryRecord;
 import com.example.It_info_pass_master.Entity.QuestionRecord;
 import com.example.It_info_pass_master.Entity.UserCategoryRecord;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.expression.spel.ast.Selection;
 import org.springframework.jdbc.core.DataClassRowMapper;
@@ -11,12 +12,16 @@ import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+
 import java.util.List;
 
 @Repository
 public class PgRandomDao implements RandomDao{
     @Autowired
     private NamedParameterJdbcTemplate jdbcTemplate;
+    @Autowired
+    private HttpSession session;
+
     @Override
     public List<CategoryRecord> findRandSelect(int ageId, int userId){
         System.out.println("dao ageId:"+ageId);
@@ -39,16 +44,16 @@ public class PgRandomDao implements RandomDao{
         return result;
     }
     @Override
-    public List<QuestionRecord> selectRandom(SelectRandomRecord selectRandomRecord){
+    public QuestionRecord selectRandom(Integer ageId, String[] categories,Integer perfect, Integer userId){
         MapSqlParameterSource param = new MapSqlParameterSource();
-        param.addValue("ageId", selectRandomRecord.ageId());
-        param.addValue("userId", selectRandomRecord.userId());
-        int[] intArray = new int[selectRandomRecord.categories().length];
+        param.addValue("ageId", ageId);
+        param.addValue("userId", userId);
+        int[] intArray = new int[categories.length];
         param.addValue("categories", intArray);
-        for(var i = 0; i < selectRandomRecord.categories().length; i++){
-            intArray[i] = Integer.parseInt(selectRandomRecord.categories()[i]);
+        for(var i = 0; i < categories.length; i++){
+            intArray[i] = Integer.parseInt(categories[i]);
         }
-        if(selectRandomRecord.perfect() == 1){
+        if(perfect == 1){
            String query = "select * " +
                    "from questions " +
                    "where id IN (select question_id " +
@@ -58,14 +63,14 @@ public class PgRandomDao implements RandomDao{
                    "where user_id = :userId " +
                    "AND age_id = :ageId) " +
                    "AND category_id = ANY(:categories) " +
-                   "ORDER BY RANDOM()";
-           List<QuestionRecord> result = jdbcTemplate.query(query, param, new DataClassRowMapper<>(QuestionRecord.class));
+                   "ORDER BY RANDOM() " +
+                   "limit 1";
+           var list = jdbcTemplate.query(query, param, new DataClassRowMapper<>(QuestionRecord.class));
            System.out.println("randomSelect##################################################");
-           for(var a : result){
-               System.out.println(a.questionName());
-           }
-           return result;
-       }else if(selectRandomRecord.perfect() == 0){
+           System.out.println(list);
+           return list.isEmpty() ? null : list.get(0);
+
+       }else if(perfect == 0){
             String query = "select * " +
                     "from questions " +
                     "where id IN (select question_id " +
@@ -76,13 +81,12 @@ public class PgRandomDao implements RandomDao{
                     "AND perfect_check = 1 " +
                     "AND age_id = :ageId) " +
                     "AND category_id = ANY(:categories) " +
-                    "ORDER BY RANDOM()";
-            List<QuestionRecord> result = jdbcTemplate.query(query, param, new DataClassRowMapper<>(QuestionRecord.class));
+                    "ORDER BY RANDOM() " +
+                    "limit 1";
+            var list = jdbcTemplate.query(query, param, new DataClassRowMapper<>(QuestionRecord.class));
             System.out.println("randomSelect##################################################");
-            for(var a : result){
-                System.out.println(a.questionName());
-            }
-            return result;
+            System.out.println(list);
+            return list.isEmpty() ? null : list.get(0);
        }
         return null;
     }
@@ -120,6 +124,11 @@ public class PgRandomDao implements RandomDao{
         }
 
         return 1;
+    }
 
+    @Override
+    public int sessionRandom(SelectRandomRecord selectRandomRecord){
+        session.setAttribute("selectRandomRecord", selectRandomRecord);
+        return 0;
     }
 }

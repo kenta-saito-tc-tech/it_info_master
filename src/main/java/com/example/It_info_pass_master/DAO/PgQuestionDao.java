@@ -1,8 +1,6 @@
 package com.example.It_info_pass_master.DAO;
 
-import com.example.It_info_pass_master.Entity.ChoiceRecord;
-import com.example.It_info_pass_master.Entity.UserAgeRecord;
-import com.example.It_info_pass_master.Entity.QuestionRecord;
+import com.example.It_info_pass_master.Entity.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.DataClassRowMapper;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
@@ -117,6 +115,67 @@ public class PgQuestionDao implements QuestionDao{
 
         var answer = jdbcTemplate.queryForObject(sql, param, Integer.class);
         return answer;
+    }
+
+    //user_checkテーブルを確認＆作成するメソッド
+    public int findCheckUser(int userId, int questionId, int ageId) {
+
+        //レコードクラスの有無をチェック
+        MapSqlParameterSource param = new MapSqlParameterSource();
+        param.addValue("userId", userId);
+        param.addValue("questionId", questionId);
+        param.addValue("ageId", ageId);
+
+        var checkUser = jdbcTemplate.query("SELECT * FROM user_check " +
+                "WHERE user_id = :userId " +
+                "AND question_age_id IN (" +
+                "    SELECT id FROM question_age " +
+                "    WHERE age_id = :ageId " +
+                "    AND question_id = :questionId" +
+                ");", param, new DataClassRowMapper<>(UserCheckRecord.class));
+        int resultSet = checkUser.isEmpty() ? 0 : 1;
+
+        //insertするためのif文（開始）
+        if (resultSet == 1) {
+            return resultSet;
+
+        } else {
+            MapSqlParameterSource param1 = new MapSqlParameterSource();
+            param1.addValue("questionId", questionId);
+            var questionAgeId = jdbcTemplate.queryForObject("SELECT id FROM question_age WHERE question_id = :questionId AND age_id = :ageId", param1, Integer.class);
+
+            System.out.print("DAO　クエスチョンAgeId:" + questionAgeId);
+
+//            return questionId;
+
+
+            //insert1するSQL文
+            MapSqlParameterSource param2 = new MapSqlParameterSource();
+            param2.addValue("userId", userId);
+            param2.addValue("questionId", questionId);
+            param2.addValue("questionAgeId", questionAgeId);
+
+            var insertRecord = jdbcTemplate.update("INSERT INTO user_check (user_id, question_age_id, perfect_check, look_check) " +
+                    "VALUES (:userId, :questionAgeId, 1 , 1)", param2);
+
+            System.out.print("インサートした件数"+insertRecord);
+        }
+
+
+        System.out.print("DAOから確認 レコードの有無：" + resultSet);
+        return resultSet;
+    }
+
+    @Override
+    public String findAge(int ageId) {
+        String sql = "Select age " +
+                "FROM age " +
+                "WHERE id = :ageId";
+        MapSqlParameterSource param = new MapSqlParameterSource();
+        param.addValue("ageId", ageId);
+
+        var age = jdbcTemplate.queryForObject(sql, param, String.class);
+        return age;
     }
 
 
