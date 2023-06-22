@@ -23,5 +23,9 @@ public interface QuestionService {
 
     int checkCompleteCheck(int id, int userId);
 
+    //user_checkテーブルを確認＆作成するメソッド
+    public int findCheckUser(int userId, int questionId, int ageId);
 
+
+    String findAge(int ageId);
 }

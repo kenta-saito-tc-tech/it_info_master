@@ -10,7 +10,9 @@ import java.util.List;
 public interface RandomDao {
     List<CategoryRecord> findRandSelect(int ageId, int userId);
 
-    List<QuestionRecord> selectRandom(SelectRandomRecord selectRandomRecord);
+    QuestionRecord selectRandom(Integer ageId, String[] categories,Integer perfect, Integer userId);
 
     int categorySelectUpdate(UserCategoryRecord userCategoryRecord);
+
+    int sessionRandom(SelectRandomRecord selectRandomRecord);
 }

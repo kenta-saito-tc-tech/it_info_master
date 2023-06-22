@@ -53,4 +53,13 @@ public class PgQuestionService implements QuestionService{
     public int checkCompleteCheck(int id, int userId){
         return questionDao.checkCompleteCheck(id, userId);
     }
+
+    //user_checkテーブルを確認＆作成するメソッド
+    public int findCheckUser(int userId, int questionId, int ageId){
+        return questionDao.findCheckUser(userId, questionId, ageId);
+    }
+
+    public String findAge(int ageId){
+        return questionDao.findAge(ageId);
+    }
 }

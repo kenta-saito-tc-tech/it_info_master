@@ -1,48 +1,105 @@
 <!DOCTYPE html>
 <html lang="ja">
-  <head>
-    <meta charset="UTF-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
-    />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <!-- サイトの説明欄 -->
-    <meta
-      name="ITインフォパスマスター"
-      content="試験内容別にテストがあり、ユーザーの受けたいテストをピンポイントに受講できる"
-    />
-    <!--CSSリンク-->
-    <!--Webフォントのリンク３つ-->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap"
-      rel="stylesheet"
-    />
-    <!--デフォルトの表示用CSS(ブラウザの表示の統一化)-->
-    <link rel="stylesheet" href="./Common/sanitize.css" />
-    <!--自作のCSS-->
-    <!-- <link rel="stylesheet" href="#" /> -->
+<head>
+  <meta charset="UTF-8" />
+  <meta
+          name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+  />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <!-- サイトの説明欄 -->
+  <meta
+          name="ITインフォパスマスター"
+          content="試験内容別にテストがあり、ユーザーの受けたいテストをピンポイントに受講できる"
+  />
+  <!--CSSリンク-->
+  <!--Webフォントのリンク３つ-->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+          href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap"
+          rel="stylesheet"
+  />
+  <!--デフォルトの表示用CSS(ブラウザの表示の統一化)-->
+  <!--    <link rel="stylesheet" href="./Common/sanitize.css" />-->
+  <!--自作のCSS-->
+  <!-- <link rel="stylesheet" href="#" /> -->
+  <link rel="stylesheet" href="/CSS/style_random_answer.css"/>
 
-    <!--favicon-->
-    <link rel="icon" type="image/x-icon" href="./image/exam.png" />
-    <title>ITインフォパスマスター</title>
-  </head>
-  <body>
-  <table>
-    <tr th:each="record : ${questionRecords}">
-      <td th:text="${record.id}"></td>
-      <td th:text="${record.questionText}"></td>
-    </tr>
-  </table>
-    <!--ヘッダーの指定-->
-<!--    <th:block th:insert="#"></th:block>-->
-  
-    <!--ここにコードを記入-->
-    <h1>ランダム問題画面</h1>
+  <!--favicon-->
+  <link rel="icon" type="image/x-icon" href="/image/exam.png" />
+  <title>ITインフォパスマスター</title>
+</head>
+<body>
 
-    <!--JSの指定-->
-    <!-- <script src="#"></script> -->
-  </body>
+<!--ヘッダーの指定-->
+<th:block th:insert="/Header/main_header.html"></th:block>
+
+<input
+        id="js-userId"
+        type="hidden"
+        th:value="${session.user.id}"
+/>
+
+<input
+        id="js-questionId"
+        type="hidden"
+        th:value="${id}"
+/>
+
+<input
+        id="js-choiceId"
+        type="hidden"
+        th:value="${choiceId}"
+/>
+
+
+<!--ここにコードを記入-->
+<h1>ランダム問題出題画面</h1>
+<div class="questionDiv">
+
+  <div id="question_title">
+    <!--タイトルを入れる-->
+    <span th:text="${question.questionName}"></span>
+  </div>
+
+  <div id="question_text">
+    <!--問題文-->
+    <span class="question_text" th:text="${question.questionText}"></span>
+  </div>
+  <br>
+  <form action="/random_answer" method="POST">
+
+    <input
+            name="questionId"
+            type="hidden"
+            th:value="${question.id}"
+    />
+  <div id="choices">
+    <!--選択肢-->
+    <div>
+      <label><input id="choice1" type="radio" th:name="selectedItem" th:value="${choices[0].id}" />
+        <span th:text="${choices[0].choiceText}"></span></label></div>
+
+    <div>
+      <label><input id="choice2" type="radio" th:name="selectedItem" th:value="${choices[1].id}" />
+        <span th:text="${choices[1].choiceText}"></span></label></div>
+
+    <div>
+      <label><input id="choice3" type="radio" th:name="selectedItem" th:value="${choices[2].id}" />
+        <span th:text="${choices[2].choiceText}"></span></label></div>
+
+    <div>
+      <label><input id="choice4" type="radio" th:name="selectedItem" th:value="${choices[3].id}" />
+        <span th:text="${choices[3].choiceText}"></span></label></div>
+  </div><br>
+
+  <div class="buttons2">
+    <button type="submit" id="next_btn" class="button next">次へ</button>
+  </div>
+  </form>
+
+  <!--JSの指定-->
+<!--  <script src="#"></script>-->
+</body>
 </html>

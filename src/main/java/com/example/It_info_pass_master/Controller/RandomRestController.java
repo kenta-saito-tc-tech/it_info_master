@@ -39,12 +39,12 @@ public class RandomRestController {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
         }
     }
-    @PostMapping("/api/selectRandom")
-    public List<QuestionRecord> selectRandom(@RequestBody SelectRandomRecord selectRandomRecord) {
-        System.out.println("cont AgeCategories："+ selectRandomRecord);
-
-        return randomService.selectRandom(selectRandomRecord);
-    }
+//    @PostMapping("/api/selectRandom")
+//    public List<QuestionRecord> selectRandom(@RequestBody SelectRandomRecord selectRandomRecord) {
+//        System.out.println("cont AgeCategories："+ selectRandomRecord);
+//
+//        return randomService.selectRandom(selectRandomRecord);
+//    }
 
     @PutMapping("/api/category_select_update")
     public int categorySelectUpdate(@RequestBody UserCategoryRecord userCategoryRecord) {
@@ -52,6 +52,13 @@ public class RandomRestController {
         System.out.println(userCategoryRecord.categorySelect().length);
 
         return randomService.categorySelectUpdate(userCategoryRecord);
+    }
+
+    @PostMapping("/api/random_session")
+    public int random_session(@RequestBody SelectRandomRecord selectRandomRecord) {
+        System.out.println("cont AgeCategories："+ selectRandomRecord);
+
+        return randomService.sessionRandom(selectRandomRecord);
     }
 
 }

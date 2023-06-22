@@ -83,8 +83,10 @@ document.addEventListener("DOMContentLoaded", () => {
                 userId : userId
             }
 
+            // window.location.href = "/random_main?param=" + encodeURIComponent(JSON.stringify(ageCategories));
 
-            fetch('/api/selectRandom',{
+
+            fetch('/api/random_session',{
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -93,21 +95,13 @@ document.addEventListener("DOMContentLoaded", () => {
             })
                 .then(res => {
                     if (res.status === 400) {
-                        document.getElementById('error_massage').textContent = '問題情報がありません';
+                        document.getElementById('error_massage').textContent = 'エラー';
                     } else {
                         res.json()
                             .then(data => {
                                 document.getElementById('error_message').textContent = '';
-                                window.location.href = "/random_main?param=" + encodeURIComponent(JSON.stringify(data));
-                               
-                                // fetch(`/random_main?questionRecords=${data}`)
-                                //     body: JSON.stringify(data)
-                                //   .then(response => {
-                                //     // レスポンスのデータを処理する処理を記述する
-                                //   })
-                                //   .catch(error => {
-                                //     // エラーハンドリングを行う
-                                //   })
+                                window.location.href = "/random_main";
+  
                             });
                     }
                 });
@@ -123,9 +117,10 @@ document.addEventListener("DOMContentLoaded", () => {
                 perfect : perfect,
                 userId : userId
             }
+            // window.location.href = "/random_main?param=" + encodeURIComponent(JSON.stringify(ageCategories));
 
 
-            fetch('/api/selectRandom',{
+            fetch('/api/random_session',{
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -134,14 +129,13 @@ document.addEventListener("DOMContentLoaded", () => {
             })
                 .then(res => {
                     if (res.status === 400) {
-                        document.getElementById('error_massage').textContent = '問題情報がありません';
+                        document.getElementById('error_massage').textContent = 'エラー';
                     } else {
                         res.json()
                             .then(data => {                      
                                 document.getElementById('error_message').textContent = '';
-                                window.location.href = "/random_main?param=" + encodeURIComponent(JSON.stringify(data));
+                                window.location.href = "/random_main";
                         });
-                            
 
                     }
                 });

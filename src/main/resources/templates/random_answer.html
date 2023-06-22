@@ -21,20 +21,46 @@
       rel="stylesheet"
     />
     <!--デフォルトの表示用CSS(ブラウザの表示の統一化)-->
-    <link rel="stylesheet" href="./Common/sanitize.css" />
+    <link rel="stylesheet" href="/Common/sanitize.css" />
     <!--自作のCSS-->
     <!-- <link rel="stylesheet" href="#" /> -->
 
     <!--favicon-->
-    <link rel="icon" type="image/x-icon" href="./image/exam.png" />
+    <link rel="icon" type="image/x-icon" href="/image/exam.png" />
     <title>ITインフォパスマスター</title>
   </head>
   <body>
     <!--ヘッダーの指定-->
-    <!-- <th:block th:insert="#"></th:block> -->
+    <th:block th:insert="/Header/main_header.html"></th:block>
   
     <!--ここにコードを記入-->
     <h1>ランダム問題解答画面</h1>
+
+    <div class="your_answer">
+      <span>解答：</span>
+    </div>
+
+    <div class="question_answer">
+      <span>〇</span>
+    </div>
+
+    <div class="your_answer">
+      <span>正解：</span>
+    </div>
+
+    <div class="buttons2">
+      <div  class="button kanpeki">後で見返す</div>
+      <input  type="checkbox" name="mikaesi_check" value="check"><br>
+      <br>
+      <div  class="button kanpeki">完璧</div>
+      <input  type="checkbox" name="kanpeki_check" value="check"><br>
+      <br>
+    </div>
+
+
+    </div>
+
+
 
     <!--JSの指定-->
     <!-- <script src="#"></script> -->
