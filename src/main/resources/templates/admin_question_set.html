@@ -23,20 +23,68 @@
     <!--デフォルトの表示用CSS(ブラウザの表示の統一化)-->
     <link rel="stylesheet" href="./Common/sanitize.css" />
     <!--自作のCSS-->
-    <!-- <link rel="stylesheet" href="#" /> -->
+    <link rel="stylesheet" href="/CSS/style_admin_question_set.css" />
 
     <!--favicon-->
     <link rel="icon" type="image/x-icon" href="./image/exam.png" />
     <title>ITインフォパスマスター</title>
   </head>
-  <body>
+  <body class="style">
     <!--ヘッダーの指定-->
-    <!-- <th:block th:insert="#"></th:block> -->
+    <th:block th:insert="./Header/main_header"></th:block>
   
     <!--ここにコードを記入-->
     <h1>問題振り分け画面</h1>
 
+    <div id="honbunn" style="text-align:center">
+      <div id="erttext" class="era">
+        <select id="testera">
+          <option class="testOption"></option>
+        </select>
+      </div>
+
+
+      <div class="categoryText">
+        <button id="buttonTest" class="buttonSizu">データベース</button>
+        <div id="test1" class="test1" style="display: none">
+
+        </div>
+      </div>
+
+      <div class="categoryText">
+        <button id="buttonTest2" class="buttonSizu">システム構成要素</button>
+        <div id="test2" class="test2" style="display: none">
+
+        </div>
+      </div>
+
+      <div class="categoryText">
+        <button id="buttonTest3" class="buttonSizu">情報処理</button>
+        <div id="test3" class="test3" style="display: none">
+
+        </div>
+      </div>
+
+      <div class="categoryText">
+        <button id="buttonTest4" class="buttonSizu">マネジメント</button>
+        <div id="test4" class="test4" style="display: none">
+
+        </div>
+      </div>
+
+      <div class="categoryText">
+        <button id="buttonTest5" class="buttonSizu">ネットワーク</button>
+        <div id="test5" class="test5" style="display: none">
+
+        </div>
+      </div>
+
+    </div>
+    <div class="buttonCommon">
+      <a href="/admin_question_make"><button id="back">戻る</button></a>
+      <button id="create" style="display: none">作成</button>
+    </div>
     <!--JSの指定-->
-    <!-- <script src="#"></script> -->
+    <script type="text/javascript" src="/JS/app_admin_question_set.js"></script>
   </body>
 </html>

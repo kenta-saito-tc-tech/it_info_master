@@ -34,19 +34,21 @@
     <th:block th:insert="./Header/main_header"></th:block>
   
     <!--ここにコードを記入-->
-    <div id="honbun" style="text-align:center">
-      <div id="categoryText" class="category">
+    <div id="honbun">
+      <div>
+        カテゴリ名：<span id="testDownSpan" style="color: red"></span><br>
         <select id="testDown">
           <option class="testOption"></option>
         </select>
       </div>
 
-      <div class="questionName">
+      <div>
+        問題タイトル：<span id="questionNameSpan" style="color: red"></span><br>
         <input id="questionName" type="text" placeholder="問題名を記入">
       </div>
 
-      <div class="questionText">
-
+      <div>
+        問題文：<span id="questionTextSpan" style="color: red"></span><br>
         <textarea
                 id="questionText"
                 cols="50"
@@ -55,15 +57,16 @@
         ></textarea>
       </div>
 
-      <div class="choiceText">
+      <div>
+        選択肢：<span id="choiceTextSpan" style="color: red"></span>
         <p><input type="text" placeholder="選択肢1" class="choiceTexts" name="choice"><input type="radio" name="radio" value="1" class="radio" checked></p>
         <p><input type="text" placeholder="選択肢2" class="choiceTexts" name="choice"><input type="radio" name="radio" value="2" class="radio"></p>
         <p><input type="text" placeholder="選択肢3" class="choiceTexts" name="choice"><input type="radio" name="radio" value="3" class="radio"></p>
         <p><input type="text" placeholder="選択肢4" class="choiceTexts" name="choice"><input type="radio" name="radio" value="4" class="radio"></p>
       </div>
 
-      <div class="answerText">
-
+      <div>
+        解説：<span id="answerTextSpan" style="color: red"></span><br>
         <textarea
                 id="answerText"
                 cols="50"
@@ -74,10 +77,10 @@
 
     </div>
     <div class="buttons">
-      <button id="back" class="buttonCommon"><a href="/menu">戻る</a></button>
+      <a href="/menu"><button id="back" class="buttonCommon">戻る</button></a>
       <button id="add" class="buttonCommon">追加する</button>
-      <button id="pass1" class="buttonCommon">問題振り分け</button>
-      <button id="pass2" class="buttonCommon">ゲーム問題管理</button>
+      <a href="/admin_question_set"><button id="pass1" class="buttonCommon">問題振り分け</button></a>
+      <a href="/admin_game_set"><button id="pass2" class="buttonCommon">ゲーム問題管理</button></a>
     </div>
     <!--JSの指定-->
     <script type="text/javascript" src="/JS/app_admin_question_make.js"></script>

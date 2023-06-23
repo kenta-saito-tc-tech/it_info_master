@@ -1,9 +1,9 @@
 #honbun {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
-    height: 950px;
+    height: 1020px;
     position: relative;
 }
 
@@ -18,9 +18,6 @@
     background-color: white;
 }
 
-.questionName {
-    height: 60px;
-}
 #questionName {
     background-color: rgb(198, 237, 253);
     border: 1px solid black;
@@ -29,9 +26,6 @@
     height: 50px;
 }
 
-.questionText, .answerText {
-    height:220px;
-}
 #questionText, #answerText{
     background-color: pink;
     border-radius: 3px;
@@ -40,12 +34,9 @@
     height:200px;
 }
 
-.choiceText {
-    height: 230px;
-}
 .choiceTexts {
     font-size: 20px;
-    width: 400px;
+    width: 600px;
     height: 30px;
 }
 .radio {

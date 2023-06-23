@@ -1,0 +1,45 @@
+    .buttonSizu {
+        width: 150px;
+        padding: 10px;
+    }
+
+    .buttonCommon {
+        width: 150px;
+        padding: 10px;
+    }
+
+    #back {
+        position: absolute;
+        left: 10px;
+    }
+
+    #create {
+        position: absolute;
+        right: 10px;
+    }
+
+    #add {
+        position: absolute;
+        right: 57px;
+    }
+
+    .test1 {
+
+        display: none;
+    }
+
+    .test2 {
+        display: none;
+    }
+
+    .test3 {
+        display: none;
+    }
+
+    .test4 {
+        display: none;
+    }
+
+    .test5 {
+        display: none;
+    }

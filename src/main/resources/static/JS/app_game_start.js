@@ -11,28 +11,16 @@ document.getElementById('next').addEventListener('click', () => {
     count++;
     if(count == 5) {
         document.getElementById("ok").style.display = "flex";
-        document.getElementById("back").style.display = "none";
         stopStopwatch();
         return;
     } else {
         document.getElementById('ok').style.display = "none";
-    }
-    if(count == 0) {
-        document.getElementById("back").style.display = "none";
-    } else {
-        document.getElementById("back").style.display = 'flex';
     }
     document.getElementById('i').innerText = count;
     questionDisplay();
     selectDisplay();
 })
 
-document.getElementById('back').addEventListener('click', () => {
-    count--;
-    document.getElementById('i').innerText = count;
-    questionDisplay();
-    selectDisplay();
-})
 
 function questionDisplay() {
     const id = document.getElementById('userGameId').innerText;

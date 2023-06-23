@@ -25,6 +25,7 @@ function resultTime() {
 
 function resultList() {
     const userGameId = document.getElementById('userGameId').innerText;
+    var falseCount = 0;
 
     fetch(`/game_finish/list?userGameId=${userGameId}`)
     .then(res => {
@@ -44,6 +45,7 @@ function resultList() {
                     spanElement.textContent = "〇";
                 } else {
                     spanElement.textContent ="✖";
+                    falseCount++;
                 }
                 buttonElement.type = "submit";
                 buttonElement.name = "info";
@@ -55,8 +57,13 @@ function resultList() {
                 listElement.appendChild(divElement);
                 })
                 const c = document.getElementById('list');
-                    c.appendChild(listElement);
-                })
-          }
+                c.appendChild(listElement);
+
+                //誤答数と追加秒数を追加
+                document.getElementById('falseCount').textContent = falseCount;
+                const addTime = falseCount * 10;
+                document.getElementById('addTime').textContent = addTime;
+          })
+        }
     })
   }

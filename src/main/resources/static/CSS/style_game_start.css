@@ -53,12 +53,6 @@ button {
     padding: 10px;
 }
 
-#back {
-    position: absolute;
-    bottom: 90px;
-    right: 380px;
-}
-
 #next, #ok {
     position: absolute;
     bottom: 90px;
