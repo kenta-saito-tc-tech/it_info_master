@@ -194,7 +194,7 @@ public class PgAccountDao implements AccountDao {
     }
 
     /**
-     * Inquiryテーブル全取得
+     * Inquiryテーブルユーザー別全取得
      * @return
      */
     @Override
@@ -215,15 +215,51 @@ public class PgAccountDao implements AccountDao {
     public InquiryRecord inquiryFindById(int id) {
         MapSqlParameterSource param = new MapSqlParameterSource();
         param.addValue("id", id);
-        int count = 0;
         var list = jdbcTemplate.query("SELECT * FROM inquiry WHERE id = :id",
                 param, new DataClassRowMapper<>(InquiryRecord.class));
-
-        if (!(list.isEmpty())) {
-            count = jdbcTemplate.update("UPDATE inquiry SET read_inquiry = 1 WHERE id = :id", param);
-            return list.get(0);
-        } else {
-            return null;
-        }
+        return list.isEmpty() ? null : list.get(0);
     }
+
+    /**
+     * Inquiryテーブルユーザー別全取得
+     * @return
+     */
+    @Override
+    public List<InquiryAdminRecord> findAllInquiry() {
+        return jdbcTemplate.query("SELECT i.id, u.name, i.inquiry_title, i.check_inquiry FROM inquiry i JOIN users u ON i.user_id = u.id ORDER BY i.check_inquiry ASC",
+                new DataClassRowMapper<>(InquiryAdminRecord.class));
+    }
+
+    /**
+     * Inquiryテーブルの解答を更新
+     * @param inquiryRecord
+     * @return
+     */
+    @Override
+    public int updateAnswerInquiry(InquiryRecord inquiryRecord) {
+        MapSqlParameterSource param = new MapSqlParameterSource();
+        param.addValue("id", inquiryRecord.id());
+        param.addValue("inquiryAnswer", inquiryRecord.inquiryAnswer());
+        param.addValue("checkInquiry", inquiryRecord.checkInquiry());
+        param.addValue("readInquiry", inquiryRecord.readInquiry());
+
+        int count = jdbcTemplate.update("UPDATE inquiry SET inquiry_answer = :inquiryAnswer, check_inquiry = :checkInquiry WHERE id = :id", param);
+        return count == 1 ? count : null;
+    }
+
+    /**
+     * Inquiryテーブルの既読を更新
+     * @param
+     * @return
+     */
+    @Override
+    public int updateReadInquiry(int id) {
+        MapSqlParameterSource param = new MapSqlParameterSource();
+        param.addValue("id", id);
+
+        int count = jdbcTemplate.update("UPDATE inquiry SET read_inquiry = 1 WHERE id = :id", param);
+        return count == 1 ? count : null;
+    }
+
+
 }

@@ -32,9 +32,10 @@
   </head>
   <body>
     <!--ヘッダーの指定-->
+    <th:block th:insert="/Header/main_header.html"></th:block>
     <input id="js-userId" type="hidden" th:value="${session.user.id}" />
 
-    <!--cargoのIDの格納用-->
+    <!--inquiryのIDの格納用-->
     <input id="js-id" type="hidden" th:value="${id}" />
 
     <div class="mainDiv">

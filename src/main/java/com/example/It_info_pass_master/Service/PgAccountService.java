@@ -73,5 +73,20 @@ public class PgAccountService implements AccountService{
         return accountDao.inquiryFindById(id);
     }
 
+    @Override
+    public List<InquiryAdminRecord> findAllInquiry() {
+        return accountDao.findAllInquiry();
+    }
+
+    @Override
+    public int updateAnswerInquiry(InquiryRecord inquiryRecord) {
+        return accountDao.updateAnswerInquiry(inquiryRecord);
+    }
+
+    @Override
+    public int updateReadInquiry(int id) {
+        return accountDao.updateReadInquiry(id);
+    }
+
 
 }

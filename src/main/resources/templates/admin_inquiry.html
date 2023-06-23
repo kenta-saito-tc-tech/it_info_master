@@ -23,7 +23,8 @@
     <!--デフォルトの表示用CSS(ブラウザの表示の統一化)-->
     <link rel="stylesheet" href="./Common/sanitize.css" />
     <!--自作のCSS-->
-    <!-- <link rel="stylesheet" href="#" /> -->
+    <link rel="stylesheet" href="./CSS/style_admin_account.css" />
+    <link rel="stylesheet" href="./Common/button.css" />
 
     <!--favicon-->
     <link rel="icon" type="image/x-icon" href="./image/exam.png" />
@@ -31,12 +32,30 @@
   </head>
   <body>
     <!--ヘッダーの指定-->
-    <!-- <th:block th:insert="#"></th:block> -->
-  
+    <th:block th:insert="/Header/main_header.html"></th:block>
+
     <!--ここにコードを記入-->
-    <h1>管理者問い合わせページ</h1>
+    <div class="mainDiv">
+      <h1>問い合わせ管理</h1>
+
+      <div class="listView">
+        <p class="searchcounts">
+          問い合わせ数: <span id="js-listCounts"></span>件
+        </p>
+
+        <div class="tableView" id="tableContainer"></div>
+
+        <p class="searchcounts">
+          ページ: <span id="js-pageCounts"></span
+          ><span id="js-pageText">枚目</span>
+        </p>
+        <button id="backButton">BACK</button>
+        <button id="nextButton">NEXT</button>
+      </div>
+      <a href="/menu" class="button">戻る</a>
+    </div>
 
     <!--JSの指定-->
-    <!-- <script src="#"></script> -->
+    <script src="./JS/app_admin_inquiry.js"></script>
   </body>
 </html>
