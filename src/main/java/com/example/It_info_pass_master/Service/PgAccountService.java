@@ -88,5 +88,10 @@ public class PgAccountService implements AccountService{
         return accountDao.updateReadInquiry(id);
     }
 
+    @Override
+    public List<GraphRecord> graphFindByAge(String age, int id) {
+        return accountDao.graphFindByAge(age, id);
+    }
+
 
 }

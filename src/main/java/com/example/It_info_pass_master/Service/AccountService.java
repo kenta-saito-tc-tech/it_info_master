@@ -22,4 +22,7 @@ public interface AccountService {
     public int updateAnswerInquiry(InquiryRecord inquiryRecord);
     public int updateReadInquiry(int id);
 
+    //グラフ表示用
+    public List<GraphRecord> graphFindByAge(String age, int id);
+
 }

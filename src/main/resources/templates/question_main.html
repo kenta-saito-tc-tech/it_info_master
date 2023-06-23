@@ -23,7 +23,8 @@
     <!--デフォルトの表示用CSS(ブラウザの表示の統一化)-->
     <link rel="stylesheet" href="./Common/sanitize.css" />
     <!--自作のCSS-->
-    <!-- <link rel="stylesheet" href="#" /> -->
+    <link rel="stylesheet" href="/Common/button.css" />
+    <link rel="stylesheet" href="/CSS/style_question_main.css" />
 
     <!--favicon-->
     <link rel="icon" type="image/x-icon" href="./image/exam.png" />
@@ -31,12 +32,65 @@
   </head>
   <body>
     <!--ヘッダーの指定-->
-    <!-- <th:block th:insert="#"></th:block> -->
-  
-    <!--ここにコードを記入-->
-    <h1>自己学習画面</h1>
+    <th:block th:insert="/Header/main_header.html"></th:block>
+    <!--ユーザーのIDの格納用-->
+    <input id="js-userId" type="hidden" th:value="${session.user.id}" />
+
+    <!--年代-->
+    <select class="topTag" id="js-listSelect"></select>
+
+    <!--グラフ-->
+    <div class="graphs">
+      <div class="bar-graph-wrap">
+        <div class="graph blue" id="js-graph_databaseSpace">
+          <span class="name">データベース</span>
+          <span id="js-graph_database" class="number"></span>
+        </div>
+      </div>
+
+      <div class="bar-graph-wrap">
+        <div class="graph red" id="js-graph_systemSpace">
+          <span class="name">システム構成要素</span>
+          <span id="js-graph_system" class="number"></span>
+        </div>
+      </div>
+
+      <div class="bar-graph-wrap">
+        <div class="graph yellow" id="js-graph_infomationSpace">
+          <span class="name">情報処理</span>
+          <span id="js-graph_infomation" class="number"></span>
+        </div>
+      </div>
+
+      <div class="bar-graph-wrap">
+        <div class="graph pink" id="js-graph_networkSpace">
+          <span class="name">ネットワーク</span>
+          <span id="js-graph_network" class="number"></span>
+        </div>
+      </div>
+
+      <div class="bar-graph-wrap">
+        <div class="graph purple" id="js-graph_managementSpace">
+          <span class="name">マネジメント</span>
+          <span id="js-graph_management" class="number"></span>
+        </div>
+      </div>
+
+      <div class="bar-graph-wrap">
+        <div class="graph grean" id="js-graph_securitySpace">
+          <span class="name">セキュリティ</span>
+          <span id="js-graph_security" class="number"></span>
+        </div>
+      </div>
+    </div>
+
+    <div class="centerTag">
+      <a class="button buttonMain" href="/question_select" id="js-btnToQuestion"
+      >一問一答問題を開始する！</a>
+    </div>
+    <a href="/menu" class="button">戻る</a>
 
     <!--JSの指定-->
-    <!-- <script src="#"></script> -->
+    <script src="/JS/app_question_main.js"></script>
   </body>
 </html>
