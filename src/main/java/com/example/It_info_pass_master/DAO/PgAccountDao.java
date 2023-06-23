@@ -261,5 +261,29 @@ public class PgAccountDao implements AccountDao {
         return count == 1 ? count : null;
     }
 
+    /**
+     * グラフ用データ取得
+     * @param age
+     * @param id
+     * @return
+     */
+    @Override
+    public List<GraphRecord> graphFindByAge(String age, int id) {
+        String sql = "SELECT c.category_name, ROUND((COUNT(uc.perfect_check) * 100.0) / COUNT(q.id)) AS percentage " +
+                "FROM category c " +
+                "JOIN questions q ON c.id = q.category_id " +
+                "JOIN question_age qa ON q.id = qa.question_id " +
+                "JOIN age a ON qa.age_id = a.id " +
+                "LEFT JOIN user_check uc ON qa.id = uc.question_age_id AND uc.user_id = :id " +
+                "WHERE a.age = :age " +
+                "GROUP BY c.category_name";
+
+        MapSqlParameterSource param = new MapSqlParameterSource();
+        param.addValue("age", age);
+        param.addValue("id", id);
+
+        return jdbcTemplate.query(sql, param, new DataClassRowMapper<>(GraphRecord.class));
+    }
+
 
 }

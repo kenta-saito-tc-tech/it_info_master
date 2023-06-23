@@ -140,7 +140,7 @@ public class AccountController {
     }
 
     /**
-     * 一問一答初期画面
+     * 一問一答セレクト画面
      */
     @GetMapping("/question_select")
     public String questionSelectView() {
@@ -149,6 +149,18 @@ public class AccountController {
         }
 
         return "/question_select";
+    }
+
+    /**
+     * 一問一答初期画面
+     */
+    @GetMapping("/question_main")
+    public String questionMainView() {
+        if (session.getAttribute("user") == null) { //sessionがない場合
+            return "redirect:/index";
+        }
+
+        return "/question_main";
     }
 
     /**

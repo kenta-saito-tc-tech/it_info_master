@@ -33,7 +33,7 @@
   <body>
     <!--ヘッダーの指定-->
     <th:block th:insert="/Header/main_header.html"></th:block>
-    <!--権限の格納用-->
+    <!--IDの格納用-->
     <input
       id="js-userId"
       type="hidden"
@@ -88,7 +88,7 @@
             >ゲームモード</a
           >
           <div class="btnQuestons">
-            <a class="button" href="/question_select" id="js-btnToQuestion"
+            <a class="button" href="/question_main" id="js-btnToQuestion"
               >一問一答問題</a
             >
             <a class="button" href="/random_select" id="js-btnToQuestion"

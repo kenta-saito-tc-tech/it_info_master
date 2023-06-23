@@ -1,0 +1,75 @@
+.graph span {
+  font-size: 14px;
+  font-weight: bold;
+  color: #3e3d3d;
+}
+
+.bar-graph-wrap .graph {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+}
+.bar-graph-wrap .graph {
+  animation: graphAnim 3s forwards;
+}
+
+@keyframes graphAnim {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+.bar-graph-wrap {
+  overflow: hidden;
+}
+
+.bar-graph-wrap {
+  position: relative;
+  height: 60px;
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+}
+
+.bar-graph-wrap .graph {
+  height: 50px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  /* width: 88%; */
+  border-radius: 0 4px 4px 0;
+}
+.bar-graph-wrap .blue {
+  background: #5cbcf7;
+}
+.bar-graph-wrap .red {
+  background: #f7805c;
+}
+.bar-graph-wrap .yellow {
+  background: #edf75c;
+}
+.bar-graph-wrap .pink {
+  background: #f75ccb;
+}
+.bar-graph-wrap .purple {
+  background: #b15cf7;
+}
+.bar-graph-wrap .grean {
+  background: #5cf77b;
+}
+
+.centerTag {
+  text-align: center;
+  padding: 50px;
+}
+
+.buttonMain {
+  width: 300px;
+  font-weight: bold;
+}
+
+

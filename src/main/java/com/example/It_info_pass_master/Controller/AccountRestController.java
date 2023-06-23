@@ -314,4 +314,21 @@ public class AccountRestController {
         }
     }
 
+    /**
+     * グラフの表示用データ取得
+     *
+     * @return
+     */
+    @GetMapping("/graph")
+    public List<GraphRecord> graphFindByAge(@RequestParam(name = "age") String age) {
+        try {
+            UserRecord user = (UserRecord) session.getAttribute("user");
+            var data = accountService.graphFindByAge(age, user.id());
+            return data; //ステータスコード200番
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST); //ステータスコード400番
+        }
+    }
+
 }
