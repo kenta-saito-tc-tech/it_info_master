@@ -28,6 +28,11 @@ public class PgManageDao implements ManageDao{
                         "values (:questionName, :questionText, :answerText, :categoryId) \n" +
                         "RETURNING *"
                 , param,new DataClassRowMapper<>(QuestionRecord.class));
+        for (var i : list) {
+            MapSqlParameterSource param2 = new MapSqlParameterSource();
+            param2.addValue("questionId", i.id());
+            jdbcTemplate.update("insert into question_age(age_id, question_id) values (0, :questionId)", param2);
+        }
         System.out.println(list);
         return list.isEmpty() ? null : list.get(0);
     }
