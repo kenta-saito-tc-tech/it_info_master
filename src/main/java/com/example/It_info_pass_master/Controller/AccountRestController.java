@@ -226,7 +226,7 @@ public class AccountRestController {
     }
 
     /**
-     * Inquiryテーブル情報全取得
+     * Inquiryテーブル情報ユーザー別全取得
      *
      * @param
      * @return
@@ -242,7 +242,7 @@ public class AccountRestController {
     }
 
     /**
-     * ,問い合わせの表示用データ取得
+     * 問い合わせの表示用データ取得
      *
      * @return
      */
@@ -257,7 +257,61 @@ public class AccountRestController {
         }
     }
 
+    /**
+     * Inquiryテーブル情報全取得
+     *
+     * @param
+     * @return
+     */
+    @GetMapping("/inquiries_admin")
+    public List<InquiryAdminRecord> findAllInquiry() {
+        try {
+            var list = accountService.findAllInquiry();
+            return list; //ステータスコード200番
+        } catch (Exception e) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST); //ステータスコード400番
+        }
+    }
 
+    /**
+     * inquiryテーブルanswerの更新
+     * @param
+     * @return
+     */
+    @PutMapping("/updateAnswerInquiry")
+    public ResponseEntity<String> updateAnswerInquiry(@Valid @RequestBody InquiryRecord inquiryRecord) {
 
+        try {
+            int count = accountService.updateAnswerInquiry(inquiryRecord);
+            if (count == 1) {
+                return new ResponseEntity<>("PUT request processed", HttpStatus.OK);
+            } else {
+                return new ResponseEntity<>("PUT request failed", HttpStatus.BAD_REQUEST);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST); //ステータスコード400番
+        }
+    }
+
+    /**
+     * inquiryテーブル既読の更新
+     * @param
+     * @return
+     */
+    @PutMapping("/updateReadInquiry")
+    public ResponseEntity<String> updateReadInquiry(@Valid @RequestBody InquiryRecord inquiryRecord) {
+        try {
+            int count = accountService.updateReadInquiry(inquiryRecord.id());
+            if (count == 1) {
+                return new ResponseEntity<>("PUT request processed", HttpStatus.OK);
+            } else {
+                return new ResponseEntity<>("PUT request failed", HttpStatus.BAD_REQUEST);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST); //ステータスコード400番
+        }
+    }
 
 }

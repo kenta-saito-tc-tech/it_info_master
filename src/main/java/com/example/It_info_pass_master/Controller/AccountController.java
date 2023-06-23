@@ -119,6 +119,10 @@ public class AccountController {
         if (session.getAttribute("user") == null) { //sessionがない場合
             return "redirect:/index";
         }
+        UserRecord user = (UserRecord) session.getAttribute("user");
+        if (user.role().equals("1")) { // sessionのroleが1の場合
+            return "redirect:/index";
+        }
 
         return "/admin_inquiry";
     }
@@ -171,5 +175,23 @@ public class AccountController {
         }
         model.addAttribute("id", id);
         return "/detail_inquiry";
+    }
+
+    /**
+     * 問い合わせ送信画面
+     *
+     * @return
+     */
+    @GetMapping("/admin_send_inquiry/{id}")
+    public String adminSendView(@PathVariable("id") int id, Model model) {
+        if (session.getAttribute("user") == null) { //sessionがない場合
+            return "redirect:/index";
+        }
+        UserRecord user = (UserRecord) session.getAttribute("user");
+        if (user.role().equals("1")) { // sessionのroleが1の場合
+            return "redirect:/index";
+        }
+        model.addAttribute("id", id);
+        return "/admin_send_inquiry";
     }
 }

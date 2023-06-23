@@ -21,22 +21,58 @@
       rel="stylesheet"
     />
     <!--デフォルトの表示用CSS(ブラウザの表示の統一化)-->
-    <link rel="stylesheet" href="./Common/sanitize.css" />
+    <link rel="stylesheet" href="/Common/sanitize.css" />
     <!--自作のCSS-->
-    <!-- <link rel="stylesheet" href="#" /> -->
+    <link rel="stylesheet" href="/CSS/style_admin_account.css" />
+    <link rel="stylesheet" href="/Common/button.css" />
 
     <!--favicon-->
-    <link rel="icon" type="image/x-icon" href="./image/exam.png" />
+    <link rel="icon" type="image/x-icon" href="/image/exam.png" />
     <title>ITインフォパスマスター</title>
   </head>
   <body>
     <!--ヘッダーの指定-->
-    <!-- <th:block th:insert="#"></th:block> -->
-  
-    <!--ここにコードを記入-->
-    <h1>管理者問い合わせ送信ページ</h1>
+    <th:block th:insert="/Header/main_header.html"></th:block>
+
+    <!--inquiryのIDの格納用-->
+    <input id="js-id" type="hidden" th:value="${id}" />
+
+    <div class="mainDiv">
+      <h1>問い合わせ対応</h1>
+      <fieldset>
+        <div class="inputEach">
+          <label for="js-inputTitle">タイトル</label>
+          <input type="text" id="js-inputTitle" readonly />
+        </div>
+        <div class="inputEach">
+          <label for="js-inputInquiry">内容</label>
+          <textarea
+            name="inquiry"
+            id="js-inputInquiry"
+            cols="50"
+            rows="10"
+            readonly
+          ></textarea>
+        </div>
+        <div class="inputEach">
+          <label for="js-answerInquiry">解答</label>
+          <textarea
+            name="inquiry"
+            id="js-answerInquiry"
+            cols="50"
+            rows="10"
+          ></textarea>
+          <span id="js-answerOk"></span>
+        </div>
+        <button class="button sendBtn" id="js-sendInquiryAns">送信</button>
+      </fieldset>
+      <div>
+        
+        <a href="/admin_inquiry" class="button">戻る</a>
+      </div>
+    </div>
 
     <!--JSの指定-->
-    <!-- <script src="#"></script> -->
+    <script src="/JS/app_admin_send_inquiry.js"></script>
   </body>
 </html>

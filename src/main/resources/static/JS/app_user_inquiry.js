@@ -16,11 +16,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
   //ID.PASS.ROLE
   const userId = document.getElementById("js-userId").value;
+  console.log(userId);
 
   const listCounts = document.getElementById("js-listCounts");
   const pageCounts = document.getElementById("js-pageCounts");
 
-  //アカウント名変更ボタンクリック時処理
+  //問い合わせ送信ボタンクリック時処理
   addInquiry.addEventListener("click", () => {
     const titleText = inputTitle.value;
     const inquiryText = inputInquiry.value;
@@ -48,10 +49,10 @@ document.addEventListener("DOMContentLoaded", () => {
         id: 0, //仮
         inquiryTitle: titleText,
         inquiryText: inquiryText,
-        id: userId,
+        userId: userId,
         inquiryAnswer: "",
-        check_inquiry: 0,
-        read_inquiry: 0,
+        checkInquiry: 0,
+        readInquiry: 0,
       };
 
       console.log("click");
@@ -69,7 +70,7 @@ document.addEventListener("DOMContentLoaded", () => {
             console.log("POST request processed");
             listInquiryShow();
             window.setTimeout(function () {
-              alert("おい合わせ送信完了");
+              alert("お問い合わせ送信完了");
             }, 1000);
           } else {
             console.error("failed");
@@ -115,6 +116,28 @@ document.addEventListener("DOMContentLoaded", () => {
       } else {
         res.json().then((data) => {
           console.log(data);
+
+          //既読マークを付ける場合（解答済みのみ）
+          if(data.checkInquiry == 1){
+            fetch("/updateReadInquiry", {
+              method: "PUT",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify(data),
+            })
+              .then((response) => {
+                if (response.ok) {
+                  console.log("既読マークOK");
+                } else {
+                  console.error("エラー");
+                }
+              })
+              .catch((error) => {
+                console.error("Error:", error);
+              });
+            
+          }
           window.location.href = `/detail_inquiry/${data.id}`; //ControllerのGetに指示を出す
         });
       }

@@ -18,5 +18,8 @@ public interface AccountService {
     public int insertInquiry(InquiryRecord insertInquiry);
     public List<InquiryRecord> findAllInquiry(int id);
     public InquiryRecord inquiryFindById(int id);
+    public List<InquiryAdminRecord> findAllInquiry();
+    public int updateAnswerInquiry(InquiryRecord inquiryRecord);
+    public int updateReadInquiry(int id);
 
 }
