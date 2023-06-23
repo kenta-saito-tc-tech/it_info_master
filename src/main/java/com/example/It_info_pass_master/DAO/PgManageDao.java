@@ -1,5 +1,6 @@
 package com.example.It_info_pass_master.DAO;
 
+import com.example.It_info_pass_master.Entity.AdminQuestionRecord;
 import com.example.It_info_pass_master.Entity.ChoiceRecord;
 import com.example.It_info_pass_master.Entity.QuestionRecord;
 import com.example.It_info_pass_master.Entity.UserAgeRecord;
@@ -60,4 +61,49 @@ public class PgManageDao implements ManageDao{
         return ageList;
     }
 
+    @Override
+    public List<QuestionRecord> adminAllQuestionSelect() {
+        var list = jdbcTemplate.query("select * from questions", new DataClassRowMapper<>(QuestionRecord.class));
+        return list;
+    }
+
+    @Override
+    public List<AdminQuestionRecord> adminCheckAge(Integer age) {
+        MapSqlParameterSource param = new MapSqlParameterSource();
+        param.addValue("age", age);
+        var list = jdbcTemplate.query("SELECT * FROM question_age WHERE age_id = :age",param, new DataClassRowMapper<>(AdminQuestionRecord.class));
+        return list;
+    }
+
+    @Override
+    public int adminSetQuestion(List<AdminQuestionRecord> setQuestion) {
+        int ok = 0;
+        for (var i : setQuestion) {
+            MapSqlParameterSource param = new MapSqlParameterSource();
+            param.addValue("questionId", i.questionId());
+            param.addValue("ageId", i.ageId());
+            jdbcTemplate.update("insert into question_age(age_id, question_id) values (:ageId, :questionId)", param);
+        }
+        return ok;
+    }
+
+    @Override
+    public List<AdminQuestionRecord> adminCheckGameAge(Integer age) {
+        MapSqlParameterSource param = new MapSqlParameterSource();
+        param.addValue("age", age);
+        var list = jdbcTemplate.query("SELECT * FROM game_age WHERE age_id = :age",param, new DataClassRowMapper<>(AdminQuestionRecord.class));
+        return list;
+    }
+
+    @Override
+    public int adminSetGameQuestion(List<AdminQuestionRecord> setQuestion) {
+        int ok = 0;
+        for (var i : setQuestion) {
+            MapSqlParameterSource param = new MapSqlParameterSource();
+            param.addValue("questionId", i.questionId());
+            param.addValue("ageId", i.ageId());
+            jdbcTemplate.update("insert into game_age(age_id, question_id) values (:ageId, :questionId)", param);
+        }
+        return ok;
+    }
 }

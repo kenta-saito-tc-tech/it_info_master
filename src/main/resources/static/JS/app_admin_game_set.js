@@ -64,7 +64,7 @@ document.getElementById('buttonTest5').addEventListener('click', () => {
 })
 
 
-//年代を全件取り出して表示する
+//年代を全件取り出して一旦非表示する
 function displayAge() {
     const displayList = document.getElementById('testera');
     fetch(`/api/adminAllAgeSelect`)
@@ -102,7 +102,11 @@ function displayQuestion() {
                 data.forEach((adminQuestion) => {
                     const pElement = document.createElement('p');
                     const inputElement = document.createElement('input');
+                    pElement.style.display = 'none';
+                    pElement.classList.add('questionName');
                     pElement.textContent = adminQuestion.questionName;
+
+                    inputElement.style.display = 'none';
                     inputElement.classList.add('questions');
                     inputElement.type = 'checkbox'
                     inputElement.value = adminQuestion.id;
@@ -142,28 +146,63 @@ ageSelect.addEventListener('change', () => {
       } else {
         res.json()
         .then(data => {
-            select = 1;
+            //表示されている問題のみを入れる変数リスト
+            var visibleParagraphs = [];
+
             var classList = document.getElementsByClassName('questions');
+            var questionNames = document.getElementsByClassName('questionName');
+            //一度すべての問題を非表示にする
             for(var k = 0; k < classList.length; k++) {
                 classList[k].checked = false;
+                classList[k].style.display = 'none';
+                questionNames[k].style.display = 'none';
             }
+            //question_ageテーブルにある問題のみ表示する
             for(var i = 0; i < data.length; i++) {
                 for(var j = 0; j < classList.length; j++) {
                     if(data[i].questionId == classList[j].value) {
-                        select = 0;
                         console.log('成功');
-                        classList[j].checked = true;
+                        questionNames[j].style.display = 'block';
+                        classList[j].style.display = 'inline';
+                        visibleParagraphs.push(classList[j]);
                         break;
                     }
                 }
             }
+            fetch(`/api/adminCheckGameAge`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({age: selected}),
+            })
+            .then(res => {
+              if(res.status === 400) {
+                window.alert('Hello error');
+              } else {
+                res.json()
+                .then(data => {
+                    select = 1;
+                    for(var i = 0; i < data.length; i++) {
+                        for(var j = 0; j < visibleParagraphs.length; j++) {
+                            if(data[i].questionId == visibleParagraphs[j].value) {
+                                select = 0;
+                                console.log('成功');
+                                visibleParagraphs[j].checked = true;
+                                break;
+                            }
+                        }
+                    }
 
-            //select = 0なら作成ボタン非表示、1なら表示
-            if(select == 0) {
-                document.getElementById('create').style.display = 'none';
-            } else {
-                document.getElementById('create').style.display = 'block';
-            }
+                    //select = 0なら作成ボタン非表示、1なら表示
+                    if(select == 0) {
+                        document.getElementById('create').style.display = 'none';
+                    } else {
+                        document.getElementById('create').style.display = 'block';
+                    }
+                })
+              }
+            });
         })
       }
     });
@@ -187,7 +226,7 @@ createButton.addEventListener('click', () => {
     }
 
     //checkQuestionListをRestControllerに送る
-    fetch(`/api/adminSetQuestion`, {
+    fetch(`/api/adminSetGameQuestion`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -198,7 +237,7 @@ createButton.addEventListener('click', () => {
     //成功したかどうかを判定
     .then((response) => {
         if (response.status === 200) {
-            window.alert('問題を振り分けました。');
+            window.alert('ゲーム問題を振り分けました。');
         } else {
             window.alert('問題が発生しました。');
             return;

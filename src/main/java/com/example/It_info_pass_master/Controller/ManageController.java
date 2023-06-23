@@ -14,4 +14,9 @@ public class ManageController {
     public String adminQuestionSet() {
         return "admin_question_set";
     }
+
+    @GetMapping("/admin_game_set")
+    public String adminGameSet() {
+        return "admin_game_set";
+    }
 }
