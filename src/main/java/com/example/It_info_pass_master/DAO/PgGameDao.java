@@ -28,13 +28,13 @@ public class PgGameDao implements GameDao{
         param.addValue("ageId",ageId);
         param.addValue("i",i);
         var id = jdbcTemplate.query("  select A.age, G.question_id, C.category_name, Q.question_name, Q.question_text from game_age as G \n" +
-                "  join age as A on G.age_id = A.id \n" +
-                "  join questions as Q on G.question_id = Q.id \n" +
-                "  join category as C on Q.category_id = C.id \n" +
-                "  where G.age_id = (select age_id from user_game where id = :ageId) \n" +
-                "  and G.question_id = (select question_id from game_age offset :i limit 1)"
+                        "  join age as A on G.age_id = A.id \n" +
+                        "  join questions as Q on G.question_id = Q.id \n" +
+                        "  join category as C on Q.category_id = C.id \n" +
+                        "  where G.age_id = (select age_id from user_game where id = :ageId) \n" +
+                        "  order by G.question_id"
                 , param, new DataClassRowMapper<>(GameQuestionRecord.class));
-        return id.isEmpty() ? null : id.get(0);
+        return id;
     }
 
     public List<GameSelectRecord> gameChoiceSelect(int ageId, int i) {
@@ -42,9 +42,9 @@ public class PgGameDao implements GameDao{
         param.addValue("ageId",ageId);
         param.addValue("i",i);
         var id = jdbcTemplate.query("select choice_text, answer from choice \n" +
-                        "  join game_age on choice.question_id = game_age.question_id \n" +
-                        "  where game_age.age_id = (select age_id from user_game where id = :ageId) \n" +
-                        "  and game_age.question_id = (select question_id from game_age offset :i limit 1)"
+                        "join game_age on choice.question_id = game_age.question_id \n" +
+                        "where game_age.age_id = (select age_id from user_game where id = :ageId) \n" +
+                        "order by choice.question_id"
                 , param,new DataClassRowMapper<>(GameSelectRecord.class));
         return id;
     }

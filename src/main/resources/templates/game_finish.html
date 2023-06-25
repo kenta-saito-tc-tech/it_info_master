@@ -35,6 +35,8 @@
   
     <!--ここにコードを記入-->
     <div id="userGameId" name="userGameId" style="display: none">[[ ${session.userGameId} ]]</div>
+    <div id="userRole" style="display: none">[[ ${session.user.role} ]]</div>
+    <div id="userId" style="display: none">[[ ${session.user.id} ]]</div>
     <div style="text-align:center">
       <div>
         <h1>終了！！</h1>
@@ -42,12 +44,12 @@
 
       <div>
         <!-- 問題画面から受け取ったタイムデータ＋間違えた問題週プラスされたタイムを表示 -->
-        <p>タイム：<span id="minutes"></span> 分 <span id="seconds"></span> 秒 </p>
-        <p>（間違えた問題数：<span id="falseCount"></span>問 × 10秒　　→　　＋<span id="addTime"></span>秒！！）</p>
+        <p id="result1">タイム：<span id="minutes"></span> 分 <span id="seconds"></span> 秒 </p>
+        <p id="result2">（間違えた問題数：<span id="falseCount"></span>問 × 10秒　　→　　＋<span id="addTime"></span>秒！！）</p>
         <!-- ＤＢから取得して表示 -->
       </div>
 
-      <div>
+      <div id="result3">
         <!-- メニュー画面参考  -->
         <!-- ランキング表示はさいやくなくてもメニュー画面にあるから書かなくてもいい -->
         <p>[[ ${session.user.name} ]]さんの順位は <span id="myRank"></span>位です！ </p>

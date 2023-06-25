@@ -77,3 +77,32 @@ function resultList() {
         }
     })
   }
+
+function userRanking() {
+    if (user == 'admin') {
+        document.getElementById('result3').style.display = 'none';
+        return;
+    }
+    const userGameId = document.getElementById('userGameId').innerText;
+    const gameUserId = document.getElementById('userId').innerText;
+
+    fetch(`/game_finish/ranking?userGameId=${userGameId}`)
+    .then(res => {
+        if(res.status === 400) {
+          window.alert('エラー');
+        } else {
+          res.json()
+          .then(data => {
+            var count = 0;
+            while(true) {
+                if(data[count].rank == gameUserId) {
+                    count++;
+                    document.getElementById('myRank').textContent = count;
+                    break;
+                }
+                count++;
+            }
+          })
+        }
+    });
+}

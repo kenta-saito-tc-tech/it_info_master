@@ -14,6 +14,7 @@ document.getElementById('next').addEventListener('click', () => {
     count++;
     if(count == questionList.length) {
         document.getElementById("ok").style.display = "flex";
+        document.getElementById('next').style.display = "none";
         stopStopwatch();
         return;
     } else {
