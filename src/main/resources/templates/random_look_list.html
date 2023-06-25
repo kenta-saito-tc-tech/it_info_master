@@ -1,42 +1,87 @@
 <!DOCTYPE html>
-<html lang="ja">
-  <head>
-    <meta charset="UTF-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
-    />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <!-- サイトの説明欄 -->
-    <meta
-      name="ITインフォパスマスター"
-      content="試験内容別にテストがあり、ユーザーの受けたいテストをピンポイントに受講できる"
-    />
-    <!--CSSリンク-->
-    <!--Webフォントのリンク３つ-->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap"
-      rel="stylesheet"
-    />
-    <!--デフォルトの表示用CSS(ブラウザの表示の統一化)-->
-    <link rel="stylesheet" href="./Common/sanitize.css" />
-    <!--自作のCSS-->
-    <!-- <link rel="stylesheet" href="#" /> -->
+<html lang="ja" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="UTF-8"/>
+  <meta
+          name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+  />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
+  <!-- サイトの説明欄 -->
+  <meta
+          name="ITインフォパスマスター"
+          content="試験内容別にテストがあり、ユーザーの受けたいテストをピンポイントに受講できる"
+  />
+  <!--CSSリンク-->
+  <!--Webフォントのリンク３つ-->
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link
+          href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap"
+          rel="stylesheet"
+  />
+  <!--デフォルトの表示用CSS(ブラウザの表示の統一化)-->
+  <link rel="stylesheet" href="./Common/sanitize.css"/>
+  <!--自作のCSS-->
+  <link rel="stylesheet" href="/CSS/style_random_look_list.css"/>
+  <!-- <link rel="stylesheet" href="#" /> -->
 
-    <!--favicon-->
-    <link rel="icon" type="image/x-icon" href="./image/exam.png" />
-    <title>ITインフォパスマスター</title>
-  </head>
-  <body>
-    <!--ヘッダーの指定-->
-    <!-- <th:block th:insert="#"></th:block> -->
-  
-    <!--ここにコードを記入-->
-    <h1>見返し問題一覧画面</h1>
+  <!--favicon-->
+  <link rel="icon" type="image/x-icon" href="./image/exam.png"/>
+  <title>ITインフォパスマスター</title>
+</head>
+<body>
+<!--ヘッダーの指定-->
+<th:block th:insert="/Header/main_header.html"></th:block>
 
-    <!--JSの指定-->
-    <!-- <script src="#"></script> -->
-  </body>
+<!--ここにコードを記入-->
+
+<div class="headline">🌟リスト</div>
+
+<br>
+<!--コントローラーからリストを受け取っている-->
+<tr th:each="checkQuestion : ${list}">
+  <div class="age_category_question">
+
+    <div id="age">年度:
+      <span th:text="${checkQuestion.age}"></span><!--$[[ageId]]-->
+    </div>
+
+    <div id="category">カテゴリ:
+      <span th:text="${checkQuestion.categoryName}"></span><!--$[[categoryName]]-->
+    </div>
+    <br>
+  </div>
+
+  <form action="random_look_detail" method="post">
+
+    <div id="question">
+      <button type="submit"><span th:text="${checkQuestion.questionName}"></span><!--$[[questionName]]--></button>
+    </div>
+
+    <div class="looking_check_back">
+      <input type="checkbox" name="looking_check_back" value="check" checked>🌟
+    </div>
+
+    <input type="hidden" name="checkQuestionId" th:value="${checkQuestion.id}"/>
+    <input type="hidden" name="checkQuestionText" th:value="${checkQuestion.questionText}"/>
+
+
+  </form>
+</tr>
+<br>
+<hr>
+
+<div class="flex">
+  <div class="button back_to_random_select">
+    <a href="/random_select">戻る</a>
+  </div>
+<div class="button back_to_random_select">
+  <a href="/random_select">メニューに戻る</a>
+</div>
+</div>
+
+<!--JSの指定-->
+<!-- <script src="#"></script> -->
+</body>
 </html>

@@ -22,8 +22,9 @@
     />
     <!--デフォルトの表示用CSS(ブラウザの表示の統一化)-->
     <link rel="stylesheet" href="./Common/sanitize.css" />
+    <link rel="stylesheet" href="./Common/button.css" />
     <!--自作のCSS-->
-    <!-- <link rel="stylesheet" href="#" /> -->
+    <link rel="stylesheet" href="/CSS/style_question_select.css" />
 
     <!--favicon-->
     <link rel="icon" type="image/x-icon" href="./image/exam.png"/>
@@ -41,28 +42,44 @@
         th:value="${session.user.id}"
 />
 <!--ここにコードを記入-->
-<h1>一問一答選択画面</h1>
-<div id="js_select_age">
-    <!--年代のプルダウンボックスを入れる-->
+<a id="top"></a>
+<div class="menu">
+<form action="/menu" method="GET">
+    <button class="button">メニューに戻る</button>
+</form>
+
+</div>
+<div class="flex">
+    <div id="js_select_age">
+        <!--年代のプルダウンボックスを入れる-->
+    </div>
+
+    <div class="category">
+        <span id="database">データベース</span><br>
+        <div id ="database_q"><!--ここに問題のタイトルが並ぶ（データベースから取得した）--></div>
+
+        <span id="system_arch">システム構成要素</span><br>
+        <div id ="system_arch_q"><!--ここに問題のタイトルが並ぶ（データベースから取得した）--></div>
+
+        <span id="info_process">情報処理</span><br>
+        <div id ="info_process_q"><!--ここに問題のタイトルが並ぶ（データベースから取得した）--></div>
+
+        <span id="network">ネットワーク</span><br>
+        <div id ="network_q"><!--ここに問題のタイトルが並ぶ（データベースから取得した）--></div>
+
+        <span id="management">マネジメント</span><br>
+        <div id ="management_q"><!--ここに問題のタイトルが並ぶ（データベースから取得した）--></div>
+
+        <span id="security">セキュリティ</span><br>
+        <div id ="security_q"><!--ここに問題のタイトルが並ぶ（データベースから取得した）--></div>
+    </div>
 </div>
 
-<span id="database">データベース</span><br>
-<div id ="database_q"><!--ここに問題のタイトルが並ぶ（データベースから取得した）--></div>
+<div class="menu">
+    <a href="#top"><button class="button">ページトップに戻る</button></a>
+</div>
 
-<span id="system_arch">システム構成要素</span><br>
-<div id ="system_arch_q"><!--ここに問題のタイトルが並ぶ（データベースから取得した）--></div>
 
-<span id="info_process">情報処理</span><br>
-<div id ="info_process_q"><!--ここに問題のタイトルが並ぶ（データベースから取得した）--></div>
-
-<span id="network"></span>ネットワーク<br>
-<div id ="network_q"><!--ここに問題のタイトルが並ぶ（データベースから取得した）--></div>
-
-<span id="management">マネジメント</span><br>
-<div id ="management_q"><!--ここに問題のタイトルが並ぶ（データベースから取得した）--></div>
-
-<span id="security">セキュリティ</span><br>
-<div id ="security_q"><!--ここに問題のタイトルが並ぶ（データベースから取得した）--></div>
 
 <!--JSの指定-->
 <script src="./JS/app_select_question.js"></script>

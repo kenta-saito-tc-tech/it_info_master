@@ -1,4 +1,6 @@
-document.addEventListener("DOMContentLoaded", () => {   
+document.addEventListener("DOMContentLoaded", () => {
+    
+    
     function check(ageId, userId){
         // イベントリスナーを設定
     
@@ -76,14 +78,13 @@ document.addEventListener("DOMContentLoaded", () => {
             console.log('選択した年代ID:',ageId);
             console.log('完璧チェック:',perfect);
             console.log('userId:',userId);
+
             const ageCategories = {
                 ageId : ageId,
                 categories : categories,
                 perfect : perfect,
                 userId : userId
             }
-
-            // window.location.href = "/random_main?param=" + encodeURIComponent(JSON.stringify(ageCategories));
 
 
             fetch('/api/random_session',{

@@ -35,30 +35,55 @@ public class QuestionRestController {
         return questionList;
     }
 
+    @PostMapping("/api/user_check_perfect_check")
+    public Integer userCheckPerfectCheck(@RequestBody String[] userAgeQuestionId) {
+        System.out.println("selectQuestion");
+        var userId = Integer.parseInt(userAgeQuestionId[0]);
+        var ageId = Integer.parseInt(userAgeQuestionId[1]);
+        var questionId = Integer.parseInt(userAgeQuestionId[2]);
+        System.out.println("userId："+userId+"ageId："+ageId+"questionId:"+questionId);
+
+        var perfectCheck = questionService.selectPerfectCheck(userId, ageId, questionId);
+
+        return perfectCheck;
+    }
+
     @PutMapping("/api/user_check_complete")
-    public int CheckComplete(@RequestBody String[] idUserId) {
-        var id = Integer.parseInt(idUserId[0]);
-        var userId = Integer.parseInt(idUserId[1]);
+    public int CheckComplete(@RequestBody String[] questionUserAgeId) {
+        var id = Integer.parseInt(questionUserAgeId[0]);
+        var userId = Integer.parseInt(questionUserAgeId[1]);
+        var ageId = Integer.parseInt(questionUserAgeId[2]);
         System.out.println();
         System.out.println("問題id："+id+"userID："+userId);
 
-        return questionService.checkComplete(id, userId);
+        return questionService.checkComplete(id, userId, ageId);
     }
 
     @PutMapping("/api/user_check_not_complete")
-    public int CheckNotComplete(@RequestBody String[] idUserId) {
-        var id = Integer.parseInt(idUserId[0]);
-        var userId = Integer.parseInt(idUserId[1]);
+    public int CheckNotComplete(@RequestBody String[] questionUserAgeId) {
+        var id = Integer.parseInt(questionUserAgeId[0]);
+        var userId = Integer.parseInt(questionUserAgeId[1]);
+        var ageId = Integer.parseInt(questionUserAgeId[2]);
         System.out.println("問題id："+id+"userID："+userId);
 
-        return questionService.checkNotComplete(id, userId);
+        return questionService.checkNotComplete(id, userId, ageId);
     }
 
     @GetMapping("/api/check_complete_check")
-    public int complete_check_check(@RequestParam(name = "idUserId")String[] idUserId){
-        var id = Integer.parseInt(idUserId[0]);
-        var userId = Integer.parseInt(idUserId[1]);
-        var check = questionService.checkCompleteCheck(id, userId);
+    public int complete_check_check(@RequestParam(name = "questionUserAgeId")String[] questionUserAgeId){
+        var id = Integer.parseInt(questionUserAgeId[0]);
+        var userId = Integer.parseInt(questionUserAgeId[1]);
+        var ageId = Integer.parseInt(questionUserAgeId[2]);
+        var check = questionService.checkCompleteCheck(id, userId, ageId);
+        return check;
+    }
+
+    @GetMapping("/api/check_look_check")
+    public int complete_look_check(@RequestParam(name = "questionUserAgeId")String[] questionUserAgeId){
+        var id = Integer.parseInt(questionUserAgeId[0]);
+        var userId = Integer.parseInt(questionUserAgeId[1]);
+        var ageId = Integer.parseInt(questionUserAgeId[2]);
+        var check = questionService.checkLookCheck(id, userId, ageId);
         return check;
     }
 

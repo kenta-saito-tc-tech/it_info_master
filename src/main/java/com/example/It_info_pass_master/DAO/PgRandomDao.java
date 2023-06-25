@@ -1,9 +1,6 @@
 package com.example.It_info_pass_master.DAO;
 
-import com.example.It_info_pass_master.Entity.SelectRandomRecord;
-import com.example.It_info_pass_master.Entity.CategoryRecord;
-import com.example.It_info_pass_master.Entity.QuestionRecord;
-import com.example.It_info_pass_master.Entity.UserCategoryRecord;
+import com.example.It_info_pass_master.Entity.*;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.expression.spel.ast.Selection;
@@ -29,6 +26,24 @@ public class PgRandomDao implements RandomDao{
         MapSqlParameterSource param = new MapSqlParameterSource();
         param.addValue("ageId",ageId);
         param.addValue("userId",userId);
+
+        var checkUser = jdbcTemplate.query("SELECT * " +
+                "FROM category " +
+                "WHERE id IN (SELECT category_id " +
+                "FROM category_select " +
+                "WHERE age_id = :ageId AND " +
+                "user_id = :userId)", param, new DataClassRowMapper<>(CategoryRecord.class));
+        int resultSet = checkUser.isEmpty() ? 0 : 1;
+
+        if(resultSet == 0){
+            for(var i = 1; i < 7; i++){
+                param.addValue("categoryId",i);
+                jdbcTemplate.update("INSERT INTO category_select (user_id, category_id, age_id, category_select) " +
+                        "VALUES(:userId, :categoryId, :ageId, 1)", param);
+            }
+
+        }
+
         String query = "SELECT * " +
                 "FROM category " +
                 "WHERE id IN (SELECT category_id " +
@@ -128,7 +143,131 @@ public class PgRandomDao implements RandomDao{
 
     @Override
     public int sessionRandom(SelectRandomRecord selectRandomRecord){
+        System.out.println("sessionに登録");
+
+
         session.setAttribute("selectRandomRecord", selectRandomRecord);
         return 0;
     }
+
+    public ChoiceRecord  findYourAnswer(int choiceId){
+        MapSqlParameterSource param = new MapSqlParameterSource();
+        param.addValue("choiceId", choiceId);
+
+        String query = "SELECT * " +
+                "FROM choice " +
+                "WHERE id = :choiceId";
+
+        var list = jdbcTemplate.query(query, param, new DataClassRowMapper<>(ChoiceRecord.class));
+        return list.isEmpty() ? null : list.get(0);
+    }
+
+    @Override
+    //見返しリストをアップデートする処理
+    public int updateLookingBackCheck(int ageId, int questionId, int userId, int check){
+        MapSqlParameterSource param = new MapSqlParameterSource();
+        param.addValue("ageId", ageId);
+        param.addValue("questionId", questionId);
+        param.addValue("userId", userId);
+        param.addValue("check", check);
+
+        System.out.println("updateLookCheck:ageId:"+ageId);
+        System.out.println("updateLookCheck:questionId:"+questionId);
+        System.out.println("updateLookCheck:userId:"+userId);
+        System.out.println("updateLookCheck:perfectCheckId:"+check);
+
+
+        //変数を取得
+        String sql = "SELECT id " +
+                "FROM question_age " +
+                "WHERE age_id = :ageId " +
+                "AND question_id = :questionId";
+        param.addValue("ageId", ageId);
+
+        var questionAgeId = jdbcTemplate.queryForObject(sql, param, Integer.class);
+        param.addValue("questionAgeId", questionAgeId);
+
+
+        //見返しリストをアップデートする処理（userIdとquestionAgeIdが必要）
+        var resultSet = jdbcTemplate.update("UPDATE user_check SET look_check = :check WHERE user_id = :userId AND question_age_id = :questionAgeId",param);
+        System.out.println("controllerから確認"+resultSet);
+        return resultSet;
+    };
+
+    @Override
+    //見返しリストをアップデートする処理
+    public int updatePerfectCheck(int ageId, int questionId, int userId, int perfectCheck1){
+        MapSqlParameterSource param = new MapSqlParameterSource();
+        param.addValue("ageId", ageId);
+        param.addValue("questionId", questionId);
+        param.addValue("userId", userId);
+        param.addValue("perfectCheck", perfectCheck1);
+
+        System.out.println("updatePerfectCheck:ageId:"+ageId);
+        System.out.println("updatePerfectCheck:questionId:"+questionId);
+        System.out.println("updatePerfectCheck:userId:"+userId);
+        System.out.println("updatePerfectCheck:perfectCheckId:"+perfectCheck1);
+
+
+        //変数を取得
+        String sql = "SELECT id " +
+                "FROM question_age " +
+                "WHERE age_id = :ageId " +
+                "AND question_id = :questionId";
+        param.addValue("ageId", ageId);
+
+        var questionAgeId = jdbcTemplate.queryForObject(sql, param, Integer.class);
+        param.addValue("questionAgeId", questionAgeId);
+
+
+        //見返しリストをアップデートする処理（userIdとquestionAgeIdが必要）
+        var resultSet = jdbcTemplate.update("UPDATE user_check SET perfect_check = :perfectCheck WHERE user_id = :userId AND question_age_id = :questionAgeId",param);
+        System.out.println("controllerから確認"+resultSet);
+        return resultSet;
+    }
+
+    //checkが2になっているリストを取得
+    public List<LookCheckRecord> findLookQuestion(int userId) {
+        MapSqlParameterSource param = new MapSqlParameterSource();
+        param.addValue("userId", userId);
+        List<LookCheckRecord> resultSet = jdbcTemplate.query(
+                "SELECT question.id AS id,\n" +
+                        "question.question_name AS questionName,\n" +
+                        "question.question_text AS questionText,\n" +
+                        "category.category_name AS category_name,\n" +
+                        "age.age AS age\n" +
+                        "FROM questions AS question\n" +
+                        "JOIN category ON question.category_id = category.id\n" +
+                        "JOIN question_age ON question.id = question_age.question_id\n" +
+                        "JOIN age ON question_age.age_id = age.id\n" +
+                        "JOIN user_check ON question.id = user_check.question_age_id\n" +
+                        "WHERE user_check.look_check = 2\n" +
+                        "AND user_check.user_id = :userId;", param, new DataClassRowMapper<>(LookCheckRecord.class));
+//        System.out.println("DAOから確認" + resultSet);
+        return resultSet;
+    }
+
+    ;
+
+    @Override
+    //解説を取得するメソッド
+    public List<QuestionRecord> findAnswerText(Integer questionId) {
+        MapSqlParameterSource param = new MapSqlParameterSource();
+        param.addValue("questionId", questionId);
+        List<QuestionRecord> resultSet = jdbcTemplate.query("SELECT * FROM questions WHERE id = :questionId", param, new DataClassRowMapper<>(QuestionRecord.class));
+        return resultSet;
+    }
+
+    ;
+
+    @Override
+//正解の選択肢を取得するメソッド
+    public List<ChoiceRecord> findAnswer(Integer questionId) {
+        MapSqlParameterSource param = new MapSqlParameterSource();
+        param.addValue("questionId", questionId);
+        List<ChoiceRecord> resultSet = jdbcTemplate.query("SELECT * FROM choice WHERE answer = true AND question_id = :questionId", param, new DataClassRowMapper<>(ChoiceRecord.class));
+        return resultSet;
+    }
+
+
 }

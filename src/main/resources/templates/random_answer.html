@@ -23,46 +23,98 @@
     <!--デフォルトの表示用CSS(ブラウザの表示の統一化)-->
     <link rel="stylesheet" href="/Common/sanitize.css" />
     <!--自作のCSS-->
-    <!-- <link rel="stylesheet" href="#" /> -->
+    <link rel="stylesheet" href="/CSS/style_random_answer.css" />
 
     <!--favicon-->
     <link rel="icon" type="image/x-icon" href="/image/exam.png" />
     <title>ITインフォパスマスター</title>
   </head>
   <body>
+
+  <input
+          id="js-userId"
+          type="hidden"
+          th:value="${session.user.id}"
+  />
+
+  <input
+          id="js-ageId"
+          name="ageId"
+          type="hidden"
+          th:value="${ageId}"
+  />
+
+
     <!--ヘッダーの指定-->
     <th:block th:insert="/Header/main_header.html"></th:block>
   
     <!--ここにコードを記入-->
-    <h1>ランダム問題解答画面</h1>
 
-    <div class="your_answer">
-      <span>解答：</span>
+  <input
+          id="js-yourAnswer"
+          type="hidden"
+          th:value="${yourChoice.answer}"
+  />
+  <div class="answer_judge_parent">
+    <div class="answer_frame">
+      <div class="your_answer">
+        <span>あなたの解答</span>
+      </div><br>
+      <div>
+        <span th:text="${yourChoice.choiceText}"></span>
+      </div>
+
+
+      <div class="answer_judge">
+        <span id="judge"></span>
+      </div><br>
+
+      <div class="your_answer">
+        <span>正解</span>
+      </div><br>
+      <div>
+      <span th:text="${answer}"></span>
+      </div>
     </div>
+  </div><br>
 
-    <div class="question_answer">
-      <span>〇</span>
-    </div>
+<form action="/random_answer" method="POST">
 
-    <div class="your_answer">
-      <span>正解：</span>
-    </div>
+    <input
+            id="js-questionId"
+            name="questionId"
+            type="hidden"
+            th:value="${questionId}"
+    />
 
-    <div class="buttons2">
+
+
+    <div class="buttons">
+      <label>
       <div  class="button kanpeki">後で見返す</div>
-      <input  type="checkbox" name="mikaesi_check" value="check"><br>
+      <input id="look_check" type="checkbox" name="look_check" value="true"><br>
+      </label>
       <br>
+      <label>
       <div  class="button kanpeki">完璧</div>
-      <input  type="checkbox" name="kanpeki_check" value="check"><br>
+      <input id="perfect_check" type="checkbox" name="perfect_check" value="true"><br>
+      </label>
       <br>
     </div>
 
+    <div class="buttons1">
+      <button  type="submit" id="next_btn" class="button next">次へ</button>
+    </div><br>
+</form>
+<!--  終了してもuser_checkが更新されない-->
+  <div class="buttons1">
+    <button class="button next" onclick="location.href='/random_select'">終了</button>
+  </div>
 
-    </div>
 
 
 
     <!--JSの指定-->
-    <!-- <script src="#"></script> -->
+    <script src="/JS/app_random_answer.js"></script>
   </body>
 </html>

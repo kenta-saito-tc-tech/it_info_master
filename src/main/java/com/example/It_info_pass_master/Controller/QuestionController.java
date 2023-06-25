@@ -12,6 +12,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
+
 @Controller
 public class QuestionController {
     @Autowired
@@ -22,13 +25,15 @@ public class QuestionController {
 
 
 
-    @PostMapping("/question_answer")
+    @PostMapping("/question_test")
         public String questionSelect(@RequestParam(name="question_id") int id,
-                                     @RequestParam(name="selectedItem") int choiceId, Model model){
+                                     @RequestParam(name="selectedItem") int choiceId,
+                                     @RequestParam(name="age_id") int ageId, Model model){
         if (session.getAttribute("user") == null) { //sessionがない場合
             return "redirect:/index";
         }
-        System.out.println("パスのID"+id);
+        System.out.println("question_testからageId送信："+ageId);
+        System.out.println("問題のID"+id);
         System.out.println("選択肢のID"+choiceId);
 
         var question = questionService.findQuestion(id);
@@ -42,26 +47,32 @@ public class QuestionController {
         model.addAttribute("choices", choices);
         model.addAttribute("answer", answer);
         model.addAttribute("choiceId", choiceId);
+        model.addAttribute("ageId", ageId);
 
         return "/question_answer";
     }
 
-    @GetMapping("/question_test/{ageId}/{category}/{id}")
-    public String questionTest(@PathVariable("ageId") int ageId,
-                               @PathVariable("category") String category,
-                               @PathVariable("id") int questionId,
+    @GetMapping("/question_test")
+    public String questionTest(@RequestParam("title") String questionName,
+                               @RequestParam("ageId") String ageId,
+                               @RequestParam("categoryId") String categoryId,
                                HttpSession session,Model model) {
 
         if (session.getAttribute("user") == null) { //sessionがない場合
             return "redirect:/index";
         }
-        var age = questionService.findAge(ageId);
+
+        var age = questionService.findAge(Integer.parseInt(ageId));
         model.addAttribute("age", age);
 
+        var questionId = questionService.findQuestionId(questionName);
         var question = questionService.findQuestion(questionId);
+        var category = questionService.findCategory(Integer.parseInt(question.categoryId()));
+        model.addAttribute("questionId",questionId);
         model.addAttribute("questionText", question.questionText());
         model.addAttribute("questionTitle", question.questionName());
-        model.addAttribute("category", question.categoryId());
+        model.addAttribute("category", category);
+        model.addAttribute("ageId",ageId);
 
         var choices = questionService.findChoices(questionId);
         model.addAttribute("choices", choices);
@@ -70,8 +81,7 @@ public class QuestionController {
         //userIdを取得
         var user = (UserRecord) session.getAttribute("user");
         var userId = user.id();
-        System.out.print("controllerから確認 ユーザーID：" + userId);
-        var checkUser = questionService.findCheckUser(userId, questionId, ageId);
+        var checkUser = questionService.findCheckUser(userId, questionId, Integer.parseInt(ageId));
 
         return "/question_test";
     }

@@ -37,7 +37,6 @@
 <!-- <th:block th:insert="#"></th:block> -->
 
 <!--ここにコードを記入-->
-<h1>一問一答問題画面</h1>
 
 <div id="js_age_and_category">
     [[${age}]]　[[${category}]]<!--年代、カテゴリ-->
@@ -54,15 +53,23 @@
     </div>
     <br>
 
-    <form action="/question_answer" method="POST">
+    <form action="/question_test" method="POST">
 
 
         <input
                 id="js-question_id"
                 type="hidden"
                 th:name="question_id"
-                th:value="${id}"
+                th:value="${questionId}"
         />
+
+        <input
+                id="js-age_id"
+                type="hidden"
+                th:name="age_id"
+                th:value="${ageId}"
+        />
+
         <div>
             <label><input id="choice1" type="radio" th:name="selectedItem" th:value="${choices[0].id}"/>
                 <span th:text="${choices[0].choiceText}"></span></label></div>

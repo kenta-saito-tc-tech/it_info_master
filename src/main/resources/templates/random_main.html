@@ -24,7 +24,7 @@
   <!--    <link rel="stylesheet" href="./Common/sanitize.css" />-->
   <!--自作のCSS-->
   <!-- <link rel="stylesheet" href="#" /> -->
-  <link rel="stylesheet" href="/CSS/style_random_answer.css"/>
+  <link rel="stylesheet" href="/CSS/style_random_main.css"/>
 
   <!--favicon-->
   <link rel="icon" type="image/x-icon" href="/image/exam.png" />
@@ -55,7 +55,7 @@
 
 
 <!--ここにコードを記入-->
-<h1>ランダム問題出題画面</h1>
+
 <div class="questionDiv">
 
   <div id="question_title">
@@ -68,13 +68,20 @@
     <span class="question_text" th:text="${question.questionText}"></span>
   </div>
   <br>
-  <form action="/random_answer" method="POST">
+  <form action="/random_main" method="POST">
 
     <input
             name="questionId"
             type="hidden"
             th:value="${question.id}"
     />
+
+    <input
+            name="ageId"
+            type="hidden"
+            th:value="${ageId}"
+    />
+
   <div id="choices">
     <!--選択肢-->
     <div>
@@ -100,6 +107,11 @@
   </form>
 
   <!--JSの指定-->
-<!--  <script src="#"></script>-->
+  <script>
+    const defaultCheck =  document.getElementById('choice1');
+    defaultCheck.checked = true;
+
+
+</script>
 </body>
 </html>

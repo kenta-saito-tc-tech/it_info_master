@@ -2,10 +2,12 @@ document.addEventListener("DOMContentLoaded", () => {
     const userId = document.getElementById('js-userId').value;
     const id = document.getElementById('js-questionId').value;
     const choiceId = document.getElementById('js-choiceId').value;
+    const ageId = document.getElementById('js-ageId').value;
+    console.log(ageId);
 
-    const idUserId = [id, userId];
+    const questionUserAgeId = [id, userId, ageId];
     const kanpekiCheck = document.getElementById('kanpeki_check');
-    fetch(`/api/check_complete_check?idUserId=${idUserId}`)
+    fetch(`/api/check_complete_check?questionUserAgeId=${questionUserAgeId}`)
       .then(res => {
         if(res.status === 400) {
           
@@ -39,7 +41,7 @@ document.addEventListener("DOMContentLoaded", () => {
           headers: {
             'Content-Type': 'application/json'
           },
-          body: JSON.stringify(idUserId)
+          body: JSON.stringify(questionUserAgeId)
         })
         .then(res => {
           if(res.status === 400) {
@@ -59,7 +61,7 @@ document.addEventListener("DOMContentLoaded", () => {
           headers: {
             'Content-Type': 'application/json'
           },
-          body: JSON.stringify(idUserId)
+          body: JSON.stringify(questionUserAgeId)
         })
         .then(res => {
           if(res.status === 400) {

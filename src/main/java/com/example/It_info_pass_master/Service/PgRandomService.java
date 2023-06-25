@@ -1,10 +1,7 @@
 package com.example.It_info_pass_master.Service;
 
 import com.example.It_info_pass_master.DAO.RandomDao;
-import com.example.It_info_pass_master.Entity.SelectRandomRecord;
-import com.example.It_info_pass_master.Entity.CategoryRecord;
-import com.example.It_info_pass_master.Entity.QuestionRecord;
-import com.example.It_info_pass_master.Entity.UserCategoryRecord;
+import com.example.It_info_pass_master.Entity.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -33,5 +30,38 @@ public class PgRandomService implements RandomService{
     @Override
     public int sessionRandom(SelectRandomRecord selectRandomRecord){
         return randomDao.sessionRandom(selectRandomRecord);
+    }
+
+    @Override
+    public ChoiceRecord findYourAnswer(int choiceId){
+        return randomDao.findYourAnswer(choiceId);
+    }
+
+    @Override
+    public int updateLookingBackCheck(int ageId, int questionId, int userId, int check){
+        return randomDao.updateLookingBackCheck(ageId, questionId, userId, check);
+    };
+
+    @Override
+    public int updatePerfectCheck(int ageId, int questionId, int userId, int perfectCheck1){
+        return randomDao.updatePerfectCheck(ageId, questionId, userId, perfectCheck1);
+    }
+
+    public List<LookCheckRecord> findLookQuestion(int userId) {
+        return randomDao.findLookQuestion(userId);
+    }
+
+
+    @Override
+    //解説を取得するメソッド
+    public List<QuestionRecord> findAnswerText(Integer questionId) {
+        return randomDao.findAnswerText(questionId);
+    }
+
+
+    @Override
+    //正解の選択肢を取得するメソッド
+    public List<ChoiceRecord> findAnswer(Integer questionId) {
+        return randomDao.findAnswer(questionId);
     }
 }
