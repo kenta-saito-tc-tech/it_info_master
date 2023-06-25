@@ -105,7 +105,7 @@ public class PgAccountDao implements AccountDao {
                         "    SELECT t.user_id, t.game_score, " +
                         "           DENSE_RANK() OVER (ORDER BY t.game_score ASC) AS rank " +
                         "    FROM (" +
-                        "        SELECT ug.user_id, MAX(ug.game_score) AS game_score " +
+                        "        SELECT ug.user_id, MIN(ug.game_score) AS game_score " +
                         "        FROM user_game ug " +
                         "        WHERE ug.age_id = (SELECT id FROM age WHERE age = :ageNum)" +
                         "        GROUP BY ug.user_id" +
