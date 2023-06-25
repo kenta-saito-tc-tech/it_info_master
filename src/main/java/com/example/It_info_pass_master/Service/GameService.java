@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface GameService {
     public ageidRecord userGameAdd(int userid, int ageid);
-    public GameQuestionRecord gameAgeSelect(int ageId, int i);
+    public List<GameQuestionRecord> gameAgeSelect(int ageId, int i);
     public List<GameSelectRecord> gameChoiceSelect(int ageId, int i);
     public FalseSumRecord userGameDetial(int dateId);
     public int gameAnswerAdd(GameAnswerRecord gameAnswerRecord);
@@ -15,4 +15,6 @@ public interface GameService {
     public List<GameResultListRecord> resultList(int userGameId);
     public QuestionRecord gameDetailQuestion(int questionId);
     public List<ChoiceRecord> gameDetailChoice(int questionId);
+    public List<UserAgeRecord> gameAllAgeSelect();
+    public List<MyRankRecord> userGameRanking(int userGameId);
 }

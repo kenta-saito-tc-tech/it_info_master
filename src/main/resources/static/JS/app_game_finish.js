@@ -1,9 +1,15 @@
 window.onload = function() {
-    resultTime();
     resultList();
+    resultTime();
+    userRanking();
 }
+    var user = document.getElementById('userRole').innerText;
 
 function resultTime() {
+        if (user == 'admin') {
+            document.getElementById('result1').style.display = 'none';
+            return;
+        }
     const userGameId = document.getElementById('userGameId').innerText;
 
     fetch(`/game_finish/result?userGameId=${userGameId}`)
@@ -63,6 +69,10 @@ function resultList() {
                 document.getElementById('falseCount').textContent = falseCount;
                 const addTime = falseCount * 10;
                 document.getElementById('addTime').textContent = addTime;
+
+                if (user == 'admin') {
+                    document.getElementById('result2').style.display = 'none';
+                }
           })
         }
     })

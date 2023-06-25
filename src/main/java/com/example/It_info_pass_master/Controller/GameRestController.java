@@ -14,8 +14,19 @@ public class GameRestController {
     @Autowired
     private GameService gameService;
 
-    @GetMapping("/game_start")
-    public GameQuestionRecord question(@RequestParam(name = "userGameId")int userGameId, @RequestParam(name = "i")int i) {
+    @GetMapping("/api/gameAllAgeSelect")
+    public List<UserAgeRecord> gameAllAgeSelect() {
+        try {
+            var ageList = gameService.gameAllAgeSelect();
+            return ageList;
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    @GetMapping("/question")
+    public List<GameQuestionRecord> question(@RequestParam(name = "userGameId")int userGameId, @RequestParam(name = "i")int i) {
         var gameQuestion = gameService.gameAgeSelect(userGameId,i);
         return gameQuestion;
     }

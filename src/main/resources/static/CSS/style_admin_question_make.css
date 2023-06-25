@@ -47,19 +47,19 @@
     position: relative;
     height: 210px;
 }
-.buttonCommon {
-    /* background-color: aqua; */
-    width: 120px;
-    padding: 10px;
-}
+
 #back {
     position: absolute;
     left: 10px;
     bottom: 10px;
+        width: 120px;
+        padding: 10px;
 }
 #add, #pass1, #pass2 {
     position: absolute;
     right: 10px;
+        width: 120px;
+        padding: 10px;
 }
 #add {
     top: 10px;

@@ -50,11 +50,12 @@
       <div>
         <!-- メニュー画面参考  -->
         <!-- ランキング表示はさいやくなくてもメニュー画面にあるから書かなくてもいい -->
-        <p>/500人</p>
+        <p>[[ ${session.user.name} ]]さんの順位は <span id="myRank"></span>位です！ </p>
       </div>
 
       <div class="i" style="text-align:center">
-        <a href="/game_main"><button class="size">もう一度</button></a> <a href="/menu"><button class="size">メニューへ戻る</button></a>
+        <a href="/game_main"><button id="size1" class="button">もう一度</button>
+        </a> <a href="/menu"><button id="size2" class="button">メニューへ戻る</button></a>
       </div>
 
     </div>

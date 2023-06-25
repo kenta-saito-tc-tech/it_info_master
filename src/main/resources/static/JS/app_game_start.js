@@ -5,11 +5,14 @@ window.onload = function() {
 }
 
 var count = 0;
+var choiceCount = 0;
+var questionList = [];
+var choiceList = [];
 
 document.getElementById('next').addEventListener('click', () => {
     getSelectedValue();
     count++;
-    if(count == 5) {
+    if(count == questionList.length) {
         document.getElementById("ok").style.display = "flex";
         stopStopwatch();
         return;
@@ -17,25 +20,47 @@ document.getElementById('next').addEventListener('click', () => {
         document.getElementById('ok').style.display = "none";
     }
     document.getElementById('i').innerText = count;
-    questionDisplay();
-    selectDisplay();
+
+    //questionListの問題を入れてあげてる感じ
+    document.getElementById('categoryName').textContent = questionList[count].categoryName;
+    document.getElementById('questionName').textContent = questionList[count].questionName;
+    document.getElementById('questionText').textContent = questionList[count].questionText;
+    document.getElementById('questionId').textContent = questionList[count].questionId;
+
+    //choiceListの選択肢を順番に入れてあげてる感じ
+    var radioButtons = document.getElementsByName("select");
+    var countI = 0;
+    var memes = document.getElementsByClassName("meme");
+    while(true) {
+          radioButtons[countI].value = choiceList[choiceCount].answer;
+          memes[countI].textContent = choiceList[choiceCount].choiceText;
+          countI++;
+          choiceCount++;
+          if(choiceCount % 4 == 0){
+            break;
+          }
+    }
+
 })
 
 
 function questionDisplay() {
     const id = document.getElementById('userGameId').innerText;
     const i = document.getElementById('i').innerText;
-    fetch(`/game_start?userGameId=${id}&i=${i}`)
+    fetch(`/question?userGameId=${id}&i=${i}`)
     .then(res => {
         if(res.status === 400) {
           window.alert('Hello JavaScript');
         } else {
           res.json()
           .then(data => {
-            document.getElementById('categoryName').textContent = data.categoryName;
-            document.getElementById('questionName').textContent = data.questionName;
-            document.getElementById('questionText').textContent = data.questionText;
-            document.getElementById('questionId').textContent = data.questionId;
+            data.forEach((questions) => {
+                questionList.push(questions);
+            })
+            document.getElementById('categoryName').textContent = data[0].categoryName;
+            document.getElementById('questionName').textContent = data[0].questionName;
+            document.getElementById('questionText').textContent = data[0].questionText;
+            document.getElementById('questionId').textContent = data[0].questionId;
           })
         }
     });
@@ -51,16 +76,22 @@ function selectDisplay() {
       } else {
         res.json()
         .then(data => {
+        data.forEach((choices) => {
+            choiceList.push(choices);
+        })
 
         var radioButtons = document.getElementsByName("select");
         var countI = 0;
         var memes = document.getElementsByClassName("meme");
-        data.forEach((selectTest) => {
-              radioButtons[countI].value = selectTest.answer;
-              radioButtons[countI].textContent = selectTest.choiceText;
-              memes[countI].textContent = selectTest.choiceText;
+        while(true) {
+              radioButtons[countI].value = choiceList[choiceCount].answer;
+              memes[countI].textContent = choiceList[choiceCount].choiceText;
               countI++;
-        })
+              choiceCount++;
+              if(choiceCount % 4 == 0){
+                break;
+              }
+        }
 
         })
       }
@@ -149,13 +180,17 @@ function stopStopwatch() {
       };
 
       // リクエストを送信
-      fetch('/game_start/timeUpdate', {
-          method: 'POST',
-          headers: {
-              'Content-Type': 'application/json', // リクエストのヘッダーにJSON形式でデータを送信することを指定
-          },
-          body: JSON.stringify(data), // リクエストのボディにデータをJSON形式で変換して送信
-      })
+      var user = document.getElementById('userRole').innerText;
+
+      if (user != 'admin') {
+        fetch('/game_start/timeUpdate', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json', // リクエストのヘッダーにJSON形式でデータを送信することを指定
+            },
+            body: JSON.stringify(data), // リクエストのボディにデータをJSON形式で変換して送信
+        })
+      }
 }
 
 // 秒を2桁表示にフォーマットする

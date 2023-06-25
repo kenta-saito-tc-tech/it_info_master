@@ -16,7 +16,7 @@ public class PgGameService implements GameService{
         return gameDao.userGameAdd(userid, ageid);
     }
 
-    public GameQuestionRecord gameAgeSelect(int ageId, int i) {
+    public List<GameQuestionRecord> gameAgeSelect(int ageId, int i) {
         return gameDao.gameAgeSelect(ageId, i);
     }
 
@@ -56,5 +56,15 @@ public class PgGameService implements GameService{
     @Override
     public List<ChoiceRecord> gameDetailChoice(int questionId) {
         return gameDao.gameDetailChoice(questionId);
+    }
+
+    @Override
+    public List<UserAgeRecord> gameAllAgeSelect() {
+        return gameDao.gameAllAgeSelect();
+    }
+
+    @Override
+    public List<MyRankRecord> userGameRanking(int userGameId) {
+        return gameDao.userGameRanking(userGameId);
     }
 }
