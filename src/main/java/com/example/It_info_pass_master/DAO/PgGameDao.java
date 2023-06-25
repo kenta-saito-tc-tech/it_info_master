@@ -23,18 +23,18 @@ public class PgGameDao implements GameDao{
         return id.isEmpty() ? null : id.get(0);
     }
 
-    public GameQuestionRecord gameAgeSelect(int ageId, int i) {
+    public List<GameQuestionRecord> gameAgeSelect(int ageId, int i) {
         MapSqlParameterSource param = new MapSqlParameterSource();
         param.addValue("ageId",ageId);
         param.addValue("i",i);
         var id = jdbcTemplate.query("  select A.age, G.question_id, C.category_name, Q.question_name, Q.question_text from game_age as G \n" +
-                "  join age as A on G.age_id = A.id \n" +
-                "  join questions as Q on G.question_id = Q.id \n" +
-                "  join category as C on Q.category_id = C.id \n" +
-                "  where G.age_id = (select age_id from user_game where id = :ageId) \n" +
-                "  and G.question_id = (select question_id from game_age offset :i limit 1)"
+                        "  join age as A on G.age_id = A.id \n" +
+                        "  join questions as Q on G.question_id = Q.id \n" +
+                        "  join category as C on Q.category_id = C.id \n" +
+                        "  where G.age_id = (select age_id from user_game where id = :ageId) \n" +
+                        "  order by G.question_id"
                 , param, new DataClassRowMapper<>(GameQuestionRecord.class));
-        return id.isEmpty() ? null : id.get(0);
+        return id;
     }
 
     public List<GameSelectRecord> gameChoiceSelect(int ageId, int i) {
@@ -42,9 +42,9 @@ public class PgGameDao implements GameDao{
         param.addValue("ageId",ageId);
         param.addValue("i",i);
         var id = jdbcTemplate.query("select choice_text, answer from choice \n" +
-                        "  join game_age on choice.question_id = game_age.question_id \n" +
-                        "  where game_age.age_id = (select age_id from user_game where id = :ageId) \n" +
-                        "  and game_age.question_id = (select question_id from game_age offset :i limit 1)"
+                        "join game_age on choice.question_id = game_age.question_id \n" +
+                        "where game_age.age_id = (select age_id from user_game where id = :ageId) \n" +
+                        "order by choice.question_id"
                 , param,new DataClassRowMapper<>(GameSelectRecord.class));
         return id;
     }
@@ -113,6 +113,28 @@ public class PgGameDao implements GameDao{
         param.addValue("questionId", questionId);
         var list = jdbcTemplate.query("select * from choice where question_id = :questionId"
                 , param,new DataClassRowMapper<>(ChoiceRecord.class));
+        return list;
+    }
+
+    @Override
+    public List<UserAgeRecord> gameAllAgeSelect() {
+        var ageList = jdbcTemplate.query("select game_age.age_id as id, age.age from age \n" +
+                                            "join game_age on age.id = game_age.age_id \n" +
+                                            "group by game_age.age_id, age.age\n" +
+                                            "order by game_age.age_id", new DataClassRowMapper<>(UserAgeRecord.class));
+
+        return ageList;
+    }
+
+    @Override
+    public List<MyRankRecord> userGameRanking(int userGameId) {
+        MapSqlParameterSource param = new MapSqlParameterSource();
+        param.addValue("userGameId", userGameId);
+        var list = jdbcTemplate.query("select user_id as rank, min(game_score) as game_score from user_game \n" +
+                        "where age_id = (select age_id from user_game where id = :userGameId) and game_score is not null \n" +
+                        "group by user_id \n" +
+                        "order by min(game_score);"
+                , param,new DataClassRowMapper<>(MyRankRecord.class));
         return list;
     }
 }

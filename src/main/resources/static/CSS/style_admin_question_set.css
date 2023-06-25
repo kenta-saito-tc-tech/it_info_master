@@ -3,19 +3,18 @@
         padding: 10px;
     }
 
-    .buttonCommon {
-        width: 150px;
-        padding: 10px;
-    }
-
     #back {
         position: absolute;
         left: 10px;
+        width: 150px;
+        padding: 10px;
     }
 
     #create {
         position: absolute;
         right: 10px;
+        width: 150px;
+        padding: 10px;
     }
 
     #add {

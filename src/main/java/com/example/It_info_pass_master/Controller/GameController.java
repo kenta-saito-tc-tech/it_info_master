@@ -1,5 +1,6 @@
 package com.example.It_info_pass_master.Controller;
 
+import com.example.It_info_pass_master.Entity.GameQuestionRecord;
 import com.example.It_info_pass_master.Entity.UserRecord;
 import com.example.It_info_pass_master.Service.GameService;
 import jakarta.servlet.http.HttpSession;

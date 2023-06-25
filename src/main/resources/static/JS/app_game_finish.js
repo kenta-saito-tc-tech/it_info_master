@@ -1,9 +1,15 @@
 window.onload = function() {
-    resultTime();
     resultList();
+    resultTime();
+    userRanking();
 }
+    var user = document.getElementById('userRole').innerText;
 
 function resultTime() {
+        if (user == 'admin') {
+            document.getElementById('result1').style.display = 'none';
+            return;
+        }
     const userGameId = document.getElementById('userGameId').innerText;
 
     fetch(`/game_finish/result?userGameId=${userGameId}`)
@@ -63,7 +69,40 @@ function resultList() {
                 document.getElementById('falseCount').textContent = falseCount;
                 const addTime = falseCount * 10;
                 document.getElementById('addTime').textContent = addTime;
+
+                if (user == 'admin') {
+                    document.getElementById('result2').style.display = 'none';
+                }
           })
         }
     })
   }
+
+function userRanking() {
+    if (user == 'admin') {
+        document.getElementById('result3').style.display = 'none';
+        return;
+    }
+    const userGameId = document.getElementById('userGameId').innerText;
+    const gameUserId = document.getElementById('userId').innerText;
+
+    fetch(`/game_finish/ranking?userGameId=${userGameId}`)
+    .then(res => {
+        if(res.status === 400) {
+          window.alert('エラー');
+        } else {
+          res.json()
+          .then(data => {
+            var count = 0;
+            while(true) {
+                if(data[count].rank == gameUserId) {
+                    count++;
+                    document.getElementById('myRank').textContent = count;
+                    break;
+                }
+                count++;
+            }
+          })
+        }
+    });
+}

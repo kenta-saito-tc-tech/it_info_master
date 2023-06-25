@@ -57,12 +57,13 @@
         <input type="radio" name="select"><span class="meme"></span><br>
       </div>
     </div>
-    <button id="next">次へ</button>
-    <a href="/game_finish"><button id="ok">終了</button></a>
+    <button id="next" class="button">次へ</button>
+    <a href="/game_finish"><button id="ok" class="button">終了</button></a>
 
     <div class="hidden" id="i" name="i">0</div>
     <div class="hidden" id="questionId" name="questionId"></div>
     <div class="hidden" id="userGameId" name="userGameId">[[ ${session.userGameId} ]]</div>
+    <div class="hidden" id="userRole">[[ ${session.user.role} ]]</div>
     <div class="hidden" id="m" name="minutes"></div>
     <div class="hidden" id="s" name="seconds"></div>
     <!--JSの指定-->

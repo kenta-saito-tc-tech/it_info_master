@@ -40,15 +40,22 @@
     <div style="text-align:center">
       <form action="/game_main" method="post">
         <h1 class="gameTitle">IT道場</h1>
-        <button class="start" type="submit">start</button>
-        <h2 class="ageSelect">年代設定</h2>
-        <input type="radio" id="2023" name="age" value="1" checked><label for="2023">2023</label>
-        <input type="radio" id="2024" name="age" value="2" ><label for="2024">2024</label>
+        <button id="start" class="button" >start</button><!-- id追記 -->
+<!--        <h2 class="ageSelect">年代設定</h2>-->
+<!--        <input type="radio" id="2023" name="age" value="1" checked><label for="2023">2023</label>-->
+<!--        <input type="radio" id="2024" name="age" value="2" ><label for="2024">2024</label>-->
+          <div id="honbunn" style="text-align:center">
+            <div id="erttext" class="era">
+              <select id="testera" name="age"> <!--name属性追加-->
+
+              </select>
+            </div>
+          </div>
           <p>ルール1.用意された50問をできるだけ素早く解答しよう！</p>
           <p>ルール2.問題を間違えると〇秒追加されるよ！</p>
           <p>素早く正確に問題を解いてランキング上位を目指そう！</p>
     <!--JSの指定-->
-    <!-- <script src="#"></script> -->
+    <script type="text/javascript" src="/JS/app_game_main.js"></script>
     </form>
     </div>
   </body>
