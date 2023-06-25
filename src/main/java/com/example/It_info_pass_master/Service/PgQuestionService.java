@@ -25,6 +25,11 @@ public class PgQuestionService implements QuestionService{
     }
 
     @Override
+    public Integer selectPerfectCheck(int userId, int ageId, int questionId) {
+        return questionDao.selectPerfectCheck(userId, ageId, questionId);
+    }
+
+    @Override
     public QuestionRecord findQuestion(int id){
         return questionDao.findQuestion(id);
     }
@@ -40,26 +45,41 @@ public class PgQuestionService implements QuestionService{
     }
 
     @Override
-    public int checkComplete(int id, int userId){
-        return questionDao.checkComplete(id, userId);
+    public int checkComplete(int id, int userId, int ageId){
+        return questionDao.checkComplete(id, userId, ageId);
     }
 
     @Override
-    public int checkNotComplete(int id, int userId){
-        return questionDao.checkNotComplete(id, userId);
+    public int checkNotComplete(int id, int userId, int ageId){
+        return questionDao.checkNotComplete(id, userId, ageId);
     }
 
     @Override
-    public int checkCompleteCheck(int id, int userId){
-        return questionDao.checkCompleteCheck(id, userId);
+    public int checkCompleteCheck(int id, int userId, int ageId){
+        return questionDao.checkCompleteCheck(id, userId, ageId);
     }
-
+    @Override
     //user_checkテーブルを確認＆作成するメソッド
     public int findCheckUser(int userId, int questionId, int ageId){
         return questionDao.findCheckUser(userId, questionId, ageId);
     }
-
+    @Override
     public String findAge(int ageId){
         return questionDao.findAge(ageId);
     }
+
+    @Override
+    public int checkLookCheck(int id, int userId, int ageId){
+        return questionDao.checkLookCheck(id, userId, ageId);
+    }
+
+    @Override
+    public int findQuestionId(String title){
+        return questionDao.findQuestionId(title);
+    }
+
+    public String findCategory(int categoryId){
+        return questionDao.findCategory(categoryId);
+    }
+
 }

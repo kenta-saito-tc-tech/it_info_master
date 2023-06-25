@@ -37,10 +37,32 @@ public class PgQuestionDao implements QuestionDao{
                 "where id IN (select question_id " +
                 "from question_age " +
                 "where age_id = :ageId) " +
-                "AND category_id = :categoryId";
+                "AND category_id = :categoryId " +
+                "ORDER BY id";
         List<QuestionRecord> result = jdbcTemplate.query(query, param, new DataClassRowMapper<>(QuestionRecord.class));
         return result;
     }
+
+    @Override
+    public Integer selectPerfectCheck(int userId, int ageId, int questionId){
+        MapSqlParameterSource param = new MapSqlParameterSource();
+        param.addValue("userId", userId);
+        param.addValue("ageId", ageId);
+        param.addValue("questionId", questionId);
+
+        String sql = "select perfect_check " +
+                "from user_check " +
+                "where question_age_id = (select id " +
+                "from question_age " +
+                "where age_id = :ageId " +
+                "AND question_id = :questionId) " +
+                "AND user_id = :userId ";
+
+        var perfectCheck = jdbcTemplate.queryForObject(sql, param, Integer.class);
+
+        return perfectCheck;
+    }
+
 
     @Override
     public QuestionRecord findQuestion(int id){
@@ -75,56 +97,65 @@ public class PgQuestionDao implements QuestionDao{
     }
 
     @Override
-    public int checkComplete(int id, int userId) {
+    public int checkComplete(int id, int userId, int ageId) {
         MapSqlParameterSource param = new MapSqlParameterSource();
 
         param.addValue("questionId", id);
         param.addValue("userId", userId);
+        param.addValue("ageId", ageId);
 
         return jdbcTemplate.update("UPDATE user_check " +
                 "SET perfect_check = 2 " +
                 "WHERE question_age_id = (SELECT id " +
-                "FROM question_age WHERE question_id = :questionId) " +
+                "FROM question_age WHERE question_id = :questionId " +
+                "AND age_id = :ageId) " +
                 "AND user_id = :userId", param);
     }
 
     @Override
-    public int checkNotComplete(int id, int userId) {
+    public int checkNotComplete(int id, int userId, int ageId) {
         MapSqlParameterSource param = new MapSqlParameterSource();
 
         param.addValue("questionId", id);
         param.addValue("userId", userId);
+        param.addValue("ageId", ageId);
 
         return jdbcTemplate.update("UPDATE user_check " +
                 "SET perfect_check = 1 " +
                 "WHERE question_age_id = (SELECT id " +
-                "FROM question_age WHERE question_id = :questionId) " +
+                "FROM question_age WHERE question_id = :questionId " +
+                "AND age_id = :ageId) " +
                 "AND user_id = :userId", param);
     }
 
     @Override
-    public int checkCompleteCheck(int id, int userId) {
+    public int checkCompleteCheck(int id, int userId, int ageId) {
         String sql = "SELECT perfect_check " +
                 "FROM user_check " +
                 "WHERE question_age_id = (SELECT id " +
-                "FROM question_age WHERE question_id = :questionId) " +
+                "FROM question_age WHERE question_id = :questionId " +
+                "AND age_id = :ageId) " +
                 "AND user_id = :userId";
         MapSqlParameterSource param = new MapSqlParameterSource();
         param.addValue("questionId", id);
         param.addValue("userId", userId);
+        param.addValue("ageId", ageId);
 
-        var answer = jdbcTemplate.queryForObject(sql, param, Integer.class);
-        return answer;
+
+        var check = jdbcTemplate.queryForObject(sql, param, Integer.class);
+        return check;
     }
 
     //user_checkテーブルを確認＆作成するメソッド
     public int findCheckUser(int userId, int questionId, int ageId) {
+        System.out.println("finCheckUser");
 
         //レコードクラスの有無をチェック
         MapSqlParameterSource param = new MapSqlParameterSource();
         param.addValue("userId", userId);
         param.addValue("questionId", questionId);
         param.addValue("ageId", ageId);
+        System.out.println("dao/ageId:"+ageId);
 
         var checkUser = jdbcTemplate.query("SELECT * FROM user_check " +
                 "WHERE user_id = :userId " +
@@ -140,9 +171,9 @@ public class PgQuestionDao implements QuestionDao{
             return resultSet;
 
         } else {
-            MapSqlParameterSource param1 = new MapSqlParameterSource();
-            param1.addValue("questionId", questionId);
-            var questionAgeId = jdbcTemplate.queryForObject("SELECT id FROM question_age WHERE question_id = :questionId AND age_id = :ageId", param1, Integer.class);
+            //MapSqlParameterSource param1 = new MapSqlParameterSource();
+
+            var questionAgeId = jdbcTemplate.queryForObject("SELECT id FROM question_age WHERE question_id = :questionId AND age_id = :ageId", param, Integer.class);
 
             System.out.print("DAO　クエスチョンAgeId:" + questionAgeId);
 
@@ -178,8 +209,46 @@ public class PgQuestionDao implements QuestionDao{
         return age;
     }
 
+    @Override
+    public int checkLookCheck(int id, int userId, int ageId) {
+        String sql = "SELECT look_check " +
+                "FROM user_check " +
+                "WHERE question_age_id = (SELECT id " +
+                "FROM question_age WHERE question_id = :questionId " +
+                "AND age_id = :ageId) " +
+                "AND user_id = :userId";
+        MapSqlParameterSource param = new MapSqlParameterSource();
+        param.addValue("questionId", id);
+        param.addValue("userId", userId);
+        param.addValue("ageId", ageId);
 
 
+        var check = jdbcTemplate.queryForObject(sql, param, Integer.class);
+        return check;
+    }
 
+    @Override
+    public int findQuestionId(String title) {
+        String sql = "Select id " +
+                "FROM questions " +
+                "WHERE question_name = :questionName " +
+                "limit 1";
+        MapSqlParameterSource param = new MapSqlParameterSource();
+        param.addValue("questionName", title);
+
+        var age = jdbcTemplate.queryForObject(sql, param, Integer.class);
+        return age;
+    }
+
+    @Override
+    public String findCategory(int categoryId) {
+        String sql = "SELECT category_name " +
+                "FROM category " +
+                "WHERE id = :categoryId";
+        MapSqlParameterSource param = new MapSqlParameterSource();
+        param.addValue("categoryId", categoryId);
+        var category = jdbcTemplate.queryForObject(sql, param, String.class);
+        return category;
+    }
 
 }

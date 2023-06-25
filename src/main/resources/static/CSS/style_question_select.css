@@ -1,0 +1,110 @@
+#database{
+    font-size: 30px;
+    color:rgb(171, 236, 125);
+}
+.question_d{
+    border: 2px solid rgb(171, 236, 125); /* 枠線を指定 */
+    background-color: rgb(219, 219, 219);
+    font-size:25px;
+    margin-bottom:5px;
+    margin-left:50px;
+    display:flex;
+}
+
+#system_arch{
+    font-size: 30px;
+    color:rgb(136, 198, 226);
+}
+
+.question_s{
+    border: 2px solid rgb(136, 198, 226); /* 枠線を指定 */
+    background-color: rgb(219, 219, 219);
+    margin-bottom:5px;
+    font-size:25px;
+    margin-left:50px;
+    display:flex;
+}
+
+
+#info_process{
+    font-size: 30px;
+    color:rgb(211, 135, 211);
+}
+
+.question_i{
+    border: 2px solid rgb(211, 135, 211); /* 枠線を指定 */
+    background-color: rgb(219, 219, 219);
+    margin-bottom:5px;
+    font-size:25px;
+    margin-left:50px;
+    display:flex;
+}
+
+#network{
+    font-size: 30px;
+    color:rgb(228, 195, 105);
+}
+
+.question_n{
+    border: 2px solid rgb(228, 195, 105); /* 枠線を指定 */
+    background-color: rgb(219, 219, 219);
+    margin-bottom:5px;
+    font-size:25px;
+    margin-left:50px;
+    display:flex;
+}
+
+#management{
+    font-size: 30px;
+    color:rgb(141, 125, 211);
+}
+
+.question_m{
+    border: 2px solid rgb(141, 125, 211); /* 枠線を指定 */
+    background-color: rgb(219, 219, 219);
+    margin-bottom:5px;
+    font-size:25px;
+    margin-left:50px;
+    display:flex;
+}
+
+#security{
+    font-size: 30px;
+    color:rgb(224, 95, 95);
+}
+
+.question_se{
+    border: 2px solid rgb(224, 95, 95); /* 枠線を指定 */
+    background-color: rgb(219, 219, 219);
+    margin-bottom:5px;
+    font-size:25px;
+    margin-left:50px;
+    display:flex;
+}
+
+.flex {
+    display:flex;
+    margin:40px;
+}
+
+.category{
+    margin-left: 50px;
+}
+
+.perfect{
+    margin-left:10px;
+    color:red;
+}
+
+.notPerfect{
+    margin-left:10px;
+    color:blue;
+}
+
+.unanswered{
+    margin-left:10px;
+    color:green;
+}
+.menu{
+    margin:10px;
+}

@@ -83,15 +83,8 @@ input[type="checkbox"]:checked {
 
     }
 
-.buttons{
-    display:flex;
-
-    margin-left:10px;
-}
-
-.buttons1{
+.buttons2{
     text-align:right;
-    margin-right:10px;
 }
 
   .button:hover {

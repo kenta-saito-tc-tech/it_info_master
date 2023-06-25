@@ -1,0 +1,148 @@
+/* .button {
+    color: #333;
+    background-color: rgb(131, 197, 236);
+    width: 200px;
+    border-radius: 10px;
+}
+
+
+  .button:hover {
+    border-bottom: 2px solid #333;
+    opacity: 0.5;
+  } */
+
+  #title{
+    text-align: center;
+    font-size: 150%;
+    padding: 0.5em 1em;
+    margin: 2em 0;
+    color: #474747;
+    background: whitesmoke;/*背景色*/
+    border-left: double 7px #4ec4d3;/*左線*/
+    border-right: double 7px #4ec4d3;/*右線*/
+
+  }
+
+  .kanpeki {
+    display: inline-block; 
+    padding: 5px 20px; 
+    background-color: rgb(131, 197, 236); 
+    color: #000000; 
+    text-decoration: none; 
+    border: 1px solid #000000; 
+    border-radius: 4px; 
+    text-align: right;
+  }
+
+input[type="checkbox"] {
+  
+    background-color: #eee;
+    border: 1px solid #ccc;
+}
+
+input[type="checkbox"]:checked {
+  
+    background-color: #007bff;
+    border: 1px solid #0056b3;
+}
+
+    .finish {
+      display: inline-block; 
+      padding: 5px 20px; 
+      background-color: rgb(131, 197, 236); 
+      color: #000000;
+      text-decoration: none; 
+      border: 1px solid #000000;
+      border-radius: 4px; 
+      text-align: right;
+      margin-right: 18px;
+
+    }
+
+.buttons2{
+    text-align:left;
+}
+
+  .button:hover {
+    background-color: #cccccc; 
+    opacity: 0.5;
+  }
+
+#question {
+/*   display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50vh;
+  background-color: lightgreen;
+  width: 90%; 
+  margin: 0 auto;
+  font-size:150%; */
+      padding: 0.5em 1em;
+    margin: 2em 0;
+    color: #006400;
+    background: #f5f5f5;
+    border-top: solid 10px #98fb98;
+
+
+  }
+
+#choices {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.correct_box{
+    padding: 0.5em 1em;
+    margin: 2em 0;
+    color: #474747;
+    background: whitesmoke;
+    border-left: double 7px #4ec4d3;
+    border-right: double 7px #4ec4d3;
+}
+.correct_box p {
+    margin: 0;
+    padding: 0;
+}
+
+.answer_text_box{
+    padding: 0.5em 1em;
+    margin: 2em 0;
+    color: #474747;
+    background: whitesmoke;
+    border-left: double 7px #4ec4d3;
+    border-right: double 7px #4ec4d3;
+}
+.answer_text_box p {
+    margin: 0;
+    padding: 0;
+}
+
+hr{
+   border-top: 3px double #ccc;
+}
+
+
+.question {
+    padding: 0.5em 1em;
+    margin: 2em 0;
+    font-weight: bold;
+    color: #6091d3;
+    background: #FFF;
+    border: solid 3px #6091d3;
+    border-radius: 10px;
+}
+.question p {
+    margin: 0;
+    padding: 0;
+}
+
+.looking_check_back {
+    position: absolute;
+    right: 0px;
+    font-size: 55px
+}
+
+button{
+  font-size:23px;
+}

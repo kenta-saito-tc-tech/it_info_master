@@ -44,7 +44,7 @@
     <input
             id="js-questionId"
             type="hidden"
-            th:value="${id}"
+            th:value="${question.id}"
     />
 
     <input
@@ -53,9 +53,15 @@
             th:value="${choiceId}"
     />
 
+    <input
+            id="js-ageId"
+            type="hidden"
+            th:value="${ageId}"
+    />
+
 
     <!--ここにコードを記入-->
-    <h1>一問一答解答画面</h1>
+
     <div class="questionDiv">
 
       <div id="question_title">
@@ -102,8 +108,6 @@
       <input id="kanpeki_check" type="checkbox" name="kanpeki_check" value="check"><br>
       <br>
       <div id="finishBtn" class="button finish">終了</div>
-
-
     </div>
 
     <!--JSの指定-->

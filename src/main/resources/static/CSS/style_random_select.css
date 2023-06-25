@@ -16,7 +16,7 @@
     margin:auto;
     width:800px;
 
-/*          display: inline-block; /* インラインブロック要素として表示 */ */
+
             padding: 5px 20px; /* パディングを指定 */
             background-color: rgb(131, 197, 236); /* 背景色を指定 */
             color: #000000; /* テキスト色を指定 */
@@ -69,26 +69,10 @@
 .button_title{
     text-align: center;
 }
-/*
-.random_mode{
-        display: inline-block; /* インラインブロック要素として表示 */
-        padding: 5px 20px; /* パディングを指定 */
-        background-color: rgb(131, 197, 236); /* 背景色を指定 */
-        color: #000000; /* テキスト色を指定 */
-        text-decoration: none; /* テキストの下線をなしにする */
-        border: 1px solid #000000; /* 枠線を指定 */
-        border-radius: 4px; /* 角を丸くする */
-} */
 
-.mikaeshi_mode{
-            display: inline-block; /* インラインブロック要素として表示 */
-            padding: 5px 20px; /* パディングを指定 */
-            background-color: rgb(131, 197, 236); /* 背景色を指定 */
-            color: #000000; /* テキスト色を指定 */
-            text-decoration: none; /* テキストの下線をなしにする */
-            border: 1px solid #000000; /* 枠線を指定 */
-            border-radius: 4px; /* 角を丸くする */
-}
+
+
+
 
 .group {
     display: flex;
