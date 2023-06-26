@@ -63,8 +63,4 @@ public class PgGameService implements GameService{
         return gameDao.gameAllAgeSelect();
     }
 
-    @Override
-    public List<MyRankRecord> userGameRanking(int userGameId) {
-        return gameDao.userGameRanking(userGameId);
-    }
 }

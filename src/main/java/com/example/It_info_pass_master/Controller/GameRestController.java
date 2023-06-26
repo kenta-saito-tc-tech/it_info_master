@@ -65,10 +65,6 @@ public class GameRestController {
         return gameService.resultList(userGameId);
     }
 
-    @GetMapping ("/game_finish/ranking")
-    public List<MyRankRecord> userGameRanking(@RequestParam(name = "userGameId")int userGameId) {
-        return gameService.userGameRanking(userGameId);
-    }
 
 
 }

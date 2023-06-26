@@ -16,5 +16,4 @@ public interface GameService {
     public QuestionRecord gameDetailQuestion(int questionId);
     public List<ChoiceRecord> gameDetailChoice(int questionId);
     public List<UserAgeRecord> gameAllAgeSelect();
-    public List<MyRankRecord> userGameRanking(int userGameId);
 }
