@@ -83,6 +83,8 @@ public class QuestionController {
         var userId = user.id();
         var checkUser = questionService.findCheckUser(userId, questionId, Integer.parseInt(ageId));
 
+        System.out.println("一問一答出題画面questionId："+questionId);
+
         return "/question_test";
     }
 }

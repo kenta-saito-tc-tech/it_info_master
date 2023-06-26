@@ -30,7 +30,7 @@ document.addEventListener("DOMContentLoaded", () => {
               res.json()
               .then(data => {
                 console.log('perfect_checkの値',data);
-                if(data === 2){
+                if(data === 1){
                     perfectCheck.checked = true;
                 }
               })
@@ -45,7 +45,7 @@ document.addEventListener("DOMContentLoaded", () => {
               res.json()
               .then(data => {
                 console.log('look_checkの値',data);
-                if(data === 2){
+                if(data === 1){
                     lookCheck.checked = true;
                 }
               })

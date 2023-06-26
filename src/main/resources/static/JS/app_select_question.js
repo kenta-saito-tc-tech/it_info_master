@@ -121,10 +121,10 @@ document.addEventListener("DOMContentLoaded", () => {
                                                                     .then(data => {
                                                                         document.getElementById('error_massage').textContent = '';
                                                                         console.log('perfect_check:',data);
-                                                                        if(data === 2){
+                                                                        if(data === 1){
                                                                             perfectCheck.textContent = "完璧";
                                                                             divPerfectCheck.classList.add('perfect');
-                                                                        }else if(data === 1){
+                                                                        }else if(data === 0){
                                                                             perfectCheck.textContent = "完璧チェック未完了";
                                                                             divPerfectCheck.classList.add('notPerfect');
                                                                         }else{
@@ -224,10 +224,10 @@ document.addEventListener("DOMContentLoaded", () => {
                                                                     .then(data => {
                                                                         document.getElementById('error_massage').textContent = '';
                                                                         console.log('perfect_check:',data);
-                                                                        if(data === 2){
+                                                                        if(data === 1){
                                                                             perfectCheck.textContent = "完璧";
                                                                             divPerfectCheck.classList.add('perfect');
-                                                                        }else if(data === 1){
+                                                                        }else if(data === 0){
                                                                             perfectCheck.textContent = "完璧チェック未完了";
                                                                             divPerfectCheck.classList.add('notPerfect');
                                                                         }else{
@@ -326,10 +326,10 @@ document.addEventListener("DOMContentLoaded", () => {
                                                                     .then(data => {
                                                                         document.getElementById('error_massage').textContent = '';
                                                                         console.log('perfect_check:',data);
-                                                                        if(data === 2){
+                                                                        if(data === 1){
                                                                             perfectCheck.textContent = "完璧";
                                                                             divPerfectCheck.classList.add('perfect');
-                                                                        }else if(data === 1){
+                                                                        }else if(data === 0){
                                                                             perfectCheck.textContent = "完璧チェック未完了";
                                                                             divPerfectCheck.classList.add('notPerfect');
                                                                         }else{
@@ -428,10 +428,10 @@ document.addEventListener("DOMContentLoaded", () => {
                                                                     .then(data => {
                                                                         document.getElementById('error_massage').textContent = '';
                                                                         console.log('perfect_check:',data);
-                                                                        if(data === 2){
+                                                                        if(data === 1){
                                                                             perfectCheck.textContent = "完璧";
                                                                             divPerfectCheck.classList.add('perfect');
-                                                                        }else if(data === 1){
+                                                                        }else if(data === 0){
                                                                             perfectCheck.textContent = "完璧チェック未完了";
                                                                             divPerfectCheck.classList.add('notPerfect');
                                                                         }else{
@@ -529,10 +529,10 @@ document.addEventListener("DOMContentLoaded", () => {
                                                                     .then(data => {
                                                                         document.getElementById('error_massage').textContent = '';
                                                                         console.log('perfect_check:',data);
-                                                                        if(data === 2){
+                                                                        if(data === 1){
                                                                             perfectCheck.textContent = "完璧";
                                                                             divPerfectCheck.classList.add('perfect');
-                                                                        }else if(data === 1){
+                                                                        }else if(data === 0){
                                                                             perfectCheck.textContent = "完璧チェック未完了";
                                                                             divPerfectCheck.classList.add('notPerfect');
                                                                         }else{
@@ -630,10 +630,10 @@ document.addEventListener("DOMContentLoaded", () => {
                                                                     .then(data => {
                                                                         document.getElementById('error_massage').textContent = '';
                                                                         console.log('perfect_check:',data);
-                                                                        if(data === 2){
+                                                                        if(data === 1){
                                                                             perfectCheck.textContent = "完璧";
                                                                             divPerfectCheck.classList.add('perfect');
-                                                                        }else if(data === 1){
+                                                                        }else if(data === 0){
                                                                             perfectCheck.textContent = "完璧チェック未完了";
                                                                             divPerfectCheck.classList.add('notPerfect');
                                                                         }else{

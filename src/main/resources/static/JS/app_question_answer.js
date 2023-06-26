@@ -14,7 +14,7 @@ document.addEventListener("DOMContentLoaded", () => {
         } else {
           res.json()
           .then(data => {
-            if(data === 2){
+            if(data === 1){
                 kanpekiCheck.checked = true;
             }
           })
@@ -77,29 +77,36 @@ document.addEventListener("DOMContentLoaded", () => {
       location.href = '/question_select';
     });
 
-    const choice1 = document.getElementById('choice1');
-    const choice2 = document.getElementById('choice2');
-    const choice3 = document.getElementById('choice3');
-    const choice4 = document.getElementById('choice4');
-    console.log('choice1:',choice1);
 
-    if(choice1.value == choiceId){
-      choice1.checked = true;
-      choice1.disabled;
+// 取得した要素をループして処理する例
+    const check = document.getElementById('js-choiceId').value;
+    console.log('あなたの選択肢',check);
+    const yourCheck =  document.getElementById(check);
+    yourCheck.checked = true;
 
-    }else if(choice2.value == choiceId){
-      choice2.checked = true;
-      choice2.disabled;
+    // const choice1 = document.getElementById('choice1');
+    // const choice2 = document.getElementById('choice2');
+    // const choice3 = document.getElementById('choice3');
+    // const choice4 = document.getElementById('choice4');
+    // console.log('choice1:',choice1);
 
-    }else if(choice3.value == choiceId){
-      choice3.checked = true;
-      choice3.disabled;
+    // if(choice1.value == choiceId){
+    //   choice1.checked = true;
+    //   choice1.disabled;
 
-    }else if(choice4.value == choiceId){
-      choice4.checked = true;
-      choice4.disabled;
+    // }else if(choice2.value == choiceId){
+    //   choice2.checked = true;
+    //   choice2.disabled;
 
-    }
+    // }else if(choice3.value == choiceId){
+    //   choice3.checked = true;
+    //   choice3.disabled;
+
+    // }else if(choice4.value == choiceId){
+    //   choice4.checked = true;
+    //   choice4.disabled;
+
+    // }
 
 
 });
