@@ -126,15 +126,4 @@ public class PgGameDao implements GameDao{
         return ageList;
     }
 
-    @Override
-    public List<MyRankRecord> userGameRanking(int userGameId) {
-        MapSqlParameterSource param = new MapSqlParameterSource();
-        param.addValue("userGameId", userGameId);
-        var list = jdbcTemplate.query("select user_id as rank, min(game_score) as game_score from user_game \n" +
-                        "where age_id = (select age_id from user_game where id = :userGameId) and game_score is not null \n" +
-                        "group by user_id \n" +
-                        "order by min(game_score);"
-                , param,new DataClassRowMapper<>(MyRankRecord.class));
-        return list;
-    }
 }
