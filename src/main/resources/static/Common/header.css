@@ -33,7 +33,6 @@
   .dropdown-menu {
     display: none;
     order: 1;
-    position: absolute; /* ポップアップ要素に対して絶対的な位置を指定 */
     right: 0; /* ポップアップ要素を右寄せに配置 */
   }
   
