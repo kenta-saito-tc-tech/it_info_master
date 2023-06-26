@@ -1,3 +1,7 @@
+body{
+  font-size: 150%;
+}
+
 /* .button {
     color: #333;
     background-color: rgb(131, 197, 236);
@@ -17,24 +21,24 @@
 
 
   .back_button {
-    display: inline-block; /* インラインブロック要素として表示 */
-    padding: 5px 20px; /* パディングを指定 */
-    background-color: rgb(131, 197, 236); /* 背景色を指定 */
-    color: #000000; /* テキスト色を指定 */
-    text-decoration: none; /* テキストの下線をなしにする */
-    border: 1px solid #000000; /* 枠線を指定 */
-    border-radius: 4px; /* 角を丸くする */
+    display: inline-block;
+    padding: 5px 20px;
+    background-color: rgb(131, 197, 236);
+    color: #000000;
+    text-decoration: none;
+    border: 1px solid #000000;
+    border-radius: 4px;
 
   }
 
     .next_button {
-      display: inline-block; /* インラインブロック要素として表示 */
-      padding: 5px 20px; /* パディングを指定 */
-      background-color: rgb(131, 197, 236); /* 背景色を指定 */
-      color: #000000; /* テキスト色を指定 */
-      text-decoration: none; /* テキストの下線をなしにする */
-      border: 1px solid #000000; /* 枠線を指定 */
-      border-radius: 4px; /* 角を丸くする */
+      display: inline-block;
+      padding: 5px 20px;
+      background-color: rgb(131, 197, 236);
+      color: #000000;
+      text-decoration: none;
+      border: 1px solid #000000;
+      border-radius: 4px;
 
     }
 
@@ -47,8 +51,8 @@
    }
 
   .button:hover {
-    background-color: #cccccc; /* ホバー時の背景色を指定 */
-    opacity: 0.5; /* 半透明にする値 */
+    background-color: #cccccc;
+    opacity: 0.5;
   }
 
 #question {
@@ -57,8 +61,8 @@
   align-items: center;
   height: 50vh;
   background-color: lightgreen;
-  width: 80%; /* 幅を80%に制限 */
-  margin: 0 auto; /* 左右のマージンを自動で中央揃え */
+  width: 80%;
+  margin: 0 auto;
 
 
   }
@@ -67,4 +71,18 @@
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+button{
+  border: none;
+  background-color:rgb(131, 197, 236);
+  cursor:pointer;
+  font-size:20px;
+}
+.choices{
+  margin-left: 160px;
+}
+
+hr{
+   border-top: 3px double #ccc;
 }
