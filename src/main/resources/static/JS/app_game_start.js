@@ -32,6 +32,13 @@ document.getElementById('next').addEventListener('click', () => {
     var radioButtons = document.getElementsByName("select");
     var countI = 0;
     var memes = document.getElementsByClassName("meme");
+
+    // すべてのラジオボタンのチェックを削除する
+    for (var i = 0; i < radioButtons.length; i++) {
+        radioButtons[i].checked = false;
+    }
+
+
     while(true) {
           radioButtons[countI].value = choiceList[choiceCount].answer;
           memes[countI].textContent = choiceList[choiceCount].choiceText;
@@ -41,7 +48,8 @@ document.getElementById('next').addEventListener('click', () => {
             break;
           }
     }
-
+        // 一番上のラジオボタンにチェックを付ける
+        radioButtons[0].checked = true;
 })
 
 
@@ -84,6 +92,12 @@ function selectDisplay() {
         var radioButtons = document.getElementsByName("select");
         var countI = 0;
         var memes = document.getElementsByClassName("meme");
+
+        // すべてのラジオボタンのチェックを削除する
+        for (var i = 0; i < radioButtons.length; i++) {
+            radioButtons[i].checked = false;
+        }
+
         while(true) {
               radioButtons[countI].value = choiceList[choiceCount].answer;
               memes[countI].textContent = choiceList[choiceCount].choiceText;
@@ -94,6 +108,8 @@ function selectDisplay() {
               }
         }
 
+            // 一番上のラジオボタンにチェックを付ける
+            radioButtons[0].checked = true;
         })
       }
     });
