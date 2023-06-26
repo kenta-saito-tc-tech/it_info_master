@@ -64,4 +64,9 @@ public class PgRandomService implements RandomService{
     public List<ChoiceRecord> findAnswer(Integer questionId) {
         return randomDao.findAnswer(questionId);
     }
+
+    @Override
+    public int findAgeId(int questionId){
+        return randomDao.findAgeId(questionId);
+    }
 }

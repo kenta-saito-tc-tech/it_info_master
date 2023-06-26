@@ -45,6 +45,8 @@ public class QuestionRestController {
 
         var perfectCheck = questionService.selectPerfectCheck(userId, ageId, questionId);
 
+        System.out.println("ControllerからperfectCheck"+perfectCheck);
+
         return perfectCheck;
     }
 

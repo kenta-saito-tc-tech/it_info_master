@@ -45,10 +45,14 @@ public class PgQuestionDao implements QuestionDao{
 
     @Override
     public Integer selectPerfectCheck(int userId, int ageId, int questionId){
+        System.out.println("一問一答解答後の完璧チェックメソッド");
         MapSqlParameterSource param = new MapSqlParameterSource();
         param.addValue("userId", userId);
         param.addValue("ageId", ageId);
         param.addValue("questionId", questionId);
+        System.out.println("一問一答userId："+userId);
+        System.out.println("一問一答ageId："+userId);
+        System.out.println("一問一答questionId："+userId);
 
         String sql = "select perfect_check " +
                 "from user_check " +
@@ -59,6 +63,7 @@ public class PgQuestionDao implements QuestionDao{
                 "AND user_id = :userId ";
 
         var perfectCheck = jdbcTemplate.queryForObject(sql, param, Integer.class);
+        System.out.println("一問一答perfectCheck："+perfectCheck);
 
         return perfectCheck;
     }
@@ -105,7 +110,7 @@ public class PgQuestionDao implements QuestionDao{
         param.addValue("ageId", ageId);
 
         return jdbcTemplate.update("UPDATE user_check " +
-                "SET perfect_check = 2 " +
+                "SET perfect_check = 1 " +
                 "WHERE question_age_id = (SELECT id " +
                 "FROM question_age WHERE question_id = :questionId " +
                 "AND age_id = :ageId) " +
@@ -121,7 +126,7 @@ public class PgQuestionDao implements QuestionDao{
         param.addValue("ageId", ageId);
 
         return jdbcTemplate.update("UPDATE user_check " +
-                "SET perfect_check = 1 " +
+                "SET perfect_check = 0 " +
                 "WHERE question_age_id = (SELECT id " +
                 "FROM question_age WHERE question_id = :questionId " +
                 "AND age_id = :ageId) " +
@@ -187,7 +192,7 @@ public class PgQuestionDao implements QuestionDao{
             param2.addValue("questionAgeId", questionAgeId);
 
             var insertRecord = jdbcTemplate.update("INSERT INTO user_check (user_id, question_age_id, perfect_check, look_check) " +
-                    "VALUES (:userId, :questionAgeId, 1 , 1)", param2);
+                    "VALUES (:userId, :questionAgeId, 0 , 0)", param2);
 
             System.out.print("インサートした件数"+insertRecord);
         }

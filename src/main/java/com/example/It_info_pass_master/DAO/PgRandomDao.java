@@ -72,10 +72,9 @@ public class PgRandomDao implements RandomDao{
            String query = "select * " +
                    "from questions " +
                    "where id IN (select question_id " +
-                   "from user_check " +
-                   " join question_age " +
-                   "on question_age_id = question_age.question_id " +
-                   "where user_id = :userId " +
+                   "from question_age " +
+                   "WHERE id IN (select question_age_id from user_check where user_id = :userId AND perfect_check = 0 OR user_id = :userId AND perfect_check = 1) " +
+                   "OR id NOT IN (select question_age_id from user_check where user_id = :userId AND perfect_check = 1 OR user_id = :userId AND perfect_check = 0) " +
                    "AND age_id = :ageId) " +
                    "AND category_id = ANY(:categories) " +
                    "ORDER BY RANDOM() " +
@@ -86,14 +85,12 @@ public class PgRandomDao implements RandomDao{
            return list.isEmpty() ? null : list.get(0);
 
        }else if(perfect == 0){
-            String query = "select * " +
+            String query = " select * " +
                     "from questions " +
                     "where id IN (select question_id " +
-                    "from user_check " +
-                    " join question_age " +
-                    "on question_age_id = question_age.question_id " +
-                    "where user_id = :userId " +
-                    "AND perfect_check = 1 " +
+                    "from question_age " +
+                    "WHERE id IN (select question_age_id from user_check where user_id = :userId AND perfect_check = 1) " +
+                    "OR id NOT IN (select question_age_id from user_check where user_id = :userId AND perfect_check = 1 OR user_id = :userId AND perfect_check = 0) " +
                     "AND age_id = :ageId) " +
                     "AND category_id = ANY(:categories) " +
                     "ORDER BY RANDOM() " +
@@ -241,7 +238,7 @@ public class PgRandomDao implements RandomDao{
                         "JOIN question_age ON question.id = question_age.question_id\n" +
                         "JOIN age ON question_age.age_id = age.id\n" +
                         "JOIN user_check ON question.id = user_check.question_age_id\n" +
-                        "WHERE user_check.look_check = 2\n" +
+                        "WHERE user_check.look_check = 1\n" +
                         "AND user_check.user_id = :userId;", param, new DataClassRowMapper<>(LookCheckRecord.class));
 //        System.out.println("DAOから確認" + resultSet);
         return resultSet;
@@ -267,6 +264,18 @@ public class PgRandomDao implements RandomDao{
         param.addValue("questionId", questionId);
         List<ChoiceRecord> resultSet = jdbcTemplate.query("SELECT * FROM choice WHERE answer = true AND question_id = :questionId", param, new DataClassRowMapper<>(ChoiceRecord.class));
         return resultSet;
+    }
+
+    @Override
+    public int findAgeId(int questionId) {
+        String sql = "SELECT age_id " +
+                "FROM question_age " +
+                "WHERE question_id = :question_id";
+        MapSqlParameterSource param = new MapSqlParameterSource();
+        param.addValue("question_id", questionId);
+
+        var answer = jdbcTemplate.queryForObject(sql, param, Integer.class);
+        return answer;
     }
 
 

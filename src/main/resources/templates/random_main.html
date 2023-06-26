@@ -82,23 +82,38 @@
             th:value="${ageId}"
     />
 
+    <input
+            id="js-choice_id"
+            type="hidden"
+            th:value="${choices[0].id}"
+    />
+
+
+
   <div id="choices">
     <!--選択肢-->
-    <div>
-      <label><input id="choice1" type="radio" th:name="selectedItem" th:value="${choices[0].id}" />
-        <span th:text="${choices[0].choiceText}"></span></label></div>
+<!--    <div>-->
+<!--      <label><input id="choice1" type="radio" th:name="selectedItem" th:value="${choices[0].id}" />-->
+<!--        <span th:text="${choices[0].choiceText}"></span></label></div>-->
 
-    <div>
-      <label><input id="choice2" type="radio" th:name="selectedItem" th:value="${choices[1].id}" />
-        <span th:text="${choices[1].choiceText}"></span></label></div>
+<!--    <div>-->
+<!--      <label><input id="choice2" type="radio" th:name="selectedItem" th:value="${choices[1].id}" />-->
+<!--        <span th:text="${choices[1].choiceText}"></span></label></div>-->
 
-    <div>
-      <label><input id="choice3" type="radio" th:name="selectedItem" th:value="${choices[2].id}" />
-        <span th:text="${choices[2].choiceText}"></span></label></div>
+<!--    <div>-->
+<!--      <label><input id="choice3" type="radio" th:name="selectedItem" th:value="${choices[2].id}" />-->
+<!--        <span th:text="${choices[2].choiceText}"></span></label></div>-->
 
-    <div>
-      <label><input id="choice4" type="radio" th:name="selectedItem" th:value="${choices[3].id}" />
-        <span th:text="${choices[3].choiceText}"></span></label></div>
+<!--    <div>-->
+<!--      <label><input id="choice4" type="radio" th:name="selectedItem" th:value="${choices[3].id}" />-->
+<!--        <span th:text="${choices[3].choiceText}"></span></label></div>-->
+
+              <div th:each="choice : ${choices}">
+                  <label>
+                      <input th:id="${choice.id}" type="radio" th:name="selectedItem" th:value="${choice.id}"/>
+                      <span th:text="${choice.choiceText}"></span>
+                  </label>
+              </div>
   </div><br>
 
   <div class="buttons2">
@@ -108,8 +123,10 @@
 
   <!--JSの指定-->
   <script>
-    const defaultCheck =  document.getElementById('choice1');
-    defaultCheck.checked = true;
+    const defaultCheck = document.getElementById('js-choice_id').value;
+    console.log();
+    const firstCheck =  document.getElementById(defaultCheck);
+    firstCheck.checked = true;
 
 
 </script>

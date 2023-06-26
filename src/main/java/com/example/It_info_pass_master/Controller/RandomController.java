@@ -98,16 +98,16 @@ public class RandomController {
 
         int lookCheck;
         if(lookingBackCheck != null && lookingBackCheck.equals("true")){
-            lookCheck =2;
-        }else {
             lookCheck =1;
+        }else {
+            lookCheck =0;
         }
 
         int perfectCheck1;
         if(perfectCheck != null && perfectCheck.equals("true")){
-            perfectCheck1 =2;
-        }else {
             perfectCheck1 =1;
+        }else {
+            perfectCheck1 =0;
         }
 
         //user_check
@@ -123,6 +123,9 @@ public class RandomController {
 
 
         var question = randomService.selectRandom(ageId, categories, perfect, userId);
+        if(question == null){
+            return "/random_select";
+        }
         var choices = questionService.findChoices(question.id());
         var checkUser = questionService.findCheckUser(userId, question.id(), ageId);
 
@@ -206,12 +209,14 @@ public class RandomController {
         System.out.println("controllerから確認" + checkQuestionId);
         System.out.println("controllerから確認チェックボックス" + lookingBackCheck);
 
-        int ageId = 1;
-        var userId = 1;
+        var ageId = randomService.findAgeId(checkQuestionId);
+
+        var user = (UserRecord) session.getAttribute("user");
+        var userId = user.id();
 
         int check;
         if (lookingBackCheck == null) {
-            check = 1;
+            check = 0;
             var checkTest = randomService.updateLookingBackCheck(ageId, checkQuestionId, userId, check);
         } //else {
 //            check = 2;

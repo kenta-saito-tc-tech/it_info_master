@@ -28,4 +28,6 @@ public interface RandomDao {
 
     //正解の選択肢を取得するメソッド
     List<ChoiceRecord> findAnswer(Integer questionId);
+
+    int findAgeId(int questionId);
 }
