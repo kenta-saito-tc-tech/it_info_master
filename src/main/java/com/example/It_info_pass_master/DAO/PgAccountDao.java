@@ -75,9 +75,21 @@ public class PgAccountDao implements AccountDao {
     public List<RankingRecord> findTopThree(String age) {
         MapSqlParameterSource param = new MapSqlParameterSource();
         param.addValue("ageNum", age);
-        return jdbcTemplate.query("SELECT u.name, ug.game_score FROM users u JOIN user_game ug ON u.id = ug.user_id JOIN age a ON ug.age_id = a.id WHERE a.age = :ageNum ORDER BY ug.game_score ASC LIMIT 3", param,
-                new DataClassRowMapper<>(RankingRecord.class));
+
+        return jdbcTemplate.query(
+                "SELECT u.name, MIN(ug.game_score) AS game_score " +
+                        "FROM users u " +
+                        "JOIN user_game ug ON u.id = ug.user_id " +
+                        "JOIN age a ON ug.age_id = a.id " +
+                        "WHERE a.age = :ageNum " +
+                        "GROUP BY u.name " +
+                        "ORDER BY game_score ASC " +
+                        "LIMIT 3",
+                param,
+                new DataClassRowMapper<>(RankingRecord.class)
+        );
     }
+
 
     /**
      * 年代の全取得
