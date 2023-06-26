@@ -59,9 +59,7 @@
       <button type="submit"><span th:text="${checkQuestion.questionName}"></span><!--$[[questionName]]--></button>
     </div>
 
-    <div class="looking_check_back">
-      <input type="checkbox" name="looking_check_back" value="check" checked>🌟
-    </div>
+
 
     <input type="hidden" name="checkQuestionId" th:value="${checkQuestion.id}"/>
     <input type="hidden" name="checkQuestionText" th:value="${checkQuestion.questionText}"/>
@@ -77,7 +75,7 @@
     <a href="/random_select">戻る</a>
   </div>
 <div class="button back_to_random_select">
-  <a href="/random_select">メニューに戻る</a>
+  <a href="/menu">メニューに戻る</a>
 </div>
 </div>
 

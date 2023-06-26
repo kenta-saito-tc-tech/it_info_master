@@ -89,7 +89,7 @@ public class PgRandomDao implements RandomDao{
                     "from questions " +
                     "where id IN (select question_id " +
                     "from question_age " +
-                    "WHERE id IN (select question_age_id from user_check where user_id = :userId AND perfect_check = 1) " +
+                    "WHERE id IN (select question_age_id from user_check where user_id = :userId AND perfect_check = 0) " +
                     "OR id NOT IN (select question_age_id from user_check where user_id = :userId AND perfect_check = 1 OR user_id = :userId AND perfect_check = 0) " +
                     "AND age_id = :ageId) " +
                     "AND category_id = ANY(:categories) " +
