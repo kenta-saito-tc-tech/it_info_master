@@ -31,10 +31,19 @@ drop table user_game;
 --user_game_detailテーブルを消去
 drop table user_game_detail;
 
+--usersテーブルを消去
+drop table users;
 
 
 
-
+--usersテーブルを作成
+CREATE TABLE users (
+  id SERIAL PRIMARY KEY,
+  login_id VARCHAR(255) UNIQUE NOT NULL,
+  password VARCHAR(255) NOT NULL,
+  name VARCHAR(255) NOT NULL,
+  role VARCHAR(255) NOT NULL
+);
 
 --ageテーブルを作成
 CREATE TABLE age (
@@ -128,7 +137,12 @@ CREATE TABLE user_game_detail (
 
 
 
-
+INSERT INTO users (login_id, password, name, role)
+VALUES
+    ('id', 'pass', '花子', 'user'),
+    ('id1', 'pass1', '太郎', 'user'),
+    ('id2', 'pass2', '次郎', 'user'),
+    ('admin', 'admin', '管理者', 'admin');
 
 --ageテーブルにデータを追加
 INSERT INTO age (age)
@@ -145,6 +159,46 @@ VALUES
 ('ネットワーク'),
 ('マネジメント'),
 ('セキュリティ');
+
+--2023年 user_check
+INSERT INTO user_check (user_id, question_age_id, perfect_check, look_check)
+VALUES
+  (1, 1, 1, 0),
+  (1, 2, 1, 0),
+  (1, 3, 1, 0),
+  (1, 4, 1, 0),
+  (1, 5, 1, 0),
+  (1, 11, 1, 0),
+  (1, 12, 1, 0),
+  (1, 21, 1, 0),
+  (1, 22, 1, 0),
+  (1, 23, 1, 0),
+  (1, 31, 1, 0),
+  (1, 32, 1, 0),
+  (1, 33, 1, 0),
+  (1, 34, 1, 0),
+  (1, 35, 1, 0),
+  (1, 36, 1, 0),
+  (1, 37, 1, 0);
+
+--2024年 user_check
+INSERT INTO user_check (user_id, question_age_id, perfect_check, look_check)
+VALUES
+  (1, 61, 1, 0),
+  (1, 62, 1, 0),
+  (1, 71, 1, 0),
+  (1, 72, 1, 0),
+  (1, 73, 1, 0),
+  (1, 74, 1, 0),
+  (1, 75, 1, 0),
+  (1, 81, 1, 0),
+  (1, 92, 1, 0),
+  (1, 101, 1, 0),
+  (1,102, 1, 0),
+  (1,103, 1, 0),
+  (1, 104, 1, 0),
+  (1, 105, 1, 0);
+
 
 --questionsテーブルにデータを追加（データベース）
 INSERT INTO questions (question_name, question_text, answer_text, category_id)
@@ -949,6 +1003,11 @@ VALUES
 ('情報システムに許容される最大停止時間を決定する。', true, 120);
 
 
+INSERT INTO inquiry (inquiry_title, inquiry_text, user_id, inquiry_answer, check_inquiry, read_inquiry)
+VALUES
+  ('バグの報告', '2023年の問題1にバグがあります', 1, null, 0, 0),
+  ('バグの報告', '2023年の問題1にバグがあります', 2, null, 0, 0),
+  ('バグの報告', '2023年の問題1にバグがあります', 3, null, 0, 0);
 
 --question_ageテーブルにデータを追加
 INSERT INTO question_age(age_id, question_id)
@@ -1139,66 +1198,14 @@ VALUES
 (1, 107),
 (1, 108),
 (1, 109),
-(1, 110),
---2024年
-(2, 11),
-(2, 12),
-(2, 13),
-(2, 14),
-(2, 15),
-(2, 16),
-(2, 17),
-(2, 18),
-(2, 19),
-(2, 20),
-(2, 31),
-(2, 32),
-(2, 33),
-(2, 34),
-(2, 35),
-(2, 36),
-(2, 37),
-(2, 38),
-(2, 39),
-(2, 40),
-(2, 51),
-(2, 52),
-(2, 53),
-(2, 54),
-(2, 55),
-(2, 56),
-(2, 57),
-(2, 58),
-(2, 59),
-(2, 60),
-(2, 71),
-(2, 72),
-(2, 73),
-(2, 74),
-(2, 75),
-(2, 76),
-(2, 77),
-(2, 78),
-(2, 79),
-(2, 80),
-(2, 91),
-(2, 92),
-(2, 93),
-(2, 94),
-(2, 95),
-(2, 96),
-(2, 97),
-(2, 98),
-(2, 99),
-(2, 100),
-(2, 111),
-(2, 112),
-(2, 113),
-(2, 114),
-(2, 115),
-(2, 116),
-(2, 117),
-(2, 118),
-(2, 119),
-(2, 120);
+(1, 110);
 
+--user_gameテーブルに追加
+INSERT INTO user_game (game_date, user_id, age_id, game_score)
+VALUES
+    (now(), 1, 1, 300),
+    (now(), 2, 1, 400),
+    (now(), 3, 1, 500),
+    (now(), 1, 2, 500),
+    (now(), 2, 2, 400),
+    (now(), 3, 2, 300);
