@@ -236,15 +236,12 @@ ageForm.addEventListener('submit', (event) => {
     })
       .then((response) => {
         if (response.ok) {
-          console.log('年代が追加されました');
+          window.alert('年代が追加されました');
           // 必要に応じて成功時の処理を追加
         } else {
-          console.log('年代の追加に失敗しました');
+          window.alert('年代の追加に失敗しました');
           // 必要に応じて失敗時の処理を追加
         }
+        location.reload(); // 画面リロード
       })
-      .catch((error) => {
-        console.log('エラーが発生しました', error);
-        // 必要に応じてエラー時の処理を追加
-      });
   }
