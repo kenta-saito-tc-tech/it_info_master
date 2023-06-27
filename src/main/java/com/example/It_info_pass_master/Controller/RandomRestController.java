@@ -58,6 +58,8 @@ public class RandomRestController {
     public int random_session(@RequestBody SelectRandomRecord selectRandomRecord) {
         System.out.println("cont AgeCategories："+ selectRandomRecord);
 
+        System.out.println("セッションに登録する情報："+selectRandomRecord);
+
         return randomService.sessionRandom(selectRandomRecord);
     }
 

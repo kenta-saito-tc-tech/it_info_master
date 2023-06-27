@@ -176,6 +176,7 @@ public class PgQuestionDao implements QuestionDao{
             return resultSet;
 
         } else {
+            System.out.println("user_checkなし");
             //MapSqlParameterSource param1 = new MapSqlParameterSource();
 
             var questionAgeId = jdbcTemplate.queryForObject("SELECT id FROM question_age WHERE question_id = :questionId AND age_id = :ageId", param, Integer.class);

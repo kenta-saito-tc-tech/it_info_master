@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8"/>
   <meta
           name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
   />
-  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
   <!-- サイトの説明欄 -->
   <meta
           name="ITインフォパスマスター"
@@ -14,8 +14,8 @@
   />
   <!--CSSリンク-->
   <!--Webフォントのリンク３つ-->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
   <link
           href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap"
           rel="stylesheet"
@@ -27,7 +27,7 @@
   <link rel="stylesheet" href="/CSS/style_random_main.css"/>
 
   <!--favicon-->
-  <link rel="icon" type="image/x-icon" href="/image/exam.png" />
+  <link rel="icon" type="image/x-icon" href="/image/exam.png"/>
   <title>ITインフォパスマスター</title>
 </head>
 <body>
@@ -89,36 +89,41 @@
     />
 
 
+    <div clss="choices">
+      <div id="choices">
+        <!--選択肢-->
+        <!--    <div>-->
+        <!--      <label><input id="choice1" type="radio" th:name="selectedItem" th:value="${choices[0].id}" />-->
+        <!--        <span th:text="${choices[0].choiceText}"></span></label></div>-->
 
-  <div id="choices">
-    <!--選択肢-->
-<!--    <div>-->
-<!--      <label><input id="choice1" type="radio" th:name="selectedItem" th:value="${choices[0].id}" />-->
-<!--        <span th:text="${choices[0].choiceText}"></span></label></div>-->
+        <!--    <div>-->
+        <!--      <label><input id="choice2" type="radio" th:name="selectedItem" th:value="${choices[1].id}" />-->
+        <!--        <span th:text="${choices[1].choiceText}"></span></label></div>-->
 
-<!--    <div>-->
-<!--      <label><input id="choice2" type="radio" th:name="selectedItem" th:value="${choices[1].id}" />-->
-<!--        <span th:text="${choices[1].choiceText}"></span></label></div>-->
+        <!--    <div>-->
+        <!--      <label><input id="choice3" type="radio" th:name="selectedItem" th:value="${choices[2].id}" />-->
+        <!--        <span th:text="${choices[2].choiceText}"></span></label></div>-->
 
-<!--    <div>-->
-<!--      <label><input id="choice3" type="radio" th:name="selectedItem" th:value="${choices[2].id}" />-->
-<!--        <span th:text="${choices[2].choiceText}"></span></label></div>-->
+        <!--    <div>-->
+        <!--      <label><input id="choice4" type="radio" th:name="selectedItem" th:value="${choices[3].id}" />-->
+        <!--        <span th:text="${choices[3].choiceText}"></span></label></div>-->
 
-<!--    <div>-->
-<!--      <label><input id="choice4" type="radio" th:name="selectedItem" th:value="${choices[3].id}" />-->
-<!--        <span th:text="${choices[3].choiceText}"></span></label></div>-->
+        <div th:each="choice : ${choices}">
+          <label>
+            <input th:id="${choice.id}" type="radio" th:name="selectedItem" th:value="${choice.id}"/>
+            <span th:text="${choice.choiceText}"></span>
+          </label>
+        </div>
+      </div>
+      <br>
+    </div>
 
-              <div th:each="choice : ${choices}">
-                  <label>
-                      <input th:id="${choice.id}" type="radio" th:name="selectedItem" th:value="${choice.id}"/>
-                      <span th:text="${choice.choiceText}"></span>
-                  </label>
-              </div>
-  </div><br>
+    <br>
+    <hr>
 
-  <div class="buttons2">
-    <button type="submit" id="next_btn" class="button next">次へ</button>
-  </div>
+    <div class="buttons2">
+      <button type="submit" id="next_btn" class="button next">次へ</button>
+    </div>
   </form>
 
   <!--JSの指定-->
@@ -129,6 +134,7 @@
     firstCheck.checked = true;
 
 
-</script>
+
+    </script>
 </body>
 </html>

@@ -17,8 +17,8 @@ document.addEventListener("DOMContentLoaded", () => {
                 categories.push(document.category_form.category[i].value);                    
               }             
           }      
-          if(ageId === 0){
-            flag = true;
+          if(ageId == 0){
+            flag = false;
           }
           // 何も選択されていない場合の処理   
           if (!flag) {
@@ -184,7 +184,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     const selectAge = document.getElementById('js_select_age');
                     selectAge.appendChild(selectElement);
 
-                    let ageId = '1';
+                    let ageId = '0';
             
                     selectElement.addEventListener('change', function () {
                         

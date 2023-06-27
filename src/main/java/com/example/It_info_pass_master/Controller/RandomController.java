@@ -70,6 +70,11 @@ public class RandomController {
     public String randomAnswerTest(@RequestParam(name = "selectedItem") int choiceId,
                                    @RequestParam(name = "questionId") int questionId,
                                    @RequestParam(name = "ageId")int ageId, Model model) {
+
+        if (session.getAttribute("user") == null) { // セッションがない場合
+            return "redirect:/index";
+        }
+
         System.out.println("########################random_answer################################");
         System.out.println("questionId:" + questionId);
         System.out.println("choiceId:"+ choiceId);
@@ -218,7 +223,13 @@ public class RandomController {
         if (lookingBackCheck == null) {
             check = 0;
             var checkTest = randomService.updateLookingBackCheck(ageId, checkQuestionId, userId, check);
-        } //else {
+        }else{
+            check = 1;
+        }
+        System.out.println("ageId:"+ageId);
+        System.out.println("見返しチェック："+check);
+        System.out.println("questionId:"+checkQuestionId);
+        //else {
 //            check = 2;
 //        }
 //        var checkTest = randomService.updateLookingBackCheck(ageId, checkQuestionId, userId, check);
