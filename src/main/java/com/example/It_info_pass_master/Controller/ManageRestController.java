@@ -114,4 +114,19 @@ public class ManageRestController {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
         }
     }
+
+    @PostMapping("/api/adminAddAge")
+    public ResponseEntity<String> adminAddAge(@RequestBody Map<String, Integer> requestBody) {
+        try {
+            Integer age = requestBody.get("age");
+            // 年代を追加する処理を実行
+            manageService.adminAddAge(age);
+            return new ResponseEntity<>("POST request processed", HttpStatus.OK);
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
+        }
+    }
+
+
 }

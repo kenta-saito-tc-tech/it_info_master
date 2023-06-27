@@ -41,8 +41,10 @@ function resultList() {
           res.json()
           .then(data => {
           const listElement = document.createElement('div');
+          listElement.classList.add('list-container');  // 追加
                 data.forEach((list) => {
                 const divElement = document.createElement('div');
+                  divElement.classList.add('list-item');  // 追加
                 const marginElement = document.createElement('span');
                 const spanElement = document.createElement('span');
                 const buttonElement = document.createElement('button');

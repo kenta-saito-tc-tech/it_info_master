@@ -17,5 +17,5 @@ public interface ManageDao {
     public int adminSetQuestion(List<AdminQuestionRecord> setQuestion);
     public List<AdminQuestionRecord> adminCheckGameAge(Integer age);
     public int adminSetGameQuestion(List<AdminQuestionRecord> setQuestion);
-
+    public Integer adminAddAge(Integer age);
 }

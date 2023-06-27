@@ -29,7 +29,7 @@
     <link rel="icon" type="image/x-icon" href="./image/exam.png" />
     <title>ITインフォパスマスター</title>
   </head>
-  <body class="style">
+  <body class="style" style="text-align:center">
     <!--ヘッダーの指定-->
     <th:block th:insert="./Header/main_header"></th:block>
   
@@ -42,7 +42,7 @@
         <h1>終了！！</h1>
       </div>
 
-      <div>
+      <div class="collar">
         <!-- 問題画面から受け取ったタイムデータ＋間違えた問題週プラスされたタイムを表示 -->
         <p id="result1">タイム：<span id="minutes"></span> 分 <span id="seconds"></span> 秒 </p>
         <p id="result2">（間違えた問題数：<span id="falseCount"></span>問 × 10秒　　→　　＋<span id="addTime"></span>秒！！）</p>

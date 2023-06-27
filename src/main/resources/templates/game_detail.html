@@ -36,27 +36,29 @@
     <!--ここにコードを記入-->
     <div style="text-align:center">
       <div class="frame">
-        <p>タイトル：　<span th:text="${gameQ.questionName}"></span></p>
+        <p style="color: blue; font-weight: bold">タイトル：</p>
+        <p><span th:text="${gameQ.questionName}"></span></p>
       </div>
 
       <div class="frame">
-        <p>問題文：</p>
+        <p style="color: purple; font-weight: bold">問題文：</p>
         <p th:text="${gameQ.questionText}"></p>
       </div>
 
       <div class="frame">
-        <p>選択肢</p>
+        <p style="color: orange; font-weight: bold">選択肢：</p>
         <div id="choice" th:each="gameC : ${gameC}">
           <p th:text="${gameC.choiceText}"></p>
         </div>
       </div>
 
       <div class="frame">
-        <p>回答：　<span th:text="${answer}"></span></p>
+        <p style="color: red; font-weight: bold;">回答：</p>
+        <p><span th:text="${answer}"></span></p>
       </div>
 
-      <div class="frame">
-        <p>解説</p>
+      <div class="frame; font-weight: bold">
+        <p style="color: green;">解説：</p>
         <p th:text="${gameQ.answerText}"></p>
       </div>
 

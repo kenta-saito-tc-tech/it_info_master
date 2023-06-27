@@ -45,7 +45,12 @@ body {
     font-size: 15px;
     width: 600px;
     height: 150px;
+    overflow: auto;  /* スクロールバーを表示するように設定 */
+}
 
+.scrollable-area {
+  width: 600px;    /* スクロール可能な領域の幅 */
+  height: 200px;   /* スクロール可能な領域の高さ */
 }
 
 button {

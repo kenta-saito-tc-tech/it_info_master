@@ -55,4 +55,9 @@ public class PgManageService implements ManageService{
     public int adminSetGameQuestion(List<AdminQuestionRecord> setQuestion) {
         return manageDao.adminSetGameQuestion(setQuestion);
     }
+    @Override
+    public Integer adminAddAge(Integer age) {
+        return manageDao.adminAddAge(age);
+    }
+
 }

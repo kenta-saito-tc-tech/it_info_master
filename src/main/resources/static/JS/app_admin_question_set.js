@@ -208,3 +208,43 @@ createButton.addEventListener('click', () => {
         location.reload();
     })
 })
+
+// 年代追加
+const ageForm = document.getElementById('ageForm');
+
+ageForm.addEventListener('submit', (event) => {
+    event.preventDefault(); // フォームのデフォルトの送信動作をキャンセル
+
+
+  const ageInput = document.getElementById('ageInput');
+  const age = ageInput.value;
+
+      // データをサーバーに送信する処理
+      sendDataToServer(age);
+  });
+
+  function sendDataToServer(age) {
+    const url = '/api/adminAddAge';
+    const data = { age: age };
+
+    fetch(url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    })
+      .then((response) => {
+        if (response.ok) {
+          console.log('年代が追加されました');
+          // 必要に応じて成功時の処理を追加
+        } else {
+          console.log('年代の追加に失敗しました');
+          // 必要に応じて失敗時の処理を追加
+        }
+      })
+      .catch((error) => {
+        console.log('エラーが発生しました', error);
+        // 必要に応じてエラー時の処理を追加
+      });
+  }

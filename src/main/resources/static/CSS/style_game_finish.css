@@ -1,9 +1,4 @@
-.style {
-    background-image: url(/image/道場.jpeg);
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-}
+
 
 .margin {
     padding: 10px;
@@ -20,3 +15,10 @@
 .i {
     padding: 10px;
 }
+
+.list-container {
+  display: grid;
+  justify-items: start;
+  justify-content: center;
+}
+
