@@ -136,6 +136,10 @@ public class AccountRestController {
         try {
             int count = accountService.userNameUpdate(userRecord);
             if (count == 1) {
+                //セッションを再度登録
+                UserRecord user = accountService.checkIdExist(userRecord.loginId());
+                session.setAttribute("user", user);
+
                 return new ResponseEntity<>("PUT request processed", HttpStatus.OK);
             } else {
                 return new ResponseEntity<>("PUT request failed", HttpStatus.BAD_REQUEST);
@@ -157,6 +161,10 @@ public class AccountRestController {
         try {
             int count = accountService.userPassUpdate(userRecord);
             if (count == 1) {
+                //セッションを再度登録
+                UserRecord user = accountService.checkIdExist(userRecord.loginId());
+                session.setAttribute("user", user);
+
                 return new ResponseEntity<>("PUT request processed", HttpStatus.OK);
             } else {
                 return new ResponseEntity<>("PUT request failed", HttpStatus.BAD_REQUEST);
