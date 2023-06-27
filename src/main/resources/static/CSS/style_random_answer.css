@@ -48,7 +48,7 @@
   }
 
   .kanpeki {
-    display: inline-block; /* インラインブロック要素として表示 */
+    display: block; /* インラインブロック要素として表示 */
     padding: 5px 20px; /* パディングを指定 */
     background-color: rgb(131, 197, 236); /* 背景色を指定 */
     color: #000000; /* テキスト色を指定 */
@@ -84,14 +84,14 @@ input[type="checkbox"]:checked {
     }
 
 .buttons{
-    display:flex;
-
-    margin-left:10px;
+  text-align:left;
+  margin-left:75px;
 }
 
 .buttons1{
-    text-align:right;
+    text-align:left;
     margin-right:10px;
+    margin-left:75px;
 }
 
   .button:hover {
@@ -119,4 +119,8 @@ input[type="checkbox"]:checked {
   margin-left: 85px;
   justify-content: center;
   align-items: center;
+}
+
+hr{
+   border-top: 3px double #ccc;
 }

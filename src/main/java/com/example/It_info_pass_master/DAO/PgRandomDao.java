@@ -179,7 +179,6 @@ public class PgRandomDao implements RandomDao{
                 "FROM question_age " +
                 "WHERE age_id = :ageId " +
                 "AND question_id = :questionId";
-        param.addValue("ageId", ageId);
 
         var questionAgeId = jdbcTemplate.queryForObject(sql, param, Integer.class);
         param.addValue("questionAgeId", questionAgeId);
@@ -237,7 +236,7 @@ public class PgRandomDao implements RandomDao{
                         "JOIN category ON question.category_id = category.id\n" +
                         "JOIN question_age ON question.id = question_age.question_id\n" +
                         "JOIN age ON question_age.age_id = age.id\n" +
-                        "JOIN user_check ON question.id = user_check.question_age_id\n" +
+                        "JOIN user_check ON question_age.id = user_check.question_age_id\n" +
                         "WHERE user_check.look_check = 1\n" +
                         "AND user_check.user_id = :userId;", param, new DataClassRowMapper<>(LookCheckRecord.class));
 //        System.out.println("DAOから確認" + resultSet);

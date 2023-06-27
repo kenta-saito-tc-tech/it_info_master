@@ -1,3 +1,7 @@
+body{
+  font-size:130%;
+}
+
 /* .button {
     color: #333;
     background-color: rgb(131, 197, 236);
@@ -11,64 +15,10 @@
     opacity: 0.5;
   } */
 
-  .answer_frame_parent {
-    margin-left: auto; margin-right: auto;
-  }
-
-  .answer_frame {
-    margin-left: auto; margin-right: auto;
-    margin-top:20px;
-    width:80%;
-    border: 1px solid #000000; /* 枠線を指定 */
-    background-color: #CCFFFF	; /* テキスト色を指定 */
-  }
-
-  .answer_judge{
-    text-align:center;
-  }
-
-  .your_answer{
-    text-align:center;
-  }
-
-  .correct{
-    color:red;
-    font-size: 30px
-  }
-
-  .incorrect{
-    color:blue;
-    font-size: 30px
-  }
-
-
-
   #question_title{
   text-align: center;
+  margin-top:30px;
   }
-
-  .kanpeki {
-    display: inline-block; /* インラインブロック要素として表示 */
-    padding: 5px 20px; /* パディングを指定 */
-    background-color: rgb(131, 197, 236); /* 背景色を指定 */
-    color: #000000; /* テキスト色を指定 */
-    text-decoration: none; /* テキストの下線をなしにする */
-    border: 1px solid #000000; /* 枠線を指定 */
-    border-radius: 4px; /* 角を丸くする */
-    text-align: right;
-  }
-
-input[type="checkbox"] {
-  /* チェックボックスのスタイルを設定 */
-    background-color: #eee;
-    border: 1px solid #ccc;
-}
-
-input[type="checkbox"]:checked {
-  /* チェックされた状態のスタイルを設定 */
-    background-color: #007bff;
-    border: 1px solid #0056b3;
-}
 
     .next {
       display: inline-block; /* インラインブロック要素として表示 */
@@ -80,7 +30,7 @@ input[type="checkbox"]:checked {
       border-radius: 4px; /* 角を丸くする */
       text-align: right;
       margin-right: 25px;
-
+      font-size:20px;
     }
 
 .buttons2{
@@ -112,4 +62,10 @@ input[type="checkbox"]:checked {
   margin-left: 85px;
   justify-content: center;
   align-items: center;
+  margin-left: 170px;
+
+}
+
+hr{
+   border-top: 3px double #ccc;
 }

@@ -71,34 +71,38 @@
         />
 
         <input
-            id="js-choice_id"
-            type="hidden"
-            th:value="${choices[0].id}"
+                id="js-choice_id"
+                type="hidden"
+                th:value="${choices[0].id}"
         />
 
-<!--        <div>-->
-<!--            <label><input id="choice1" type="radio" th:name="selectedItem" th:value="${choices[0].id}"/>-->
-<!--                <span th:text="${choices[0].choiceText}"></span></label></div>-->
+        <!--        <div>-->
+        <!--            <label><input id="choice1" type="radio" th:name="selectedItem" th:value="${choices[0].id}"/>-->
+        <!--                <span th:text="${choices[0].choiceText}"></span></label></div>-->
 
-<!--        <div>-->
-<!--            <label><input id="choice2" type="radio" th:name="selectedItem" th:value="${choices[1].id}"/>-->
-<!--                <span th:text="${choices[1].choiceText}"></span></label></div>-->
+        <!--        <div>-->
+        <!--            <label><input id="choice2" type="radio" th:name="selectedItem" th:value="${choices[1].id}"/>-->
+        <!--                <span th:text="${choices[1].choiceText}"></span></label></div>-->
 
-<!--        <div>-->
-<!--            <label><input id="choice3" type="radio" th:name="selectedItem" th:value="${choices[2].id}"/>-->
-<!--                <span th:text="${choices[2].choiceText}"></span></label></div>-->
+        <!--        <div>-->
+        <!--            <label><input id="choice3" type="radio" th:name="selectedItem" th:value="${choices[2].id}"/>-->
+        <!--                <span th:text="${choices[2].choiceText}"></span></label></div>-->
 
-<!--        <div>-->
-<!--            <label><input id="choice4" type="radio" th:name="selectedItem" th:value="${choices[3].id}"/>-->
-<!--                <span th:text="${choices[3].choiceText}"></span></label></div>-->
+        <!--        <div>-->
+        <!--            <label><input id="choice4" type="radio" th:name="selectedItem" th:value="${choices[3].id}"/>-->
+        <!--                <span th:text="${choices[3].choiceText}"></span></label></div>-->
 
-        <div th:each="choice : ${choices}">
-            <label>
-                <input th:id="${choice.id}" type="radio" th:name="selectedItem" th:value="${choice.id}"/>
-                <span th:text="${choice.choiceText}"></span>
-            </label>
+        <div class="choices">
+            <div th:each="choice : ${choices}">
+                <label>
+                    <input th:id="${choice.id}" type="radio" th:name="selectedItem" th:value="${choice.id}"/>
+                    <span th:text="${choice.choiceText}"></span>
+                </label>
+            </div>
         </div>
 
+        <br>
+        <hr>
 
         <div class="buttons">
             <div class="button back_button">
@@ -120,6 +124,7 @@
     const defaultCheck = document.getElementById('js-choice_id').value;
     const firstCheck =  document.getElementById(defaultCheck);
     firstCheck.checked = true;
+
 
 
 </script>

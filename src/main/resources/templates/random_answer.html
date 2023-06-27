@@ -1,119 +1,124 @@
 <!DOCTYPE html>
 <html lang="ja">
-  <head>
-    <meta charset="UTF-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
-    />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <!-- サイトの説明欄 -->
-    <meta
-      name="ITインフォパスマスター"
-      content="試験内容別にテストがあり、ユーザーの受けたいテストをピンポイントに受講できる"
-    />
-    <!--CSSリンク-->
-    <!--Webフォントのリンク３つ-->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap"
-      rel="stylesheet"
-    />
-    <!--デフォルトの表示用CSS(ブラウザの表示の統一化)-->
-    <link rel="stylesheet" href="/Common/sanitize.css" />
-    <!--自作のCSS-->
-    <link rel="stylesheet" href="/CSS/style_random_answer.css" />
-
-    <!--favicon-->
-    <link rel="icon" type="image/x-icon" href="/image/exam.png" />
-    <title>ITインフォパスマスター</title>
-  </head>
-  <body>
-
-  <input
-          id="js-userId"
-          type="hidden"
-          th:value="${session.user.id}"
+<head>
+  <meta charset="UTF-8"/>
+  <meta
+          name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
   />
-
-  <input
-          id="js-ageId"
-          name="ageId"
-          type="hidden"
-          th:value="${ageId}"
+  <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
+  <!-- サイトの説明欄 -->
+  <meta
+          name="ITインフォパスマスター"
+          content="試験内容別にテストがあり、ユーザーの受けたいテストをピンポイントに受講できる"
   />
-
-
-    <!--ヘッダーの指定-->
-    <th:block th:insert="/Header/main_header.html"></th:block>
-  
-    <!--ここにコードを記入-->
-
-  <input
-          id="js-yourAnswer"
-          type="hidden"
-          th:value="${yourChoice.answer}"
+  <!--CSSリンク-->
+  <!--Webフォントのリンク３つ-->
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link
+          href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap"
+          rel="stylesheet"
   />
-  <div class="answer_judge_parent">
-    <div class="answer_frame">
-      <div class="your_answer">
-        <span>あなたの解答</span>
-      </div><br>
-      <div>
-        <span th:text="${yourChoice.choiceText}"></span>
-      </div>
+  <!--デフォルトの表示用CSS(ブラウザの表示の統一化)-->
+  <link rel="stylesheet" href="/Common/sanitize.css"/>
+  <!--自作のCSS-->
+  <link rel="stylesheet" href="/CSS/style_random_answer.css"/>
+
+  <!--favicon-->
+  <link rel="icon" type="image/x-icon" href="/image/exam.png"/>
+  <title>ITインフォパスマスター</title>
+</head>
+<body>
+
+<input
+        id="js-userId"
+        type="hidden"
+        th:value="${session.user.id}"
+/>
+
+<input
+        id="js-ageId"
+        name="ageId"
+        type="hidden"
+        th:value="${ageId}"
+/>
 
 
-      <div class="answer_judge">
-        <span id="judge"></span>
-      </div><br>
+<!--ヘッダーの指定-->
+<th:block th:insert="/Header/main_header.html"></th:block>
 
-      <div class="your_answer">
-        <span>正解</span>
-      </div><br>
-      <div>
-      <span th:text="${answer}"></span>
-      </div>
+<!--ここにコードを記入-->
+
+<input
+        id="js-yourAnswer"
+        type="hidden"
+        th:value="${yourChoice.answer}"
+/>
+<div class="answer_judge_parent">
+  <div class="answer_frame">
+    <div class="your_answer">
+      <span>あなたの解答</span>
     </div>
-  </div><br>
+    <br>
+    <div>
+      <span th:text="${yourChoice.choiceText}"></span>
+    </div>
+
+
+    <div class="answer_judge">
+      <span id="judge"></span>
+    </div>
+    <br>
+
+    <div class="your_answer">
+      <span>正解</span>
+    </div>
+    <br>
+    <div>
+      <span th:text="${answer}"></span>
+    </div>
+  </div>
+</div>
+<br>
 
 <form action="/random_answer" method="POST">
 
-    <input
-            id="js-questionId"
-            name="questionId"
-            type="hidden"
-            th:value="${questionId}"
-    />
+  <input
+          id="js-questionId"
+          name="questionId"
+          type="hidden"
+          th:value="${questionId}"
+  />
 
 
-    <div class="buttons">
-      <label>
-      <div  class="button kanpeki">後で見返す</div>
+  <div class="buttons">
+
+    <label>
+      <div class="button kanpeki">後で見返す</div>
       <input id="look_check" type="checkbox" name="look_check" value="true"><br>
-      </label>
-      <br>
-      <label>
-      <div  class="button kanpeki">完璧</div>
+    </label>
+    <br>
+    <label>
+      <div class="button kanpeki">完璧</div>
       <input id="perfect_check" type="checkbox" name="perfect_check" value="true"><br>
-      </label>
-      <br>
-    </div>
+    </label>
+    <br>
 
-    <div class="buttons1">
-      <button  type="submit" id="next_btn" class="button next">次へ</button>
-    </div><br>
+    <hr>
+  </div>
+  <div class="buttons1">
+    <button type="submit" id="next_btn" class="button next">次へ</button>
+  </div>
+  <br>
 </form>
 <!--  終了してもuser_checkが更新されない-->
-  <div class="buttons1">
-    <button class="button next" onclick="location.href='/random_select'">終了</button>
-  </div>
+<div class="buttons1">
+  <button class="button next" onclick="location.href='/random_select'">終了</button>
+</div>
 
 
-
-
-    <!--JSの指定-->
-    <script src="/JS/app_random_answer.js"></script>
-  </body>
+<!--JSの指定-->
+<script src="/JS/app_random_answer.js"></script>
+</body>
 </html>

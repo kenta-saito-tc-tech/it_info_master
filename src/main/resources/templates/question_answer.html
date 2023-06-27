@@ -1,124 +1,136 @@
 <!DOCTYPE html>
 <html lang="ja">
-  <head>
-    <meta charset="UTF-8" />
+<head>
+    <meta charset="UTF-8"/>
     <meta
-      name="viewport"
-      content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+            name="viewport"
+            content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
     />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
     <!-- サイトの説明欄 -->
     <meta
-      name="ITインフォパスマスター"
-      content="試験内容別にテストがあり、ユーザーの受けたいテストをピンポイントに受講できる"
+            name="ITインフォパスマスター"
+            content="試験内容別にテストがあり、ユーザーの受けたいテストをピンポイントに受講できる"
     />
     <!--CSSリンク-->
     <!--Webフォントのリンク３つ-->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://fonts.googleapis.com"/>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
     <link
-      href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap"
-      rel="stylesheet"
+            href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap"
+            rel="stylesheet"
     />
     <!--デフォルトの表示用CSS(ブラウザの表示の統一化)-->
-<!--    <link rel="stylesheet" href="./Common/sanitize.css" />-->
+    <!--    <link rel="stylesheet" href="./Common/sanitize.css" />-->
     <!--自作のCSS-->
     <!-- <link rel="stylesheet" href="#" /> -->
     <link rel="stylesheet" href="/CSS/style_question_answer.css"/>
 
     <!--favicon-->
-<link rel="icon" type="image/x-icon" href="/image/exam.png" />
+    <link rel="icon" type="image/x-icon" href="/image/exam.png"/>
     <title>ITインフォパスマスター</title>
-  </head>
-  <body>
+</head>
+<body>
 
-    <!--ヘッダーの指定-->
+<!--ヘッダーの指定-->
 <th:block th:insert="/Header/main_header.html"></th:block>
 
-    <input
-            id="js-userId"
-            type="hidden"
-            th:value="${session.user.id}"
-    />
+<input
+        id="js-userId"
+        type="hidden"
+        th:value="${session.user.id}"
+/>
 
-    <input
-            id="js-questionId"
-            type="hidden"
-            th:value="${question.id}"
-    />
+<input
+        id="js-questionId"
+        type="hidden"
+        th:value="${question.id}"
+/>
 
-    <input
-            id="js-choiceId"
-            type="hidden"
-            th:value="${choiceId}"
-    />
+<input
+        id="js-choiceId"
+        type="hidden"
+        th:value="${choiceId}"
+/>
 
-    <input
-            id="js-ageId"
-            type="hidden"
-            th:value="${ageId}"
-    />
+<input
+        id="js-ageId"
+        type="hidden"
+        th:value="${ageId}"
+/>
 
 
-    <!--ここにコードを記入-->
+<!--ここにコードを記入-->
 
-    <div class="questionDiv">
+<div class="questionDiv">
 
-      <div id="question_title">
+    <div id="question_title">
         <!--タイトルを入れる-->
         <span th:text="${question.questionName}"></span>
-      </div>
-
-      <div id="question_text">
-        <!--問題文-->
-        <span class="question_text" th:text="${question.questionText}"></span>
-      </div>
-      <br>
-      <div id="choices">
-        <!--選択肢-->
-<!--        <div>-->
-<!--        <label><input id="choice1" type="radio" th:name="selectedItem" th:value="${choices[0].id}" />-->
-<!--          <span th:text="${choices[0].choiceText}"></span></label></div>-->
-
-<!--        <div>-->
-<!--        <label><input id="choice2" type="radio" th:name="selectedItem" th:value="${choices[1].id}" />-->
-<!--          <span th:text="${choices[1].choiceText}"></span></label></div>-->
-
-<!--        <div>-->
-<!--          <label><input id="choice3" type="radio" th:name="selectedItem" th:value="${choices[2].id}" />-->
-<!--            <span th:text="${choices[2].choiceText}"></span></label></div>-->
-
-<!--        <div>-->
-<!--        <label><input id="choice4" type="radio" th:name="selectedItem" th:value="${choices[3].id}" />-->
-<!--          <span th:text="${choices[3].choiceText}"></span></label></div>-->
-
-          <div th:each="choice : ${choices}">
-              <label>
-                  <input th:id="${choice.id}" type="radio" th:name="selectedItem" th:value="${choice.id}"/>
-                  <span th:text="${choice.choiceText}"></span>
-              </label>
-          </div>
-
-    </div><br>
-
-    <div id="correct_Ans">
-      正解<br><!--正解-->
-      <span class="answer" th:text="${answer}"></span>
-    </div><br>
-
-    <div id="commentary">
-      解説<br><!--解説-->
-      <span class="answer_text" th:text="${question.answerText}"></span>
     </div>
 
+    <div id="question_text">
+        <!--問題文-->
+        <span class="question_text" th:text="${question.questionText}"></span>
+    </div>
+    <br>
+    <div id="choices">
+        <!--選択肢-->
+        <!--        <div>-->
+        <!--        <label><input id="choice1" type="radio" th:name="selectedItem" th:value="${choices[0].id}" />-->
+        <!--          <span th:text="${choices[0].choiceText}"></span></label></div>-->
+
+        <!--        <div>-->
+        <!--        <label><input id="choice2" type="radio" th:name="selectedItem" th:value="${choices[1].id}" />-->
+        <!--          <span th:text="${choices[1].choiceText}"></span></label></div>-->
+
+        <!--        <div>-->
+        <!--          <label><input id="choice3" type="radio" th:name="selectedItem" th:value="${choices[2].id}" />-->
+        <!--            <span th:text="${choices[2].choiceText}"></span></label></div>-->
+
+        <!--        <div>-->
+        <!--        <label><input id="choice4" type="radio" th:name="selectedItem" th:value="${choices[3].id}" />-->
+        <!--          <span th:text="${choices[3].choiceText}"></span></label></div>-->
+
+        <div classs="choices">
+            <div th:each="choice : ${choices}">
+                <label>
+                    <input th:id="${choice.id}" type="radio" th:name="selectedItem" th:value="${choice.id}"/>
+                    <span th:text="${choice.choiceText}"></span>
+                </label>
+            </div>
+        </div>
+    </div>
+    <br>
+
+    <div id="correct_Ans">
+
+        <div class="correct_box">
+            正解
+            <br>
+            <span class="answer" th:text="${answer}"></span>
+        </div>
+
+    </div>
+
+    <div id="commentary">
+        <div class="answer_text_box">
+            解説
+            <br><!--解説-->
+            <span class="answer_text" th:text="${question.answerText}"></span>
+        </div>
+    </div>
+
+    <hr>
+
     <div class="buttons2">
-      <div id="kanpekiBtn" class="button kanpeki">完璧</div>
-      <input id="kanpeki_check" type="checkbox" name="kanpeki_check" value="check"><br>
-      <br>
-      <div id="finishBtn" class="button finish">終了</div>
+        <div id="kanpekiBtn" class="button kanpeki">完璧</div>
+        <input id="kanpeki_check" type="checkbox" name="kanpeki_check" value="check"><br>
+        <br>
+        <div id="finishBtn" class="button finish">終了</div>
     </div>
 
     <!--JSの指定-->
     <script src="/JS/app_question_answer.js"></script>
-  </body>
+</body>
 </html>
