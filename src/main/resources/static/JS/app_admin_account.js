@@ -91,6 +91,7 @@ document.addEventListener("DOMContentLoaded", () => {
         .then((response) => {
           if (response.ok) {
             console.log("POST request processed");
+            listUserShow();
             window.setTimeout(function () {
               alert("ユーザーの登録完了");
             }, 1000);
