@@ -106,4 +106,11 @@ public class PgManageDao implements ManageDao{
         }
         return ok;
     }
+
+    @Override
+    public Integer adminAddAge(Integer age) {
+        MapSqlParameterSource param = new MapSqlParameterSource();
+        param.addValue("age", age);
+        return jdbcTemplate.update("insert into age(age) values (:age)", param);
+    }
 }
