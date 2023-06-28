@@ -59,8 +59,20 @@ document.addEventListener("DOMContentLoaded", () => {
       //RestControllerから受け取った値->res(成功/200 失敗/400)
       if (res.status === 400) {
         console.log("no");
+        ranking1Name.textContent = "";
+        ranking1Score.textContent = "";
+        ranking2Name.textContent = "";
+        ranking2Score.textContent = "";
+        ranking3Name.textContent = "";
+        ranking3Score.textContent = "";
       } else {
         res.json().then((data) => {
+          ranking1Name.textContent = "";
+          ranking1Score.textContent = "";
+          ranking2Name.textContent = "";
+          ranking2Score.textContent = "";
+          ranking3Name.textContent = "";
+          ranking3Score.textContent = "";
           data.forEach((dataEach) => {
             counts++;
             if (counts == 1) {
@@ -82,15 +94,24 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function myRankingShow(age) {
     console.log(userId);
+    myRanking.textContent = "-";
+    myScore.textContent = 0;
     //自分のランキングを入れる
     fetch(`/myRanking?age=${age}&id=${userId}`).then((res) => {
       //RestControllerから受け取った値->res(成功/200 失敗/400)
       if (res.status === 400) {
         console.log("no");
+        myRanking.textContent = "-";
+        myScore.textContent = 0;
       } else {
         res.json().then((data) => {
+          myRanking.textContent = "-";
+          myScore.textContent = 0;
+          if(data.rank > 0){
             myRanking.textContent = data.rank;
             myScore.textContent = data.gameScore;
+          }
+
         });
       }
     });
