@@ -7,8 +7,10 @@ import com.example.It_info_pass_master.Entity.UserCategoryRecord;
 import com.example.It_info_pass_master.Service.RandomService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
+import jakarta.servlet.http.HttpSession;
 
 import java.util.List;
 
@@ -16,6 +18,9 @@ import java.util.List;
 public class RandomRestController {
     @Autowired
     private RandomService randomService;
+
+    @Autowired
+    private HttpSession session;
 
     @GetMapping("/api/findRandSelect")
     public List<CategoryRecord> findRandSelect(@RequestParam(name = "ageUserId")String[] ageUserId){
@@ -61,6 +66,21 @@ public class RandomRestController {
         System.out.println("セッションに登録する情報："+selectRandomRecord);
 
         return randomService.sessionRandom(selectRandomRecord);
+    }
+
+    @PostMapping("/api/user_check_update")
+    public int random_answer(@RequestBody String[] lookPerfect){
+        System.out.println("lookPerfect"+lookPerfect);
+
+        var ageId = Integer.parseInt(lookPerfect[0]);
+        var questionId = Integer.parseInt(lookPerfect[1]);
+        var userId = Integer.parseInt(lookPerfect[2]);
+        var lookCheck = Integer.parseInt(lookPerfect[3]);
+        var perfectCheck = Integer.parseInt(lookPerfect[4]);
+        randomService.updateLookingBackCheck(ageId, questionId, userId, lookCheck);
+        randomService.updatePerfectCheck(ageId, questionId, userId, perfectCheck);
+
+        return 0;
     }
 
 }
