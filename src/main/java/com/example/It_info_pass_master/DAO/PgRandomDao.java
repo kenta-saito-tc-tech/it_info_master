@@ -73,8 +73,8 @@ public class PgRandomDao implements RandomDao{
                    "from questions " +
                    "where id IN (select question_id " +
                    "from question_age " +
-                   "WHERE id IN (select question_age_id from user_check where user_id = :userId AND perfect_check = 0 OR user_id = :userId AND perfect_check = 1) " +
-                   "OR id NOT IN (select question_age_id from user_check where user_id = :userId AND perfect_check = 1 OR user_id = :userId AND perfect_check = 0) " +
+                   "WHERE (id IN (select question_age_id from user_check where user_id = :userId AND perfect_check = 0 OR user_id = :userId AND perfect_check = 1) " +
+                   "OR id NOT IN (select question_age_id from user_check where user_id = :userId AND perfect_check = 1 OR user_id = :userId AND perfect_check = 0)) " +
                    "AND age_id = :ageId) " +
                    "AND category_id = ANY(:categories) " +
                    "ORDER BY RANDOM() " +
@@ -89,8 +89,8 @@ public class PgRandomDao implements RandomDao{
                     "from questions " +
                     "where id IN (select question_id " +
                     "from question_age " +
-                    "WHERE id IN (select question_age_id from user_check where user_id = :userId AND perfect_check = 0) " +
-                    "OR id NOT IN (select question_age_id from user_check where user_id = :userId AND perfect_check = 1 OR user_id = :userId AND perfect_check = 0) " +
+                    "WHERE (id IN (select question_age_id from user_check where user_id = :userId AND perfect_check = 0) " +
+                    "OR id NOT IN (select question_age_id from user_check where user_id = :userId AND perfect_check = 1)) " +
                     "AND age_id = :ageId) " +
                     "AND category_id = ANY(:categories) " +
                     "ORDER BY RANDOM() " +
@@ -188,7 +188,7 @@ public class PgRandomDao implements RandomDao{
         var resultSet = jdbcTemplate.update("UPDATE user_check SET look_check = :check WHERE user_id = :userId AND question_age_id = :questionAgeId",param);
         System.out.println("controllerから確認"+resultSet);
         return resultSet;
-    };
+    }
 
     @Override
     //見返しリストをアップデートする処理
