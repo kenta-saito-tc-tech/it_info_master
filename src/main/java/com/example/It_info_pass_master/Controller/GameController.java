@@ -21,6 +21,9 @@ public class GameController {
 
     @PostMapping("/game_main")
     public String gameMainPost(@RequestParam(name="age") int id) {
+        if (session.getAttribute("user") == null) { // セッションがない場合
+            return "redirect:/index";
+        }
         // UserRecordからuseridを取得している
         var user = (UserRecord)session.getAttribute("user");
         int userid = user.id();
@@ -31,11 +34,17 @@ public class GameController {
 
     @GetMapping("/game_finish")
     public String gameFinishGet() {
+        if (session.getAttribute("user") == null) { // セッションがない場合
+            return "redirect:/index";
+        }
         return "game_finish";
     }
 
     @PostMapping("/game_detail")
     public String gameDetailPost(@RequestParam(name="info")int questionId, Model model) {
+        if (session.getAttribute("user") == null) { // セッションがない場合
+            return "redirect:/index";
+        }
         var question = gameService.gameDetailQuestion(questionId);
         var choice = gameService.gameDetailChoice(questionId);
         model.addAttribute("gameQ", question);

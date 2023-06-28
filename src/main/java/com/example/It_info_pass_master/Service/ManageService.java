@@ -1,9 +1,6 @@
 package com.example.It_info_pass_master.Service;
 
-import com.example.It_info_pass_master.Entity.AdminQuestionRecord;
-import com.example.It_info_pass_master.Entity.ChoiceRecord;
-import com.example.It_info_pass_master.Entity.QuestionRecord;
-import com.example.It_info_pass_master.Entity.UserAgeRecord;
+import com.example.It_info_pass_master.Entity.*;
 import org.springframework.http.ResponseEntity;
 
 import java.util.List;
@@ -18,5 +15,6 @@ public interface ManageService {
     public List<AdminQuestionRecord> adminCheckGameAge(Integer age);
     public int adminSetGameQuestion(List<AdminQuestionRecord> setQuestion);
     public Integer adminAddAge(Integer age);
-
+    public int adminAddQuestion(List<AdminQuestionRecord> setQuestion);
+    public List<QuestionIdRecord> adminCheckImpossible(int ageId);
 }

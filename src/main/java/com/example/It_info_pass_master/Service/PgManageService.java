@@ -1,10 +1,7 @@
 package com.example.It_info_pass_master.Service;
 
 import com.example.It_info_pass_master.DAO.ManageDao;
-import com.example.It_info_pass_master.Entity.AdminQuestionRecord;
-import com.example.It_info_pass_master.Entity.ChoiceRecord;
-import com.example.It_info_pass_master.Entity.QuestionRecord;
-import com.example.It_info_pass_master.Entity.UserAgeRecord;
+import com.example.It_info_pass_master.Entity.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -59,5 +56,16 @@ public class PgManageService implements ManageService{
     public Integer adminAddAge(Integer age) {
         return manageDao.adminAddAge(age);
     }
+
+    @Override
+    public int adminAddQuestion(List<AdminQuestionRecord> setQuestion) {
+        return manageDao.adminAddQuestion(setQuestion);
+    }
+
+    @Override
+    public List<QuestionIdRecord> adminCheckImpossible(int ageId) {
+        return manageDao.adminCheckImpossible(ageId);
+    }
+
 
 }

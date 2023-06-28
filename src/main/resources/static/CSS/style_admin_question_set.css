@@ -17,6 +17,13 @@
         padding: 10px;
     }
 
+    #create2 {
+        position: absolute;
+        right: 160px;
+        width: 150px;
+        padding: 10px;
+    }
+
     #add {
         position: absolute;
         right: 57px;
