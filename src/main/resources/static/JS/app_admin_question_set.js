@@ -63,6 +63,16 @@ document.getElementById('buttonTest5').addEventListener('click', () => {
 
 })
 
+document.getElementById('buttonTest6').addEventListener('click', () => {
+  var testDisplay6 = document.getElementById("test6");
+    if (testDisplay6.style.display == "none") {
+        testDisplay6.style.display = "block";
+    } else {
+        testDisplay6.style.display = "none";
+    }
+
+})
+
 
 //年代を全件取り出して表示する
 function displayAge() {
@@ -76,6 +86,7 @@ function displayAge() {
             .then(data => {
                 data.forEach((age) => {
                     const optionElement = document.createElement('option');
+                    optionElement.id = age.id;
                     optionElement.classList.add('questionList');
                     optionElement.value = age.id;
                     optionElement.textContent = age.age;
@@ -83,8 +94,39 @@ function displayAge() {
                     console.log(optionElement.value);
                     console.log(optionElement.innerText);
 
+
                     displayList.appendChild(optionElement);
                 })
+                displayList.addEventListener('change', () => {
+                    let ageId = displayList.value;
+                    console.log(ageId);
+                    fetch("/api/adminCheckImpossible", {
+                     method: 'POST',
+                     headers: {
+                         'Content-Type': 'application/json',
+                     },
+                     body: JSON.stringify(ageId),
+                 })
+                 .then(res => {
+                     if(res.status === 400) {
+                       window.alert('Hello error');
+                     } else {
+                       res.json()
+                       .then(data1 => {
+                        displayQuestion();
+                        data1.forEach((adminQuestion) => {
+                         console.log(adminQuestion.questionId);
+                         document.getElementById("admin" + adminQuestion.questionId).disabled = true;
+                        
+                       })
+                     })
+                   }});
+                 
+                 
+     
+                   
+                   })
+
             })
         }
     })
@@ -105,8 +147,9 @@ function displayQuestion() {
                     pElement.textContent = adminQuestion.questionName;
                     inputElement.classList.add('questions');
                     inputElement.type = 'checkbox'
+                    inputElement.id = "admin" + adminQuestion.id;
                     inputElement.value = adminQuestion.id;
-
+                    inputElement.disabled = false;
                     pElement.appendChild(inputElement);
                     if(adminQuestion.categoryId == 1) {
                         document.getElementById('test1').appendChild(pElement);
@@ -116,9 +159,12 @@ function displayQuestion() {
                         document.getElementById('test3').appendChild(pElement);
                     } else if(adminQuestion.categoryId == 4) {
                         document.getElementById('test4').appendChild(pElement);
-                    } else {
+                    } else if(adminQuestion.categoryId == 5){
                         document.getElementById('test5').appendChild(pElement);
+                    } else{
+                        document.getElementById('test6').appendChild(pElement);
                     }
+
                 })
             })
         }
@@ -208,6 +254,47 @@ createButton.addEventListener('click', () => {
         location.reload();
     })
 })
+
+// 問題を追加
+//追加ボタンが押されたら...
+var createButton2 = document.getElementById('create2');
+createButton2.addEventListener('click', () => {
+    //チェックされた問題を送る用の変数リスト
+    var checkQuestionList = [];
+
+    //チェックされた問題をcheckQuestionListに入れる
+    var classList = document.getElementsByClassName('questions');
+    var insertAge = document.getElementById('testera').value;
+    for (var i = 0; i < classList.length; i++) {
+        if (classList[i].checked) {
+          selectedValue = classList[i].value;
+          var item = { id: 0, ageId: insertAge, questionId: selectedValue, };
+          checkQuestionList.push(item);
+        }
+    }
+
+    //checkQuestionListをRestControllerに送る
+    fetch("/api/adminAddQuestion", {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(checkQuestionList),
+    })
+
+    //成功したかどうかを判定
+    .then((response) => {
+        if (response.status === 200) {
+            window.alert('問題を追加しました。');
+        } else {
+            window.alert('問題が追加出来ませんでした。');
+            return;
+        }
+
+        //ページを再読み込み
+        location.reload();
+    })
+});
 
 // 年代追加
 const ageForm = document.getElementById('ageForm');

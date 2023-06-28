@@ -1,9 +1,6 @@
 package com.example.It_info_pass_master.DAO;
 
-import com.example.It_info_pass_master.Entity.AdminQuestionRecord;
-import com.example.It_info_pass_master.Entity.ChoiceRecord;
-import com.example.It_info_pass_master.Entity.QuestionRecord;
-import com.example.It_info_pass_master.Entity.UserAgeRecord;
+import com.example.It_info_pass_master.Entity.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.jdbc.core.DataClassRowMapper;
@@ -113,4 +110,39 @@ public class PgManageDao implements ManageDao{
         param.addValue("age", age);
         return jdbcTemplate.update("insert into age(age) values (:age)", param);
     }
+
+    @Override
+    public int adminAddQuestion(List<AdminQuestionRecord> setQuestion) {
+        int ok = 0;
+        MapSqlParameterSource param = new MapSqlParameterSource();
+        param.addValue("ageId", setQuestion.get(0).ageId());
+
+        // データの削除
+        jdbcTemplate.update("DELETE FROM question_age WHERE age_id = :ageId", param);
+        System.out.println(setQuestion + "------------");
+
+        MapSqlParameterSource param2 = new MapSqlParameterSource();
+        // データの挿入
+        var j = 1;
+        for (var i : setQuestion) {
+            System.out.println(j + "回目");
+            param2.addValue("questionId", i.questionId());
+            param2.addValue("ageId", i.ageId());
+            jdbcTemplate.update("INSERT INTO question_age (age_id, question_id) VALUES (:ageId, :questionId)", param2);
+            System.out.println(j + "回目成功");
+            j= j +1;
+        }
+
+        return ok;
+    }
+
+    @Override
+    public List<QuestionIdRecord> adminCheckImpossible(int ageId) {
+        MapSqlParameterSource param = new MapSqlParameterSource();
+        param.addValue("ageId", ageId);
+        var list = jdbcTemplate.query("SELECT question_id FROM game_age WHERE age_id = :ageId", param, new DataClassRowMapper<>(QuestionIdRecord.class));
+        return list;
+    }
+
+
 }

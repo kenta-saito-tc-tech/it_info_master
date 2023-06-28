@@ -63,6 +63,16 @@ document.getElementById('buttonTest5').addEventListener('click', () => {
 
 })
 
+document.getElementById('buttonTest6').addEventListener('click', () => {
+  var testDisplay6 = document.getElementById("test6");
+    if (testDisplay6.style.display == "none") {
+        testDisplay6.style.display = "block";
+    } else {
+        testDisplay6.style.display = "none";
+    }
+
+})
+
 
 //年代を全件取り出して一旦非表示する
 function displayAge() {
@@ -120,8 +130,10 @@ function displayQuestion() {
                         document.getElementById('test3').appendChild(pElement);
                     } else if(adminQuestion.categoryId == 4) {
                         document.getElementById('test4').appendChild(pElement);
-                    } else {
+                    } else if(adminQuestion.categoryId == 5) {
                         document.getElementById('test5').appendChild(pElement);
+                    } else {
+                        document.getElementById('test6').appendChild(pElement);
                     }
                 })
             })
