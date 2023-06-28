@@ -28,7 +28,8 @@ body {
     background-color: white;
     font-size: 30px;
     width: 600px;
-    height: 150px;
+    height: 200px;
+    padding-top: 30px;
     border: 1px solid black;
 }
 
@@ -44,12 +45,14 @@ body {
     background-color: white;
     font-size: 15px;
     width: 600px;
-    height: 150px;
+    height: 200px;
+    padding-top: 30px;
     overflow: auto;  /* スクロールバーを表示するように設定 */
+    border: 1px solid black;
 }
 
 .scrollable-area {
-  width: 600px;    /* スクロール可能な領域の幅 */
+  width: 900px;    /* スクロール可能な領域の幅 */
   height: 200px;   /* スクロール可能な領域の高さ */
 }
 
