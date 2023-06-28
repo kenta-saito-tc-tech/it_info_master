@@ -51,4 +51,47 @@ document.addEventListener("DOMContentLoaded", () => {
               })
             }
         });
+
+        const finishBtn = document.getElementById('finish_btn');
+
+        finishBtn.addEventListener('click', function () {   
+          const lookCheck = document.getElementById('look_check');
+          const perfectCheck = document.getElementById('perfect_check');
+          const ageId = document.getElementById('js-ageId').value;
+          const userId = document.getElementById('js-userId').value;
+          const questionId = document.getElementById('js-questionId').value;
+          let perfect = '0';
+          let look = '0';
+
+          if(perfectCheck.checked){
+            perfect = '1';
+          }
+          if(lookCheck.checked){
+            look = '1';
+          }
+
+          const lookPerfect = [ageId, questionId, userId, look, perfect];
+
+          fetch('/api/user_check_update',{
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(lookPerfect)
+        })
+            .then(res => {
+                if (res.status === 400) {
+                    
+                } else {
+                    res.json()
+                        .then(data => {
+                            
+                            window.location.href = "/random_select";
+
+                        });
+                }
+            });
+
+
+      });
 });
