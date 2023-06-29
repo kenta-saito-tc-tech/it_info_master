@@ -17,6 +17,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
   //id
   const userId = document.getElementById("js-userId").value;
+  //権限
+  const userRole = document.getElementById("js-userRole").value;
 
   var counts = 0;
   var countForAge = 1;
@@ -38,7 +40,9 @@ document.addEventListener("DOMContentLoaded", () => {
             selectedText = dataEach.age;
             countForAge = 0;
             pageShow(selectedText);
-            myRankingShow(selectedText);
+            if(userRole == "user"){
+              myRankingShow(selectedText);
+            }
           }
           listSelect.appendChild(option1);
         });
@@ -47,7 +51,9 @@ document.addEventListener("DOMContentLoaded", () => {
           selectedText = this.options[this.selectedIndex].text;
           console.log("選択された年代:", selectedText);
           pageShow(selectedText);
-          myRankingShow(selectedText);
+          if(userRole == "user"){
+            myRankingShow(selectedText);
+          }
         });
       });
     }
@@ -107,11 +113,10 @@ document.addEventListener("DOMContentLoaded", () => {
         res.json().then((data) => {
           myRanking.textContent = "-";
           myScore.textContent = 0;
-          if(data.rank > 0){
+          if (data.rank > 0) {
             myRanking.textContent = data.rank;
             myScore.textContent = data.gameScore;
           }
-
         });
       }
     });

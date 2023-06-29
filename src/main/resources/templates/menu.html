@@ -39,6 +39,13 @@
       type="hidden"
       th:value="${session.user.id}"
     />
+        <!--権限の格納用-->
+        <input
+        id="js-userRole"
+        type="hidden"
+        th:value="${session.user.role}"
+      />
+
 
     <div class="mainBackImg">
       <!--ランキング表示-->
