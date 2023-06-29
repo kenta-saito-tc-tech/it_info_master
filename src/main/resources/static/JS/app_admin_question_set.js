@@ -283,9 +283,9 @@ createButton2.addEventListener('click', () => {
     //成功したかどうかを判定
     .then((response) => {
         if (response.status === 200) {
-            window.alert('問題を追加しました。');
+            window.alert('問題を更新しました。');
         } else {
-            window.alert('問題が追加出来ませんでした。');
+            window.alert('問題が更新出来ませんでした。');
             return;
         }
 
