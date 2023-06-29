@@ -99,31 +99,9 @@ function displayAge() {
                 })
                 displayList.addEventListener('change', () => {
                     let ageId = displayList.value;
-                    console.log(ageId);
-                    fetch("/api/adminCheckImpossible", {
-                     method: 'POST',
-                     headers: {
-                         'Content-Type': 'application/json',
-                     },
-                     body: JSON.stringify(ageId),
-                 })
-                 .then(res => {
-                     if(res.status === 400) {
-                       window.alert('Hello error');
-                     } else {
-                       res.json()
-                       .then(data1 => {
-                        displayQuestion();
-                        data1.forEach((adminQuestion) => {
-                         console.log(adminQuestion.questionId);
-                         document.getElementById("admin" + adminQuestion.questionId).disabled = true;
-                        
-                       })
-                     })
-                   }});
-                 
-                 
-     
+                    //呼び出し
+                    ageSelected(ageId);
+
                    
                    })
 
@@ -149,7 +127,6 @@ function displayQuestion() {
                     inputElement.type = 'checkbox'
                     inputElement.id = "admin" + adminQuestion.id;
                     inputElement.value = adminQuestion.id;
-                    inputElement.disabled = false;
                     pElement.appendChild(inputElement);
                     if(adminQuestion.categoryId == 1) {
                         document.getElementById('test1').appendChild(pElement);
@@ -172,15 +149,13 @@ function displayQuestion() {
 }
 
 //年代がチェックされたら...
-var ageSelect = document.getElementById('testera');
-ageSelect.addEventListener('change', () => {
-    var selected = ageSelect.value;
+function ageSelected(ageId){
     fetch(`/api/adminCheckAge`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
         },
-        body: JSON.stringify({age: selected}),
+        body: JSON.stringify({age: ageId}),
     })
     .then(res => {
       if(res.status === 400) {
@@ -192,6 +167,7 @@ ageSelect.addEventListener('change', () => {
             var classList = document.getElementsByClassName('questions');
             for(var k = 0; k < classList.length; k++) {
                 classList[k].checked = false;
+                classList[k].disabled = false;
             }
             for(var i = 0; i < data.length; i++) {
                 for(var j = 0; j < classList.length; j++) {
@@ -199,6 +175,7 @@ ageSelect.addEventListener('change', () => {
                         select = 0;
                         console.log('成功');
                         classList[j].checked = true;
+                        classList[j].disabled = false;
                         break;
                     }
                 }
@@ -210,10 +187,31 @@ ageSelect.addEventListener('change', () => {
             } else {
                 document.getElementById('create').style.display = 'block';
             }
+
+            fetch("/api/adminCheckImpossible", {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(ageId),
+            })
+            .then(res => {
+                if(res.status === 400) {
+                  window.alert('Hello error');
+                } else {
+                  res.json()
+                  .then(data1 => {
+                   data1.forEach((adminQuestion) => {
+                    console.log(adminQuestion.questionId);
+                    document.getElementById("admin" + adminQuestion.questionId).disabled = true;
+                   
+                  })
+                })
+              }});
         })
       }
     });
-})
+}
 
 //作成ボタンが押されたら...
 var createButton = document.getElementById('create');
